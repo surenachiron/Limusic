@@ -1,14 +1,17 @@
 import React from "react";
-import {render} from "react-dom";
-import Globalstate from "./containers/Globalstate";
+import { render } from "react-dom";
 import App from "./containers/App";
-import {BrowserRouter} from "react-router-dom";
+import './index.css';
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import "swiper/css/bundle"
+import { BrowserRouter } from "react-router-dom";
 
 render(
-    <Globalstate>
-        <BrowserRouter>
+    <BrowserRouter>
+        <Provider store={store}>
             <App />
-        </BrowserRouter>
-    </Globalstate>,
+        </Provider>
+    </ BrowserRouter>,
     document.getElementById('root')
 )
