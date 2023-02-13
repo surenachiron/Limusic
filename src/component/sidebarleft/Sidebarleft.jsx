@@ -2,12 +2,15 @@ import { faHome, faMusic, faPlay } from "@fortawesome/fontawesome-free-solid";
 import { faHeartMusicCameraBolt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Fragment } from "react";
+import { NavLink } from "react-router-dom";
 
 const Sidebarleft = () => {
 
     return (
         <div className="sticky top-0 pt-4">
-            <h1 className="text-2xl text-bluepro font-bold">LiMusic</h1>
+            <NavLink to="/">
+                <h1 className="text-2xl text-bluepro font-bold">LiMusic</h1>
+            </NavLink>
             <div className="mt-10">
                 <h2 className="text-1xl text-white">Browser Music</h2>
                 <div className="mt-7" id="menu">

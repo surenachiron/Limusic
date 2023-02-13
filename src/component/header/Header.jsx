@@ -5,7 +5,6 @@ import accountprson from '../../assets/images/main.png'
 import looglg from '../../assets/images/looglg.jpg'
 import logosm from '../../assets/images/logosm.jpg'
 import { NavLink } from "react-router-dom";
-import { headermobileshow } from "../../redux/reducers/truefalse";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { changeheadermobileshow } from "../../redux/actions/truefalse";
@@ -44,7 +43,6 @@ const Header = () => {
                 </div>
         } else menumobile = ""
     }, [headermenushow])
-    console.log(headermenushow)
 
     return (
         <div className="flex items-center justify-between grid grid-cols-12 pt-5 bg-tranparent px-5">
@@ -54,13 +52,13 @@ const Header = () => {
                 <h3 className="text">Live</h3>
             </div>
             <div className="lg:hidden md:flex md:items-center zero:col-span-3 transition-all">
-                <NavLink to='/'>
-                    <img src={looglg} alt="logo" className="w-28 mr-3 cursor-pointer md:inline zero:hidden" />
-                </NavLink>
-                <FontAwesomeIcon icon={faBars} className="cursor-pointer" onClick={dorshowhisemenumobile} ></FontAwesomeIcon>
+                <FontAwesomeIcon icon={faBars} className="cursor-pointer mr-3" onClick={dorshowhisemenumobile} ></FontAwesomeIcon>
                 <div className="transition-all">
                     {menumobile}
                 </div>
+                <NavLink to='/'>
+                    <img src={looglg} alt="logo" className="w-28 cursor-pointer md:inline zero:hidden" />
+                </NavLink>
             </div>
             <div className="lg:col-span-1 lg:flex zero:hidden"></div>
             <div className="lg:col-span-4 md:col-span-6 md:w-full bg-white md:rounded-2xl md:flex items-center md:px-4 zero:hidden">

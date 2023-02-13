@@ -180,6 +180,7 @@ const Musicplayer = () => {
             dispatch(chnagemusicended(false))
         }
         dispatch(addmusicplaying(''))
+
     }
 
     // ========================================================================================= //
@@ -194,7 +195,6 @@ const Musicplayer = () => {
 
         if (musicplaying.length === 0 || musicplaying === null || musicplaying === undefined) setshowmusicplayer("hidden")
         else setshowmusicplayer("grid")
-        console.log(musicplaying.length)
 
         return () => window.removeEventListener("resize", updateDimensions);
     }, [<Musicplayer />]);
@@ -204,9 +204,11 @@ const Musicplayer = () => {
         e.target.style.background = 'linear-gradient(to right, #3369ff 0%, #3369ff ' + value + '%, #fff ' + value + '%, white 100%)'
     };
 
+
+
     return (
         <Fragment>
-            <div className={`${showmusicplayer} grid-cols-12 bg-blackopacitylittle text-3xl text-white h-13/100 rounded-3xl border-grayprodark border-1 z-auto w-full`}>
+            <div className={`${showmusicplayer} grid-cols-12 bg-blackopacitylittle text-3xl text-white h-13/100 rounded-3xl border-grayprodark border-1 z-auto w-full backdrop-blur-sm`}>
                 <div className="lg:col-span-2 zero:col-span-2 flex items-center justify-center cursor-pointer">
                     <img src={testimg1} className="lg:w-14 lg:h-10 zero:w-10 zero:h-10 rounded-lg mr-2 lg:ml-5 zero:ml-0" />
                     <div className="zero:hidden lg:block">
@@ -216,20 +218,20 @@ const Musicplayer = () => {
                 </div>
                 <div className="flex flex-col col-span-8 text-center mx-7">
                     <div className="flex items-center justify-center h-2/3">
-                        <div className="py-3 px-3 mr-5">
+                        <div className="py-3 px-3 md:mr-5 zero:mr-2">
                             <FontAwesomeIcon icon={faRandom} className={`${showrandom} block cursor-pointer  text-sm  hover:transition-all`} onClick={() => dispatch(changerandomplaymusic())}></FontAwesomeIcon>
                         </div>
-                        <div className="py-3 px-3 mr-5">
+                        <div className="py-3 px-3 md:mr-5 zero:mr-2">
                             <FontAwesomeIcon icon={faStepBackward} className={`block cursor-pointer text-white text-sm`}></FontAwesomeIcon>
                         </div>
                         <div id="plauandpause" className="bg-bluepro rounded-full py-3 px-3">
                             <FontAwesomeIcon icon={faPause} className={`${iconpause} cursor-pointer text-white text-sm`} onClick={puseallmusic} />
                             <FontAwesomeIcon icon={faPlay} className={`${iconplay} cursor-pointer text-white text-sm`} onClick={playinglastmusicplayed} />
                         </div>
-                        <div className="py-3 px-3 ml-5">
+                        <div className="py-3 px-3 md:ml-5 zero:ml-2">
                             <FontAwesomeIcon icon={faStepForward} className={`block cursor-pointer text-white text-sm`}></FontAwesomeIcon>
                         </div>
-                        <div className="py-3 px-3 ml-5">
+                        <div className="py-3 px-3 md:ml-5 zero:ml-2">
                             <FontAwesomeIcon id="retweetoneplay" icon={faRetweet} className={`${showretweet1} cursor-pointer text-graypro text-sm hover:text-white hover:transition-all`} onClick={() => dispatch(incrementnumberloop())}></FontAwesomeIcon>
                             <div className={`${showretweet2} m-0 p-0 items-center justify-center`} onClick={() => dispatch(incrementnumberloop())}>
                                 <FontAwesomeIcon id="retweettwoplay" icon={faRetweet} className={` cursor-pointer text-bluepro text-sm`} ></FontAwesomeIcon>

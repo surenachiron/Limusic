@@ -43,3 +43,50 @@ export const headermobileshow = (state = false, action) => {
             return state
     }
 }
+
+export const forloading = (state = false, action) => {
+    switch (action.type) {
+        case "ACTIONLOADING":
+            return action.payload;
+        default:
+            return state
+    }
+}
+
+export const overvieworlyricsforsong = (state = false, action) => {
+    switch (action.type) {
+        case "CHANGEOVERVIEWORLYRICS":
+            return action.payload;
+        default:
+            return state
+    }
+}
+
+export const showlittleorgreatsimilarsong = (state = false, action) => {
+    switch (action.type) {
+        case "CHANGESIMILARSONGLENGTH":
+            return !state;
+        default:
+            return state
+    }
+}
+
+//// loading
+
+// export const loadingfortopsong = (state = false, action) => {
+//     switch (action.type) {
+//         case "CHANGELOADINGTOPSONG":
+//             return !state;
+//         default:
+//             return state
+//     }
+// }
+
+// export const loadingforsimilarsong = (state = false, action) => {
+//     switch (action.type) {
+//         case "CHANGELOADINGSIMILARSONG":
+//             return !state;
+//         default:
+//             return state
+//     }
+// }

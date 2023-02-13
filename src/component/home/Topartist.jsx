@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import aghamsorenaimg from "../../../assets/images/Folder.jpg"
+import aghamsorenaimg from "../../assets/images/Folder.jpg"
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from 'swiper';
@@ -15,7 +15,7 @@ const Topartist = () => {
         <Fragment>
             <div className="rounded-3xl flex flex-col w-full mb-5 justify-center shadow border-grayprodark border-1 px-5 bg-testbacksecond">
                 <h2 className="text font-bold p-2 my-3">Best Artists</h2>
-                <div className="flex w-full mb-7 kosnanaekhamenei">
+                <div className="flex w-full kosnanaekhamenei">
                     <Swiper
                         modules={[Pagination]}
                         slidesPerView={5}

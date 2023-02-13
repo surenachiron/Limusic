@@ -1,6 +1,6 @@
 .kosnanaekhamenei {
     position: relative;
-    background: transparent;
+    background: transparent !important;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 14px;
     color: #000;
@@ -44,5 +44,5 @@
      opacity: 1 !important;
 }
 .swiper-pagination-bullet-active {
-    background-color: #ffffff !important;
+    background-color: transparent !important;
 }

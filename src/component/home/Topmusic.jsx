@@ -1,19 +1,18 @@
 import React, { Fragment } from "react";
-import Nakhodajalal from "../../../assets/sounds/02NakhodaJelal.mp3"
-import daar from "../../../assets/sounds/03Daar(Daastaan-e-Maryam).mp3"
-import gorizmarkaz from "../../../assets/sounds/04GorizAzMarkaz.mp3"
-import laghzesh from "../../../assets/sounds/09Laghzesh.mp3"
-import aghamsorenaimg from "../../../assets/images/Folder.jpg"
+import Nakhodajalal from "../../assets/sounds/02NakhodaJelal.mp3"
+import daar from "../../assets/sounds/03Daar(Daastaan-e-Maryam).mp3"
+import gorizmarkaz from "../../assets/sounds/04GorizAzMarkaz.mp3"
+import laghzesh from "../../assets/sounds/09Laghzesh.mp3"
+import aghamsorenaimg from "../../assets/images/Folder.jpg"
 import { useSelector, useDispatch } from "react-redux";
-import { addlastmusicplayed, addminutecurrenttime, addminuteduration, addmusicplaying, addsecondcurrenttime, addsecondduration, clearnumberloop } from "../../../redux/actions/forplayermusic";
-import { chnagemusicended } from "../../../redux/actions/truefalse";
+import { addlastmusicplayed, addminutecurrenttime, addminuteduration, addmusicplaying, addsecondcurrenttime, addsecondduration, clearnumberloop } from "../../redux/actions/forplayermusic";
+import { chnagemusicended } from "../../redux/actions/truefalse";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from 'swiper';
 import 'swiper/css';
 import "swiper/swiper-bundle.min.css";
 import "swiper/css/pagination"
-
 import "./swiperslide.css"
 
 const Topmusic = () => {
@@ -125,7 +124,7 @@ const Topmusic = () => {
         <Fragment>
             <div className="rounded-3xl flex flex-col w-full mb-5 justify-center shadow border-grayprodark border-1 px-5 bg-testbacksecond">
                 <h2 className="text font-bold p-2 my-3">Best Musics</h2>
-                <div className="flex w-full mb-7 kosnanaekhamenei">
+                <div className="flex w-full kosnanaekhamenei">
                     <Swiper
                         modules={[Pagination]}
                         slidesPerView={5}

@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addlastmusicplayed, addminutecurrenttime, addminuteduration, addmusicplaying, addsecondcurrenttime, addsecondduration, clearnumberloop, updateallplayermusic } from "../../../redux/actions/forplayermusic";
-import trendeartist from "../../../assets/images/artisttrand.png";
-import trendearmusicomah from "../../../assets/sounds/Omah-Lay-Godly-(TrendyBeatz.com).mp3";
+import { addlastmusicplayed, addminutecurrenttime, addminuteduration, addmusicplaying, addsecondcurrenttime, addsecondduration, clearnumberloop } from "../../redux/actions/forplayermusic";
+import trendeartist from "../../assets/images/artisttrand.png";
+import trendearmusicomah from "../../assets/sounds/Omah-Lay-Godly-(TrendyBeatz.com).mp3";
 import { faPlayCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { chnagemusicended } from "../../../redux/actions/truefalse";
+import { chnagemusicended } from "../../redux/actions/truefalse";
 
 const Trendmusics = () => {
 

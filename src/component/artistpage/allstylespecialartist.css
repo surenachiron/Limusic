@@ -1,0 +1,38 @@
+.afterheadingborder::after {
+    content: '';
+    display: block;
+    padding-top: 15px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.pictureartistzero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 20%;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0, rgb(41, 41, 41) 100%);
+    z-index: 9;
+    border-radius: 1rem;
+}
+
+.pictureartistzero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgb(41, 41, 41) 100%);
+    z-index: 9;
+    border-radius: 1rem;
+}
+
+.pictureartistsmtolg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .1);
+}
