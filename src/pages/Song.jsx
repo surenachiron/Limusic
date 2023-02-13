@@ -40,24 +40,24 @@ const Song = () => {
     const location = useLocation()
     const keysongselected = location.pathname.slice(6,)
 
-    // useEffect(() => {
-    //     dispatch(initializetopsong([]))
-    //     dispatch(initializesong([]))
-    //     dispatch(initializesimilarsong([]))
-    //     dispatch(initializelittlesimilarsong([]))
-    //     callsongdetails(dispatch, keysongselected);
-    //     callsimilarsongs(dispatch, keysongselected);
-    //     getcountplaysong(dispatch, keysongselected)
-    // }, [])
-    // useEffect(() => {
-    //     dispatch(initializetopsong([]))
-    //     dispatch(initializesong([]))
-    //     dispatch(initializesimilarsong([]))
-    //     dispatch(initializelittlesimilarsong([]))
-    //     callsongdetails(dispatch, keysongselected);
-    //     callsimilarsongs(dispatch, keysongselected)
-    //     getcountplaysong(dispatch, keysongselected)
-    // }, [location.pathname])
+    useEffect(() => {
+        dispatch(initializetopsong([]))
+        dispatch(initializesong([]))
+        dispatch(initializesimilarsong([]))
+        dispatch(initializelittlesimilarsong([]))
+        callsongdetails(dispatch, keysongselected);
+        callsimilarsongs(dispatch, keysongselected);
+        getcountplaysong(dispatch, keysongselected)
+    }, [])
+    useEffect(() => {
+        dispatch(initializetopsong([]))
+        dispatch(initializesong([]))
+        dispatch(initializesimilarsong([]))
+        dispatch(initializelittlesimilarsong([]))
+        callsongdetails(dispatch, keysongselected);
+        callsimilarsongs(dispatch, keysongselected)
+        getcountplaysong(dispatch, keysongselected)
+    }, [location.pathname])
 
     return (
         <Fragment>

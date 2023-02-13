@@ -26,17 +26,17 @@ const Artist = () => {
     const idartistselected = location.pathname.slice(8,)
 
     useEffect(() => {
-        // getalldetailsartist(dispatch, idartistselected)
-        // gettopsongartist(dispatch, idartistselected)
-        // getlatestreleaseartist(dispatch, idartistselected)
-        // getalbumsartist(dispatch, idartistselected)
+        getalldetailsartist(dispatch, idartistselected)
+        gettopsongartist(dispatch, idartistselected)
+        getlatestreleaseartist(dispatch, idartistselected)
+        getalbumsartist(dispatch, idartistselected)
     }, [])
-    // useEffect(() => {
-    // getalldetailsartist(dispatch, idartistselected)
-    // gettopsongartist(dispatch, idartistselected)
-    // getlatestreleaseartist(dispatch, idartistselected)
-    // getalbumsartist(dispatch, idartistselected)
-    // }, [location.pathname])
+    useEffect(() => {
+        getalldetailsartist(dispatch, idartistselected)
+        gettopsongartist(dispatch, idartistselected)
+        getlatestreleaseartist(dispatch, idartistselected)
+        getalbumsartist(dispatch, idartistselected)
+    }, [location.pathname])
 
     return (
         <>
