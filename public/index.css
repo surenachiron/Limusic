@@ -1,0 +1,59 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600 !important;
+}
+
+body,
+p,
+a,
+span,
+strong,
+li,
+div,
+button {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+* {
+    margin: 0;
+    font-family: 'ProximaNova,arial,Helvetica Neue,sans-serif';
+}
+
+* img {
+    border-radius: 7px;
+}
+
+li {
+    list-style-type: none !important;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.main {
+    width: 1000px;
+    cursor: pointer;
+}
+
+body::-webkit-scrollbar {
+    width: 11px;
+}
+
+body::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid rgb(231, 230, 230)
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(66, 66, 66);
+    border-radius: 20px;
+}

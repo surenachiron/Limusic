@@ -1,0 +1,14 @@
+.backgroundformap {
+    background-position: center;
+    background-size: cover;
+    border: 1px solid #e1e1e1;
+    border-radius: 16px;
+    height: 75%;
+    width: 100%;
+    padding: 5px;
+}
+.backgroundformap:hover {
+    transition: .1s;
+    border: 2px solid #b1b0b0;
+    padding: 1px;
+}

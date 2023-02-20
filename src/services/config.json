@@ -1,0 +1,4 @@
+{
+    "apijasonplaceholder" : "http://jsonplaceholder.typicode.com/users",
+    "localapi": "localhost:3000"
+}

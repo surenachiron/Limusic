@@ -1,0 +1,11 @@
+.styleicon {
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 40%;
+    margin-left: .5rem;
+    padding: .5rem !important;
+    cursor: pointer;
+}
+
+li {
+    margin-bottom: 4%;
+}
