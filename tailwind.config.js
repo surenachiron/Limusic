@@ -14,6 +14,7 @@ module.exports = {
         'mdlg': '768px',
         'smmdlg': '640px'
       },
+      // e6e6e6
       colors: {
         'blackpro': '#09121c',
         'blackopacitylittle': '#000000d1',
@@ -25,7 +26,9 @@ module.exports = {
         'orangepro': '#ffbb0c',
         'testbacksecond': 'rgba(32, 32, 32, 0.86)',
         'videobackgroundbeforewhow': '#f3f3f3e0',
-        'hoversong': '#363636'
+        'hoversong': '#363636',
+        'textlyrics': '#b9b9b9',
+        'deleteafter': '#781f28'
       },
       spacing: {
         '13/100': '13vh',
@@ -38,7 +41,8 @@ module.exports = {
         '17': '4.5rem',
         '2/7': '46%',
         '2/8': '48%',
-        '200' : '87%'
+        '200': '87%',
+        '100': '100%'
       },
       borderWidth: {
         '1': '1px'
