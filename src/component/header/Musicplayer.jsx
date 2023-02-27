@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import testimg1 from "../../assets/images/main.png"
+import testimg1 from "../../assets/images/ananymousformusicorartist.png"
 import { useDispatch, useSelector } from "react-redux";
 import { changemousedown, chnagemusicended, muteandopen, changerandomplaymusic } from '../../redux/actions/truefalse'
 import { addmusicplaying, incrementnumberloop } from "../../redux/actions/forplayermusic";

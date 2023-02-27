@@ -13,6 +13,7 @@ const Mapintopsong = () => {
 
     const topsongalldetails = useSelector(state => state.topsongbyartist)
     const countplaysong = useSelector(state => state.countplaysong)
+    console.log(countplaysong)
 
     return (
         <div className="flex mb-7 mt-4 kosnanaekhamenei2 rounded-xl">
@@ -32,7 +33,7 @@ const Mapintopsong = () => {
                             namemusic={o.attributes.name}
                             artistsong={o.attributes.artistName}
                             linkpagemusic={o.id}
-                            linkpageartist={countplaysong.id}
+                            linkpageartist={countplaysong.id !== undefined ? countplaysong.id : countplaysong}
                             covermusic={o.attributes.artwork.url}
                             widthforcovermusic={o.attributes.artwork.width}
                             heightforcovermusic={o.attributes.artwork.height}

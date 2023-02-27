@@ -1,8 +1,4 @@
 import React, { Fragment } from "react";
-import Nakhodajalal from "../../assets/sounds/02NakhodaJelal.mp3"
-import daar from "../../assets/sounds/03Daar(Daastaan-e-Maryam).mp3"
-import gorizmarkaz from "../../assets/sounds/04GorizAzMarkaz.mp3"
-import laghzesh from "../../assets/sounds/09Laghzesh.mp3"
 import aghamsorenaimg from "../../assets/images/Folder.jpg"
 import { useSelector, useDispatch } from "react-redux";
 import { addlastmusicplayed, addminutecurrenttime, addminuteduration, addmusicplaying, addsecondcurrenttime, addsecondduration, clearnumberloop } from "../../redux/actions/forplayermusic";
@@ -141,9 +137,9 @@ const Topmusic = () => {
                                     <h3 className="mdlg:text-base zero:text-sm text-white w-full">Nakhodajalal</h3>
                                     <h5 className="mdlg:text-base zero:text-sm text-bluepro">sorena</h5>
                                 </div>
-                                <audio id="audio1" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
+                                {/* <audio id="audio1" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
                                     <source src={Nakhodajalal} type="audio/mpeg" />
-                                </audio>
+                                </audio> */}
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className="text-blackpro">
@@ -153,9 +149,9 @@ const Topmusic = () => {
                                     <h3 className="mdlg:text-base zero:text-sm text-white w-full">Daar</h3>
                                     <h5 className="mdlg:text-base zero:text-sm text-bluepro">sorena</h5>
                                 </div>
-                                <audio id="audio2" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
+                                {/* <audio id="audio2" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
                                     <source src={daar} type="audio/mpeg" />
-                                </audio>
+                                </audio> */}
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className="text-blackpro">
@@ -165,9 +161,9 @@ const Topmusic = () => {
                                     <h3 className="mdlg:text-base zero:text-sm text-white w-full">Gorizmarkaz</h3>
                                     <h5 className="mdlg:text-base zero:text-sm text-bluepro">sorena</h5>
                                 </div>
-                                <audio id="audio3" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
+                                {/* <audio id="audio3" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
                                     <source src={gorizmarkaz} type="audio/mpeg" />
-                                </audio>
+                                </audio> */}
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className="text-blackpro">
@@ -177,9 +173,9 @@ const Topmusic = () => {
                                     <h3 className="mdlg:text-base zero:text-sm text-white w-full">Laghzesh</h3>
                                     <h5 className="mdlg:text-base zero:text-sm text-bluepro">sorena</h5>
                                 </div>
-                                <audio id="audio4" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
+                                {/* <audio id="audio4" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
                                     <source src={laghzesh} type="audio/mpeg" />
-                                </audio>
+                                </audio> */}
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className="text-blackpro">
@@ -189,9 +185,9 @@ const Topmusic = () => {
                                     <h3 className="mdlg:text-base zero:text-sm text-white w-full">Gorizmarkaz</h3>
                                     <h5 className="mdlg:text-base zero:text-sm text-bluepro">sorena</h5>
                                 </div>
-                                <audio id="audio5" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
+                                {/* <audio id="audio5" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
                                     <source src={gorizmarkaz} type="audio/mpeg" />
-                                </audio>
+                                </audio> */}
                             </div>
                         </SwiperSlide>
                         <SwiperSlide className="text-blackpro">
@@ -201,9 +197,9 @@ const Topmusic = () => {
                                     <h3 className="mdlg:text-base zero:text-sm text-white w-full">Laghzesh</h3>
                                     <h5 className="mdlg:text-base zero:text-sm text-bluepro">sorena</h5>
                                 </div>
-                                <audio id="audio6" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
+                                {/* <audio id="audio6" style={{ marginTop: "12px", float: "left" }} onTimeUpdate={forupdateallmusic} onLoadedData={() => { (progressEl.value === null) ? progressEl.value = 0 : progressEl.value = 0 }} onEnded={foronendedandloop}>
                                     <source src={laghzesh} type="audio/mpeg" />
-                                </audio>
+                                </audio> */}
                             </div>
                         </SwiperSlide>
                     </Swiper>

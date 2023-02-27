@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import Header from "../component/header/Header";
 import Headerhelperinmobile from "../component/header/Headerhelperinmobile";
+import Sidebarleft from "../component/sidebarleft/Sidebarleft";
 import Musicplayer from "../component/header/Musicplayer";
 import Homelayout from "../pages/Homelayout";
-import Sidebarleft from "../component/sidebarleft/Sidebarleft";
 import Song from "../pages/Song";
+import Artist from "../pages/Artist";
 import { updatewidthplayermusic } from "../redux/actions/another";
-import Artist from "../component/artistpage/Artist";
 
 const Paginition = () => {
 

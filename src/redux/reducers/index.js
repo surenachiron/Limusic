@@ -4,6 +4,7 @@ import { albumsartist, artistdetails, latestreleaseartist, topsongsartist } from
 import { lastmusicplayed, minutecurrenttime, minuteduration, musicplaying, numeberloop, secondcurrenttime, secondduration, updateallstateplayermusic } from "./forplayermusic";
 import { countplaysong, littlesimilarsong, savesongselected, similarsong, topsongbyartist } from "./song";
 import { mouseDownOnSlider, musicended, randomeplaymusic, volumeallmusic, headermobileshow, forloading, overvieworlyricsforsong, showlittleorgreatsimilarsong } from "./truefalse";
+import { chartsspecificsong } from "./chartshome";
 
 export const reducers = combineReducers({
     updatecopmonent: updateallstateplayermusic,
@@ -31,5 +32,6 @@ export const reducers = combineReducers({
     artistdetails: artistdetails,
     topsongsartist: topsongsartist,
     latestreleaseartist: latestreleaseartist,
-    albumsartist: albumsartist
+    albumsartist: albumsartist,
+    chartsspecificsong: chartsspecificsong
 });

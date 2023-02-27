@@ -18,7 +18,7 @@ const Topsongbyartist = ({ namemusic, artistsong, linkpagemusic, linkpageartist,
                     <h3 className="text-base md:block zero:hidden text-white text-start">{namemusic.length >= 15 ? littlenamemusicmdtolg : namemusic}</h3>
                     <h3 className="text-sm md:hidden zero:block text-white text-start">{namemusic.length >= 10 ? littlenamemusiczerotosm : namemusic}</h3>
                 </NavLink>
-                <NavLink to={`/song/${linkpageartist}`} className="transition-all hover:text-bluepro hover:underline text-start">
+                <NavLink to={`/artist/${linkpageartist}`} className="transition-all hover:text-bluepro hover:underline text-start">
                     <h6 className="font-extralight text-sm text-grayprolight">{artistsong.length >= 10 ? littleartistsong : artistsong}</h6>
                 </NavLink>
             </div>

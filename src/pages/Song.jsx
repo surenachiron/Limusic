@@ -10,7 +10,7 @@ import Musicvideosong from "../component/trackpage/Musicvideosong";
 import Showdetailssong from "../component/trackpage/Showdetailssong";
 import { changeovervieworlyrics } from "../redux/actions/truefalse";
 import { initializelittlesimilarsong, initializesimilarsong, initializesong, initializetopsong } from "../redux/actions/song";
-import { callsimilarsongs, callsongdetails, getcountplaysong } from "../services/alldetailspagesong";
+import { callsimilarsongs, callsongdetails, getcountplaysong } from "../services/usedetailspagesong";
 
 const Song = () => {
 
@@ -40,24 +40,24 @@ const Song = () => {
     const location = useLocation()
     const keysongselected = location.pathname.slice(6,)
 
-    // useEffect(() => {
-    //     dispatch(initializetopsong([]))
-    //     dispatch(initializesong([]))
-    //     dispatch(initializesimilarsong([]))
-    //     dispatch(initializelittlesimilarsong([]))
-    //     callsongdetails(dispatch, keysongselected);
-    //     callsimilarsongs(dispatch, keysongselected);
-    //     getcountplaysong(dispatch, keysongselected)
-    // }, [])
-    // useEffect(() => {
-    //     dispatch(initializetopsong([]))
-    //     dispatch(initializesong([]))
-    //     dispatch(initializesimilarsong([]))
-    //     dispatch(initializelittlesimilarsong([]))
-    //     callsongdetails(dispatch, keysongselected);
-    //     callsimilarsongs(dispatch, keysongselected)
-    //     getcountplaysong(dispatch, keysongselected)
-    // }, [location.pathname])
+    useEffect(() => {
+        dispatch(initializetopsong([]))
+        dispatch(initializesong([]))
+        dispatch(initializesimilarsong([]))
+        dispatch(initializelittlesimilarsong([]))
+        callsongdetails(dispatch, keysongselected);
+        callsimilarsongs(dispatch, keysongselected);
+        getcountplaysong(dispatch, keysongselected)
+    }, [])
+    useEffect(() => {
+        dispatch(initializetopsong([]))
+        dispatch(initializesong([]))
+        dispatch(initializesimilarsong([]))
+        dispatch(initializelittlesimilarsong([]))
+        callsongdetails(dispatch, keysongselected);
+        callsimilarsongs(dispatch, keysongselected)
+        getcountplaysong(dispatch, keysongselected)
+    }, [location.pathname])
 
     return (
         <Fragment>

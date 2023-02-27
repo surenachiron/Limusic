@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addlastmusicplayed, addminutecurrenttime, addminuteduration, addmusicplaying, addsecondcurrenttime, addsecondduration, clearnumberloop } from "../../redux/actions/forplayermusic";
 import trendeartist from "../../assets/images/artisttrand.png";
-import trendearmusicomah from "../../assets/sounds/Omah-Lay-Godly-(TrendyBeatz.com).mp3";
 import { faPlayCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { chnagemusicended } from "../../redux/actions/truefalse";
@@ -117,9 +116,9 @@ const Trendmusics = () => {
                     <div className="flex items-end mt-5">
                         <button id="PlayMusicTrand" onClick={() => forplayandpuse("tendmusicGodly")} className="lg:px-10 lg:py-3 md:px-2 md:py-2 zero:py-2 zero:px-2 bg-bluepro rounded-2xl ">Play Now
                             <FontAwesomeIcon icon={faPlayCircle} className={`ml-2 cursor-pointer text-base`}></FontAwesomeIcon>
-                            <audio id="tendmusicGodly" onTimeUpdate={forupdateallmusic} onLoadedData={() => { progressEl.value = 0; }} onEnded={foronendedandloop}>
+                            {/* <audio id="tendmusicGodly" onTimeUpdate={forupdateallmusic} onLoadedData={() => { progressEl.value = 0; }} onEnded={foronendedandloop}>
                                 <source src={trendearmusicomah} type="audio/mpeg" />
-                            </audio>
+                            </audio> */}
                         </button>
                         <button className="sm:block zero:hidden px-5 py-2 ml-3 bg-white rounded-2xl">
                             <p className="lg:text-2xl text-black font-bold">+</p>

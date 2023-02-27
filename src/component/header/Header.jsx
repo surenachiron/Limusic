@@ -1,7 +1,7 @@
 import React from "react";
 import { faBars, faBell, faCog, faSearch } from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import accountprson from '../../assets/images/main.png'
+import accountprson from '../../assets/images/ananymousformusicorartist.png'
 import looglg from '../../assets/images/looglg.jpg'
 import logosm from '../../assets/images/logosm.jpg'
 import { NavLink } from "react-router-dom";
