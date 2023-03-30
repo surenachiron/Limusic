@@ -1,5 +1,5 @@
-import React from "react";
-import { faBars, faBell, faCog, faSearch } from "@fortawesome/fontawesome-free-solid";
+import React, { useRef, useState } from "react";
+import { faBars, faBell, faCog } from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import accountprson from '../../assets/images/ananymousformusicorartist.png'
 import looglg from '../../assets/images/looglg.jpg'
@@ -8,11 +8,14 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { changeheadermobileshow } from "../../redux/actions/truefalse";
+import Searchinput from "../searching/Searchinput";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
 
     const headermenushow = useSelector(state => state.headermobileshow)
     const dispatch = useDispatch()
+    const focusinputsearch = useSelector(state => state.focusinputsearch)
 
     const dorshowhisemenumobile = () => {
         dispatch(changeheadermobileshow())
@@ -21,65 +24,52 @@ const Header = () => {
     let menumobile = '';
     if (headermenushow === true) {
         menumobile =
-            <div className="transition-all w-1/2 z-50 h-1/2 rounded-2xl bg-graypro absolute mt-2">
-                <ul className="p-5 bg-graypro">
-                    <li>home</li>
-                    <li>musics</li>
-                    <li>artists</li>
-                    <li>albums</li>
-                </ul>
+            <div className="relative z-50 overflow-hidden">
+                <div className="bg-gray-800 fixed inset-0 opacity-25" onClick={dorshowhisemenumobile}></div>
+                <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 overflow-y-auto bg-blackopacitylittle px-10">
+                    <div className="flex justify-between items-center py-3">
+                        <NavLink to='/'>
+                            <img src={logosm} alt="logo" className="w-10 mr-3 cursor-pointer" />
+                        </NavLink>
+                        <FontAwesomeIcon icon={faClose} className="cursor-pointer text-xl font-bold" onClick={dorshowhisemenumobile}></FontAwesomeIcon>
+                    </div>
+                    <ul className="py-8">
+                        <NavLink to='/'>
+                            <li className="py-4 px-2 hover:border-l-1 transition-all">Home</li>
+                        </NavLink>
+                        <li className="py-4 px-2 hover:border-l-1 transition-all">Musics</li>
+                        <li className="py-4 px-2 hover:border-l-1 transition-all">Artists</li>
+                        <li className="py-4 px-2 hover:border-l-1 transition-all">Albums</li>
+                    </ul>
+                </nav>
             </div>
     } else menumobile = ""
-    useEffect(() => {
-        if (headermenushow === true) {
-            menumobile =
-                <div className="transition-all w-1/2 z-50 h-1/2 rounded-2xl bg-graypro absolute mt-2">
-                    <ul className="p-5 bg-graypro">
-                        <li>home</li>
-                        <li>musics</li>
-                        <li>artists</li>
-                        <li>albums</li>
-                    </ul>
-                </div>
-        } else menumobile = ""
-    }, [headermenushow])
 
     return (
         <div className="flex items-center justify-between grid grid-cols-12 pt-5 bg-tranparent px-5">
-            <div className="lg:flex lg:items-center lg:col-span-3 zero:hidden">
-                <h3 className="text">Music</h3>
-                <h3 className="text mx-6">Podcast</h3>
-                <h3 className="text">Live</h3>
-            </div>
-            <div className="lg:hidden md:flex md:items-center zero:col-span-3 transition-all">
-                <FontAwesomeIcon icon={faBars} className="cursor-pointer mr-3" onClick={dorshowhisemenumobile} ></FontAwesomeIcon>
-                <div className="transition-all">
-                    {menumobile}
-                </div>
+            <div className="lg:hidden md:flex zero:hidden justify-start md:col-span-3 transition-all">
                 <NavLink to='/'>
                     <img src={looglg} alt="logo" className="w-28 cursor-pointer md:inline zero:hidden" />
                 </NavLink>
             </div>
-            <div className="lg:col-span-1 lg:flex zero:hidden"></div>
-            <div className="lg:col-span-4 md:col-span-6 md:w-full bg-white md:rounded-2xl md:flex items-center md:px-4 zero:hidden">
-                <input type="search" name="searchinapp" id="searchinputheader" className="p-2 rounded-3xl text-black border-0 w-full text-center" placeholder="Type your seach here" />
-                <FontAwesomeIcon icon={faSearch} className="text-blacklight cursor-pointer"></FontAwesomeIcon>
+
+            <div className="lg:col-span-3 lg:flex zero:hidden"></div>
+
+            <div className="lg:col-span-6 md:col-span-6 md:w-full bg-white rounded-2xl md:flex items-center justify-center zero:hidden">
+                <Searchinput />
             </div>
+            <div className="col-span-3 lg:flex md:hidden zero:flex"></div>
+
             <div className="md:hidden zero:col-span-6 zero:flex justify-center">
                 <NavLink to='/'>
-                    <img src={logosm} alt="logo" className="w-10 mr-3 cursor-pointer" />
+                    <img src={logosm} alt="logo" className="w-10 cursor-pointer" />
                 </NavLink>
             </div>
-            <div className="lg:col-span-1 lg:flex zero:hidden"></div>
-            <div className="flex items-center justify-end col-span-3">
-                <div className="sm:block zero:hidden flex">
-                    <FontAwesomeIcon icon={faBell} className="cursor-pointer"></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faCog} className="zero:mx-4 lg:mx-2 xl:mx-4 cursor-pointer"></FontAwesomeIcon>
+            <div className="lg:hidden md:flex items-center justify-end text-end zero:col-span-3 transition-all">
+                <div className="transition-all text-start">
+                    {menumobile}
                 </div>
-                <div id="username" className="flex items-center cursor-pointer">
-                    <img src={accountprson} className="w-7 h-7 rounded-full" />
-                    <p className="text-white ml-3 lg:block zero:hidden">surena karimi</p>
-                </div>
+                <FontAwesomeIcon icon={faBars} className="cursor-pointer mr-3" onClick={dorshowhisemenumobile} ></FontAwesomeIcon>
             </div>
         </div>
     )

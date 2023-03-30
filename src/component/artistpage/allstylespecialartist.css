@@ -1,10 +1,11 @@
 .afterheadingborder::after {
     content: '';
     display: block;
-    padding-top: 15px;
-    border-bottom: 1px solid #e4e4e4;
+    padding: 10px 0 0px 0;
+    border-bottom: 1px solid #6e6e6e;
+    width: 100%;
+    margin: 0px 0 10px 0;
 }
-
 .pictureartistzero::before {
     content: '';
     position: absolute;

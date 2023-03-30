@@ -9,6 +9,7 @@ import Homelayout from "../pages/Homelayout";
 import Song from "../pages/Song";
 import Artist from "../pages/Artist";
 import { updatewidthplayermusic } from "../redux/actions/another";
+import Searchinputformobile from "../component/searching/Searchinputformobile";
 
 const Paginition = () => {
 
@@ -36,11 +37,12 @@ const Paginition = () => {
                     <Header />
                     <div className="md:mb-16 zero:mb-24">
                         <Routes>
-                            <Route path="/albums/:idalbum" element={<Song />} />
-                            <Route path="/albums" element={<Song />} />
+                            {/* <Route path="/albums/:idalbum" element={<Song />} />
+                            <Route path="/albums" element={<Song />} /> */}
                             {/* <Route path="/liked" element={<Song />} /> */}
                             {/* <Route path="/playlist/:idplaylists" element={<Song />} /> */}
                             {/* <Route path="/playlist" element={<Song />} /> */}
+                            <Route path="/search" element={<Searchinputformobile />} />
                             <Route path="/artist/:idartist" element={<Artist />} />
                             <Route path="/song/:idsong" element={<Song />} />
                             <Route path="/" exact element={<Homelayout />} />

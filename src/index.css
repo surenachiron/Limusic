@@ -36,6 +36,9 @@ input {
 input[type="search"]:focus {
     outline: none;
 }
+input[name="searchinapp"]:focus {
+    outline: none;
+}
 
 input[type="range"]#progressbarmusic {
     -webkit-appearance: none !important;
@@ -103,4 +106,13 @@ progress#musikprogress::-webkit-progress-bar {
 progress#musikprogress::-webkit-progress-value {
     background: #fcfcfc;
     border-radius: 20px;
+}
+
+#searchinputheadermobile::placeholder {
+    color: rgb(187, 187, 187) !important;
+    opacity: 1;
+}
+
+#searchinputheadermobile {
+    outline: none !important;
 }

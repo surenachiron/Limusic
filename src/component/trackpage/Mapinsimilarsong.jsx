@@ -10,11 +10,12 @@ const Mapinsimilarsong = () => {
     const truefalsesimilarsonglength = useSelector(state => state.showsimilarsong)
     const similarsongall = useSelector(state => state.similarsong)
     const littlesimilarsong = useSelector(state => state.littlesimilarsong)
+    console.log(littlesimilarsong)
 
     return (
         <>
             {similarsongall !== undefined && littlesimilarsong !== undefined && similarsongall.length !== 0 && littlesimilarsong.length !== 0 ?
-                <div className="border-1 rounded-xl px-5">
+                <div className="border-1 rounded-xl px-5 mt-3">
                     <div className="grid grid-cols-12 border-b-1 p-3">
                         <h3 className="md:col-span-6 zero:col-span-7 text-base">TRACK</h3>
                         <h3 className="md:col-span-6 zero:col-span-5 text-base">ARTIST</h3>

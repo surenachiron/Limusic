@@ -8,7 +8,6 @@ const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermu
     const littlenamemusicmdtolg = namemusic.slice(0, 15) + " ..."
     const littlenamemusiczerotosm = namemusic.slice(0, 10) + " ..."
     const littleartistsong = artistsong.slice(0, 10) + " ..."
-    console.log(linkpageartist)
 
     return (
         <div className="flex items-center cursor-pointer">

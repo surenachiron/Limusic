@@ -16,7 +16,7 @@ const Mapintopsong = () => {
     console.log(countplaysong)
 
     return (
-        <div className="flex mb-7 mt-4 kosnanaekhamenei2 rounded-xl">
+        <div className="flex mb-7 mt-3 kosnanaekhamenei2 rounded-xl">
             <Swiper
                 modules={[Pagination, Grid]}
                 slidesPerView={2}

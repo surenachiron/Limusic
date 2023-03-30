@@ -13,10 +13,11 @@ const Maptopsongbyartist = () => {
 
     const artistdetails = useSelector(state => state.artistdetails)
     const topsongartist = useSelector(state => state.topsongsartist)
+    console.log(topsongartist)
 
     return (
         <>
-            <div className="flex mb-7 mt-4 kosnanaekhamenei2 rounded-xl">
+            <div className="flex mb-7 mt-3 kosnanaekhamenei2 rounded-xl">
                 <Swiper
                     modules={[Pagination, Grid]}
                     slidesPerView={2}

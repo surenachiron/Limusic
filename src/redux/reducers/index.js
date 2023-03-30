@@ -3,8 +3,9 @@ import { widthplayermusic } from "./another";
 import { albumsartist, artistdetails, latestreleaseartist, topsongsartist } from "./artist";
 import { lastmusicplayed, minutecurrenttime, minuteduration, musicplaying, numeberloop, secondcurrenttime, secondduration, updateallstateplayermusic } from "./forplayermusic";
 import { countplaysong, littlesimilarsong, savesongselected, similarsong, topsongbyartist } from "./song";
-import { mouseDownOnSlider, musicended, randomeplaymusic, volumeallmusic, headermobileshow, forloading, overvieworlyricsforsong, showlittleorgreatsimilarsong } from "./truefalse";
+import { mouseDownOnSlider, musicended, randomeplaymusic, volumeallmusic, headermobileshow, forloading, overvieworlyricsforsong, showlittleorgreatsimilarsong, focusinputsearch, forloadingsearch, showsongorartistinsearching } from "./truefalse";
 import { chartsspecificsong } from "./chartshome";
+import { detailssearched } from "./search";
 
 export const reducers = combineReducers({
     updatecopmonent: updateallstateplayermusic,
@@ -33,5 +34,9 @@ export const reducers = combineReducers({
     topsongsartist: topsongsartist,
     latestreleaseartist: latestreleaseartist,
     albumsartist: albumsartist,
-    chartsspecificsong: chartsspecificsong
+    chartsspecificsong: chartsspecificsong,
+    detailssearch: detailssearched,
+    focusinputsearch: focusinputsearch,
+    forloadingsearch: forloadingsearch,
+    showsongorartistinsearching: showsongorartistinsearching
 });

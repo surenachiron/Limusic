@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactLoading from 'react-loading';
 import { Helmet } from "react-helmet";
 import Detailsartist from "../component/artistpage/Detailsartist";
-import Topsongbyartist from "../component/artistpage/Topsongbyartist"
 import Latestreleaseartist from '../component/artistpage/Latestreleaseartist'
-import Albumsbyartist from '../component/artistpage/Albumsbyartist'
 import Mapalbumbyartist from "../component/artistpage/Mapalbumbyartist";
-import Maplatestreleaseartist from "../component/artistpage/Maplatestreleaseartist";
 import Maptopsongbyartist from "../component/artistpage/Maptopsongbyartist";
 import { useEffect } from "react";
-import { getalbumsartist, getalldetailsartist, getlatestreleaseartist, gettopsongartist } from "../services/useendpointspageartist";
+import { getalbumsartist, getalldetailsartist, getlatestreleaseartist, gettopsongartist } from "../services/useEndpointspageartist";
+import { initializeartist, initializetopsongartist, initializelatestreleaseartist, initializealbumsartist } from "../redux/actions/artist";
 import { useLocation } from "react-router-dom";
 
 const Artist = () => {
@@ -26,19 +24,24 @@ const Artist = () => {
     const idartistselected = location.pathname.slice(8,)
 
     useEffect(() => {
-        if (artistdetails.data === undefined) {
-            getalldetailsartist(dispatch, [])
-            getalldetailsartist(dispatch, idartistselected)
-            gettopsongartist(dispatch, idartistselected)
-            getalbumsartist(dispatch, idartistselected)
-            getlatestreleaseartist(dispatch, idartistselected)
-        }
+        dispatch(initializeartist([]))
+        dispatch(initializetopsongartist([]))
+        dispatch(initializelatestreleaseartist([]))
+        dispatch(initializealbumsartist([]))
+        getalldetailsartist(dispatch, idartistselected)
+        gettopsongartist(dispatch, idartistselected)
+        getalbumsartist(dispatch, idartistselected)
+        getlatestreleaseartist(dispatch, idartistselected)
     }, [])
     useEffect(() => {
-    getalldetailsartist(dispatch, idartistselected)
-    gettopsongartist(dispatch, idartistselected)
-    getlatestreleaseartist(dispatch, idartistselected)
-    getalbumsartist(dispatch, idartistselected)
+        dispatch(initializeartist([]))
+        dispatch(initializetopsongartist([]))
+        dispatch(initializelatestreleaseartist([]))
+        dispatch(initializealbumsartist([]))
+        getalldetailsartist(dispatch, idartistselected)
+        gettopsongartist(dispatch, idartistselected)
+        getlatestreleaseartist(dispatch, idartistselected)
+        getalbumsartist(dispatch, idartistselected)
     }, [location.pathname])
 
     return (
@@ -57,27 +60,54 @@ const Artist = () => {
                                 </title>
                             </Helmet>
 
-                            <div className="mx-5 sm:mt-8">
+                            <div className="mx-5 sm:mt-10">
                                 <div id="detailsartist">
                                     <Detailsartist />
                                 </div>
-                                <div id="topsongartist" className="mt-8">
-                                    <h2 className="text-xl afterheadingborder">Top Songs By {artistdetails.data.map(o => o.attributes.name)[0]}</h2>
-                                    {topsongartist.length !== 0 && topsongartist !== undefined ?
+                                <div id="topsongartist" className="mt-10">
+                                    {topsongartist.errors !== undefined && topsongartist === undefined ? <></>
+                                        : <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
+                                            <h2 className="text-xl">Top Songs By {artistdetails.data.map(o => o.attributes.name)[0]}</h2>
+                                            {topsongartist.length === 0 ?
+                                                <div className="flex items-center justify-center ml-5">
+                                                    <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
+                                                </div>
+                                                : <></>}
+                                        </div>
+                                    }
+                                    {topsongartist.length !== 0 && topsongartist.errors === undefined ?
                                         <Maptopsongbyartist />
-                                        : ""}
+                                        : <></>}
                                 </div>
-                                <div id="latestrelease" className="lg:col-span-4 zero:col-span-12 mt-8">
-                                    <h2 className="text-xl afterheadingborder">Latest Release</h2>
-                                    {latestreleasesongartist.length !== 0 && latestreleasesongartist !== undefined ?
+                                <div id="latestrelease" className="lg:col-span-4 zero:col-span-12 mt-10">
+                                    {latestreleasesongartist.errors !== undefined && latestreleasesongartist === undefined ? <></>
+                                        : <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
+                                            <h2 className="text-xl">Latest Release</h2>
+                                            {latestreleasesongartist.length === 0 ?
+                                                <div className="flex items-center justify-center ml-5">
+                                                    <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
+                                                </div>
+                                                : <></>}
+                                        </div>
+                                    }
+                                    {latestreleasesongartist.length !== 0 && latestreleasesongartist.errors === undefined ?
                                         <Latestreleaseartist />
-                                        : ""}
+                                        : <></>}
                                 </div>
-                                <div id="albumsbyartist" className="lg:col-span-8 zero:col-span-12 mt-8">
-                                    <h2 className="text-xl afterheadingborder">Albums BY {artistdetails.data.map(o => o.attributes.name)[0]}</h2>
-                                    {albumsartist.length !== 0 && albumsartist !== undefined ?
+                                <div id="albumsbyartist" className="lg:col-span-8 zero:col-span-12 mt-10">
+                                    {albumsartist.errors !== undefined && albumsartist === undefined ? <></>
+                                        : <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
+                                            <h2 className="text-xl">Albums BY {artistdetails.data.map(o => o.attributes.name)[0]}</h2>
+                                            {albumsartist.length === 0 ?
+                                                <div className="flex items-center justify-center ml-5">
+                                                    <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
+                                                </div>
+                                                : <></>}
+                                        </div>
+                                    }
+                                    {albumsartist.length !== 0 && albumsartist.errors === undefined ?
                                         <Mapalbumbyartist />
-                                        : ""}
+                                        : <></>}
                                 </div>
                             </div>
                         </>

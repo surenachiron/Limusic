@@ -32,21 +32,14 @@ const Mapalbumbyartist = () => {
     else if (widthplayermusicc <= 1024 || widthplayermusicc >= 1024) lengthslide = 4
 
     ///////
-        // انجام دادن سورت کردن آلبوم های بر اساس تعداد آهنگ ها
+    // انجام دادن سورت کردن آلبوم های بر اساس تعداد آهنگ ها
     //////
 
-    let test = [{ index: Object.keys(albums).map(key => key) , count: Object.keys(albums).map(key => albums[key].attributes.trackCount) }]
-    // let test1 = test.map(o => o.count).sort()
-
-    console.log(test)
-
-    // console.log(test1.map(o => o))
-    // console.log(test1.map(o => o === test.map(o => o.count)))
-    // console.log(5 === test.map(o => o.count))
+    
 
     return (
         <>
-            <div className="flex mb-7 mt-4 kosnanaekhamenei2 rounded-xl">
+            <div className="flex mb-7 mt-3 kosnanaekhamenei2 rounded-xl">
                 <Swiper
                     slidesPerView={lengthslide}
                     spaceBetween={30}

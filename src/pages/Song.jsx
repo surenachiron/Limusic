@@ -10,7 +10,7 @@ import Musicvideosong from "../component/trackpage/Musicvideosong";
 import Showdetailssong from "../component/trackpage/Showdetailssong";
 import { changeovervieworlyrics } from "../redux/actions/truefalse";
 import { initializelittlesimilarsong, initializesimilarsong, initializesong, initializetopsong } from "../redux/actions/song";
-import { callsimilarsongs, callsongdetails, getcountplaysong } from "../services/usedetailspagesong";
+import { callsimilarsongs, callsongdetails, getcountplaysong } from "../services/useDetailspagesong";
 
 const Song = () => {
 
@@ -20,6 +20,7 @@ const Song = () => {
     const topsongalldetails = useSelector(state => state.topsongbyartist)
     const similarsongalldetails = useSelector(state => state.similarsong)
     const overvieworlyrics = useSelector(state => state.overvieworlyrics)
+
 
     let borderoverview = ""
     let borderlyric = ""
@@ -59,6 +60,8 @@ const Song = () => {
         getcountplaysong(dispatch, keysongselected)
     }, [location.pathname])
 
+    console.log(topsongalldetails.length)
+
     return (
         <Fragment>
 
@@ -84,16 +87,16 @@ const Song = () => {
                                 }
                             </div>
                             <div className="grid grid-cols-12 mt-10">
-                                <div id="sontentsong" className={`lg:col-span-9 lg:block lg:mr-7 ${showoverview}`}>
+                                <div id="contentsong" className={`lg:col-span-9 lg:block lg:mr-7 ${showoverview}`}>
                                     {songalldetails.sections[1].youtubeurl !== undefined || songalldetails.sections[2].youtubeurl !== undefined ?
                                         <div id="musicvedio" className="h-80/100">
-                                            <h3 className="text-2xl">Music Video</h3>
+                                            <h3 className="text-2xl border-b-1 border-slate-400 pb-4 mb-5">Music Video</h3>
                                             <Musicvideosong />
                                         </div>
                                         : <></>}
                                     <div id="topsongartist" className="mt-10">
-                                        {topsongalldetails.errors !== undefined ? <></>
-                                            : <div className="flex">
+                                        {topsongalldetails.length !== 0 && topsongalldetails.length !== undefined && topsongalldetails.errors === undefined ?
+                                            <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                                 <h3 className="text-2xl">Top Songs By {songalldetails.subtitle}</h3>
                                                 {topsongalldetails.length === 0 ?
                                                     <div className="flex items-center justify-center ml-5">
@@ -101,19 +104,27 @@ const Song = () => {
                                                     </div>
                                                     : <></>}
                                             </div>
+                                            : <></>
                                         }
-                                        {topsongalldetails.length !== 0 && topsongalldetails.errors === undefined ?
+                                        {topsongalldetails.length !== 0 && topsongalldetails.length !== undefined && topsongalldetails.errors === undefined ?
                                             <Mapintopsong />
                                             : <></>}
                                     </div>
                                     <div id="similarsongs" className="mt-10">
                                         {similarsongalldetails.length !== 0 && similarsongalldetails.length !== undefined && similarsongalldetails.errors === undefined ?
-                                            <>
-                                                <div className="flex">
-                                                    <h3 className="text-2xl ">Similar Songs</h3>
-                                                </div>
-                                                <Mapinsimilarsong />
-                                            </> : ""}
+                                            <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
+                                                <h3 className="text-2xl">Similar Songs</h3>
+                                                {similarsongalldetails.length === 0 ?
+                                                    <div className="flex items-center justify-center ml-5">
+                                                        <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
+                                                    </div>
+                                                    : <></>}
+                                            </div>
+                                            : <></>
+                                        }
+                                        {similarsongalldetails.length !== 0 && similarsongalldetails.length !== undefined && similarsongalldetails.errors === undefined ?
+                                            <Mapinsimilarsong />
+                                            : <></>}
                                     </div>
                                 </div>
                                 <div id="Lyricsmusic" className={`lg:col-span-3 lg:block ${showlyric}`}>

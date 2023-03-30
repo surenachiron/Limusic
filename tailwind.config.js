@@ -23,6 +23,7 @@ module.exports = {
         'graypro': '#536274',
         'grayprolight': '#979797',
         'grayprodark': '#323232',
+        'grayprosearch': '#8a929a',
         'orangepro': '#ffbb0c',
         'testbacksecond': 'rgba(32, 32, 32, 0.86)',
         'videobackgroundbeforewhow': '#f3f3f3e0',

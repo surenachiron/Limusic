@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from 'swiper';
-import { usegetspecificchartsong } from "../../services/usecahrtshomepage";
+import { usegetspecificchartsong } from "../../services/useCahrtshomepage";
 import Charttop50 from "./Charttop50";
 import ananymousartist from '../../assets/images/ananymousformusicorartist.png'
 
@@ -16,9 +16,9 @@ export const Mapcharttop50 = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        usegetspecificchartsong(dispatch)
-    }, [])
+    // useEffect(() => {
+    //     usegetspecificchartsong(dispatch)
+    // }, [])
 
     const chartsspecificsong = useSelector(state => state.chartsspecificsong)
 
