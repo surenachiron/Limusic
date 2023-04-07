@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/fontawesome-free-solid";
-import { getdailstextsearch } from "../../services/useGetdetailssearch";
+import { getdailstextsearch } from "../../services/useGetdetailssearch.js";
 import { useDispatch, useSelector } from "react-redux";
 import Showresultsearch from "./Showresultsearch";
 import { changefocusinputsearch } from "../../redux/actions/truefalse";
