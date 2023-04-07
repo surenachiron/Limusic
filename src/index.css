@@ -29,83 +29,12 @@ li {
     cursor: pointer;
 }
 
-input {
-    font-weight: lighter 200 !important;
-}
-
 input[type="search"]:focus {
     outline: none;
 }
+
 input[name="searchinapp"]:focus {
     outline: none;
-}
-
-input[type="range"]#progressbarmusic {
-    -webkit-appearance: none !important;
-    cursor: pointer;
-    width: 100% !important;
-    height: 5px !important;
-    background: transparent !important;
-    border-radius: 5px !important;
-    background-repeat: no-repeat !important;
-    transition: all .4s linear;
-    z-index: 2;
-}
-
-input[type="range"]#progressbarmusic::-webkit-slider-thumb {
-    -webkit-appearance: none !important;
-    height: 10px !important;
-    width: 10px !important;
-    margin-top: 4px;
-    border-radius: 50% !important;
-    background: #fafafa !important;
-    cursor: ew-resize !important;
-    box-shadow: 0 0 2px 0 #555 !important;
-    transition: all .3s ease-in-out !important;
-}
-
-input[type="range"]#rangevolume {
-    margin-bottom: 17px;
-    background: linear-gradient(to right, #3369ff 0%, #3369ff 50%, #3369ff 50%, #3369ff 100%);
-    border-radius: 8px;
-    height: 5px;
-    outline: none;
-    transition: background 450ms ease-in;
-    -webkit-appearance: none;
-}
-
-input[type="range"]#rangevolume::-webkit-slider-thumb {
-    -webkit-appearance: none !important;
-    height: 15px !important;
-    width: 15px !important;
-    border-radius: 50% !important;
-    background: #0c0c0c !important;
-    cursor: ew-resize !important;
-    box-shadow: 0 0 2px 0 #555 !important;
-    transition: all .3s ease-in-out !important;
-}
-
-progress#musikprogress {
-    position: absolute !important;
-    -webkit-appearance: none !important;
-    height: 5px;
-    cursor: pointer;
-    z-index: 1;
-    height: 5px !important;
-    background: transparent !important;
-    border-radius: 20px !important;
-    transition: all .4s linear;
-}
-
-progress#musikprogress::-webkit-progress-bar {
-    background: #536274;
-    border-radius: 20px;
-    transition: all 1s linear;
-}
-
-progress#musikprogress::-webkit-progress-value {
-    background: #fcfcfc;
-    border-radius: 20px;
 }
 
 #searchinputheadermobile::placeholder {
