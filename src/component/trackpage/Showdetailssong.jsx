@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay } from "@fortawesome/fontawesome-free-solid";
-import { useSelector } from "react-redux";
+import { faPause, faPlay } from "@fortawesome/fontawesome-free-solid";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { addpageplayedmusic, changevalueorplayorpause, changevolumemusicwithprops, findindexmusic, initialseforclosemusiccontrol } from "../../redux/actions/forplayermusic";
+import ReactLoading from 'react-loading';
+import ananymousartist from '../../assets/images/ananymousformusicorartist.png'
+import { setplaylistsongsotginalyfake } from "../../redux/actions/song";
 
 const Showdetailssong = () => {
 
+    const dispatch = useDispatch()
     const songalldetails = useSelector(state => state.songselected)
+    const isplayorispause = useSelector(state => state.isplayorispause)
+    const durationtimemusic = useSelector(state => state.durationtimemusic)
     const countplaysong = useSelector(state => state.countplaysong)
     const conversioncoutplaytostring = String(countplaysong).split('').reverse();
     let conversioncountplay = []
@@ -17,16 +24,36 @@ const Showdetailssong = () => {
             conversioncountplay[i] = conversioncoutplaytostring[i];
     }
 
+    /// for play music
+    const playlistpagesongorginaly = useSelector(state => state.playlistpagesongorginalyorginaly.songs)
+    const playmusicselected = () => {
+        dispatch(setplaylistsongsotginalyfake(playlistpagesongorginaly, songalldetails.title))
+    }
+
+    /// styles
+    const [getopacityandhoverforimage, setopacityandhoverforimage] = useState("")
+    useEffect(() => {
+        if (localStorage.getItem("namemusicplayingorplayed") === songalldetails.title && localStorage.getItem("artistmusicplayingorplayed") === songalldetails.subtitle)
+            setopacityandhoverforimage("opacity-80")
+        else setopacityandhoverforimage("hover:opacity-80 group-hover:opacity-80")
+    }, [isplayorispause, durationtimemusic])
+
     return (
         <>
             <div className={`flex flex-col lg:mt-8`}>
                 <div id="musicshow" className="h-70/100 px-5 backdrop-blur-sm lg:border-1 zero:border-0 p-4 rounded-3xl mt-4 flex flex-col items-center justify-center">
                     <div className="flex items-start justify-center relative group">
                         <div className="w-3/4 h-10/12 peer/img">
-                            <img src={songalldetails.images === undefined ? "" : songalldetails.images.coverart} alt="picture music" className="rounded-xl h-full w-full transition-all hover:opacity-80 group-hover:opacity-80" />
+                            <img src={songalldetails.images === undefined ? ananymousartist : songalldetails.images.coverart} alt={`picture music ${songalldetails.title}`} className={`rounded-xl h-full w-full transition-all ${getopacityandhoverforimage}`} />
                         </div>
-                        <div className="hidden absolute transition-all top-1/2 hover:block peer-hover/img:block">
-                            <FontAwesomeIcon icon={faPlay} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur"></FontAwesomeIcon>
+                        <div className={`absolute transition-all top-1/2 block peer-hover/img:block`}>
+                            {playlistpagesongorginaly.length > 2 ?
+                                <>
+                                    {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === songalldetails.title ? <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>}
+                                </>
+                                : <div className="flex items-center">
+                                    <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                </div>}
                         </div>
                     </div>
                     <div className="flex flex-col items-center justify-center backdrop-blur-sm mt-2">

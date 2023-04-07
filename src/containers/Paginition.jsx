@@ -4,28 +4,31 @@ import { Routes, Route } from "react-router-dom";
 import Header from "../component/header/Header";
 import Headerhelperinmobile from "../component/header/Headerhelperinmobile";
 import Sidebarleft from "../component/sidebarleft/Sidebarleft";
-import Musicplayer from "../component/header/Musicplayer";
 import Homelayout from "../pages/Homelayout";
 import Song from "../pages/Song";
 import Artist from "../pages/Artist";
 import { updatewidthplayermusic } from "../redux/actions/another";
 import Searchinputformobile from "../component/searching/Searchinputformobile";
+import Musicplayercontrol from "../component/header/Musicplayercontrol";
 
 const Paginition = () => {
 
     const dispatch = useDispatch()
-    const [widthplayermusicc, swidthplayermusicc] = useState(window.innerWidth);    
     const upadatewidthplayermusic = () => {
-        swidthplayermusicc(document.getElementById("contentmain").clientWidth);
         dispatch(updatewidthplayermusic(document.getElementById("contentmain").clientWidth))
     }
     useEffect(() => {
+        localStorage.removeItem("namemusicplayingorplayed")
+        localStorage.removeItem("artistmusicplayingorplayed")
         window.addEventListener("resize", upadatewidthplayermusic);
-        swidthplayermusicc(document.getElementById("contentmain").clientWidth)
         dispatch(updatewidthplayermusic(document.getElementById("contentmain").clientWidth))
         return () => window.removeEventListener("resize", upadatewidthplayermusic);
     }, [<Paginition />]);
+
     const widthplayermusic = useSelector(state => state.widthplayermusic)
+    const forclosemusiccontrol = useSelector(state => state.forclosemusiccontrol)
+    const howpageplayedmusic = useSelector(state => state.howpageplayedmusic)
+    const playlistpagesongfake = useSelector(state => state.playlistpagesongorginalyfake)
 
     return (
         <Fragment>
@@ -46,10 +49,11 @@ const Paginition = () => {
                             <Route path="/artist/:idartist" element={<Artist />} />
                             <Route path="/song/:idsong" element={<Song />} />
                             <Route path="/" exact element={<Homelayout />} />
+                            {/* <Route path="*" element={<PageNotFound />} /> */}
                         </Routes>
                     </div>
                     <div className="fixed bottom-0 flex flex-col px-5 z-50" style={{ width: widthplayermusic }} >
-                        <Musicplayer />
+                        {forclosemusiccontrol === true && howpageplayedmusic.length !== undefined && howpageplayedmusic.length >= 2 && (howpageplayedmusic === playlistpagesongfake) ? <Musicplayercontrol /> : ""}
                         <Headerhelperinmobile />
                     </div>
                 </div>

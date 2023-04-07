@@ -1,115 +1,115 @@
 import React, { Fragment, useEffect, useState } from "react";
-import testimg1 from "../../assets/images/ananymousformusicorartist.png"
-import { useDispatch, useSelector } from "react-redux";
-import { changemousedown, chnagemusicended, muteandopen, changerandomplaymusic } from '../../redux/actions/truefalse'
-import { addmusicplaying, incrementnumberloop } from "../../redux/actions/forplayermusic";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faPause, faPlay, faRandom, faRetweet, faStepBackward, faStepForward } from "@fortawesome/fontawesome-free-solid";
-import { faListUl, faVolumeHigh, faVolumeXmark, faClose } from "@fortawesome/free-solid-svg-icons";
+// import testimg1 from "../../assets/images/ananymousformusicorartist.png"
+// import { useDispatch, useSelector } from "react-redux";
+// import { changemousedown, chnagemusicended, muteandopen, changerandomplaymusic } from '../../redux/actions/truefalse'
+// import { addmusicplaying, incrementnumberloop } from "../../redux/actions/forplayermusic";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHeart, faPause, faPlay, faRandom, faRetweet, faStepBackward, faStepForward } from "@fortawesome/fontawesome-free-solid";
+// import { faListUl, faVolumeHigh, faVolumeXmark, faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Musicplayer = () => {
 
-    const musicplaying = useSelector(state => state.musicplaying);
-    // const lastmusicplayed = useSelector(state => state.lastmusicplayed);
-    const minutecurrenttime = useSelector(state => state.currenTimeminute)
-    const secondcurrenttime = useSelector(state => state.currenTimesecond)
-    const minuteduration = useSelector(state => state.durationminute)
-    const secondduration = useSelector(state => state.durationsecond)
-    const numeberloop = useSelector(state => state.numeberloop)
-    const musicended = useSelector(state => state.musicended)
-    const dispatch = useDispatch();
-    const progressEl = document.querySelector('input[type="range"]');
-    const randomemusicnumber = useSelector(state => state.randomeplaymusic)
-    const volumeallmusic = useSelector(state => state.volumeallmusic)
-    let [showmusicplayer, setshowmusicplayer] = useState("")
+    // const musicplaying = useSelector(state => state.musicplaying);
+    // // const lastmusicplayed = useSelector(state => state.lastmusicplayed);
+    // const minutecurrenttime = useSelector(state => state.currenTimeminute)
+    // const secondcurrenttime = useSelector(state => state.currenTimesecond)
+    // const minuteduration = useSelector(state => state.durationminute)
+    // const secondduration = useSelector(state => state.durationsecond)
+    // const numeberloop = useSelector(state => state.numeberloop)
+    // const musicended = useSelector(state => state.musicended)
+    // const dispatch = useDispatch();
+    // const progressEl = document.querySelector('input[type="range"]');
+    // const randomemusicnumber = useSelector(state => state.randomeplaymusic)
+    // const volumeallmusic = useSelector(state => state.volumeallmusic)
+    // let [showmusicplayer, setshowmusicplayer] = useState("")
 
-    let hideshowtimenusic = ""
-    if (minutecurrenttime === undefined || secondcurrenttime === undefined || minuteduration === undefined || secondduration === undefined) {
-        hideshowtimenusic = 'hidden'
-    } else hideshowtimenusic = 'block'
+    // let hideshowtimenusic = ""
+    // if (minutecurrenttime === undefined || secondcurrenttime === undefined || minuteduration === undefined || secondduration === undefined) {
+    //     hideshowtimenusic = 'hidden'
+    // } else hideshowtimenusic = 'block'
 
-    let iconplay = "";
-    let iconpause = "";
-    if (musicended === true) {
-        iconplay = "hidden"
-        iconpause = "block"
-    } else {
-        iconplay = "block"
-        iconpause = "hidden"
-    }
-    let showretweet1 = ""
-    let showretweet2 = ""
-    let showretweetevery = ""
-    if (numeberloop === 0) {
-        showretweet1 = "block"
-        showretweet2 = "hidden"
-        showretweetevery = "hidden"
-    } else if (numeberloop === 1) {
-        showretweet1 = "hidden"
-        showretweet2 = "flex"
-        showretweetevery = "hidden"
-    } else if (numeberloop === 2) {
-        showretweet1 = "hidden"
-        showretweet2 = "hidden"
-        showretweetevery = "flex"
-    }
-    let showrandom = ""
-    if (randomemusicnumber === true) showrandom = "text-bluepro"
-    else showrandom = "text-graypro hover:text-white"
+    // let iconplay = "";
+    // let iconpause = "";
+    // if (musicended === true) {
+    //     iconplay = "hidden"
+    //     iconpause = "block"
+    // } else {
+    //     iconplay = "block"
+    //     iconpause = "hidden"
+    // }
+    // let showretweet1 = ""
+    // let showretweet2 = ""
+    // let showretweetevery = ""
+    // if (numeberloop === 0) {
+    //     showretweet1 = "block"
+    //     showretweet2 = "hidden"
+    //     showretweetevery = "hidden"
+    // } else if (numeberloop === 1) {
+    //     showretweet1 = "hidden"
+    //     showretweet2 = "flex"
+    //     showretweetevery = "hidden"
+    // } else if (numeberloop === 2) {
+    //     showretweet1 = "hidden"
+    //     showretweet2 = "hidden"
+    //     showretweetevery = "flex"
+    // }
+    // let showrandom = ""
+    // if (randomemusicnumber === true) showrandom = "text-bluepro"
+    // else showrandom = "text-graypro hover:text-white"
 
-    useEffect(() => {
-        if (musicended === true) {
-            iconplay = "hidden"
-            iconpause = "block"
-        } else {
-            iconplay = "block"
-            iconpause = "hidden"
-        }
-    }, [musicended])
-    useEffect(() => {
-        iconplay = "block"
-        iconpause = "hidden"
-    }, [])
+    // useEffect(() => {
+    //     if (musicended === true) {
+    //         iconplay = "hidden"
+    //         iconpause = "block"
+    //     } else {
+    //         iconplay = "block"
+    //         iconpause = "hidden"
+    //     }
+    // }, [musicended])
+    // useEffect(() => {
+    //     iconplay = "block"
+    //     iconpause = "hidden"
+    // }, [])
 
 
-    const forchangeprogressbar = () => {
-        const musicplayingg = document.getElementById(musicplaying)
-        const pct = progressEl.value / 100;
-        musicplayingg.currentTime = (musicplayingg.duration || 0) * pct;
-    }
+    // const forchangeprogressbar = () => {
+    //     const musicplayingg = document.getElementById(musicplaying)
+    //     const pct = progressEl.value / 100;
+    //     musicplayingg.currentTime = (musicplayingg.duration || 0) * pct;
+    // }
 
-    const formousedownprogressbar = () => {
-        dispatch(changemousedown())
-    }
-    const formouseupprogressbar = () => {
-        dispatch(changemousedown())
-    }
+    // const formousedownprogressbar = () => {
+    //     dispatch(changemousedown())
+    // }
+    // const formouseupprogressbar = () => {
+    //     dispatch(changemousedown())
+    // }
 
-    const puseallmusic = () => {
-        const audioTracks = document.getElementById(musicplaying);
-        if (audioTracks !== null) {
-            audioTracks.pause()
-            dispatch(chnagemusicended(false))
-        }
-    }
+    // const puseallmusic = () => {
+    //     const audioTracks = document.getElementById(musicplaying);
+    //     if (audioTracks !== null) {
+    //         audioTracks.pause()
+    //         dispatch(chnagemusicended(false))
+    //     }
+    // }
 
-    const playinglastmusicplayed = () => {
-        const musicmain = document.getElementById(musicplaying)
-        if (musicmain !== null) {
-            musicmain.play()
-            dispatch(chnagemusicended(true))
-        } else {
-            if (randomemusicnumber === true) {
-                const randommusic = Math.floor(Math.random() * (5 - 1) + 1)
-                let musicmain = document.getElementById("audio" + randommusic.toString())
-                dispatch(chnagemusicended(true))
-                musicmain.play()
-                localStorage.setItem("ismusicplaying", "yes")
-                localStorage.setItem("numberrandom", randommusic)
-                dispatch(addmusicplaying("audio" + randommusic.toString()))
-            }
-        }
-    }
+    // const playinglastmusicplayed = () => {
+    //     const musicmain = document.getElementById(musicplaying)
+    //     if (musicmain !== null) {
+    //         musicmain.play()
+    //         dispatch(chnagemusicended(true))
+    //     } else {
+    //         if (randomemusicnumber === true) {
+    //             const randommusic = Math.floor(Math.random() * (5 - 1) + 1)
+    //             let musicmain = document.getElementById("audio" + randommusic.toString())
+    //             dispatch(chnagemusicended(true))
+    //             musicmain.play()
+    //             localStorage.setItem("ismusicplaying", "yes")
+    //             localStorage.setItem("numberrandom", randommusic)
+    //             dispatch(addmusicplaying("audio" + randommusic.toString()))
+    //         }
+    //     }
+    // }
 
     // const fornextmusic = (indexinarray) => {
     //     const mainindex = indexinarray + 1
@@ -146,69 +146,65 @@ const Musicplayer = () => {
     //     dispatch(addlastmusicplayed(musicplaying))
     //     dispatch(addmusicplaying(getidmusicnext))
     // }
-    const forvolume = () => {
-        dispatch(muteandopen())
-        const musicplayingformuteorno = document.getElementById(musicplaying)
-        console.log(volumeallmusic)
-        console.log(musicplayingformuteorno)
-        if (musicplayingformuteorno !== null) {
-            if (volumeallmusic === true) {
-                musicplayingformuteorno.volume = 0
-                document.getElementById("rangevolume").value = 0
-                localStorage.setItem("volumenumber", "0")
-            } else {
-                musicplayingformuteorno.volume = 1
-                document.getElementById("rangevolume").value = 1
-                localStorage.setItem("volumenumber", "1")
-            }
-        }
-    }
+    // const forvolume = () => {
+    //     dispatch(muteandopen())
+    //     const musicplayingformuteorno = document.getElementById(musicplaying)
+    //     if (musicplayingformuteorno !== null) {
+    //         if (volumeallmusic === true) {
+    //             musicplayingformuteorno.volume = 0
+    //             document.getElementById("rangevolume").value = 0
+    //             localStorage.setItem("volumenumber", "0")
+    //         } else {
+    //             musicplayingformuteorno.volume = 1
+    //             document.getElementById("rangevolume").value = 1
+    //             localStorage.setItem("volumenumber", "1")
+    //         }
+    //     }
+    // }
 
-    const forchangevolume = (e) => {
-        const getvalue = e.target.value
-        localStorage.setItem("volumenumber", getvalue)
-        const musicplayingformuteorno = document.getElementById(musicplaying)
-        if (musicplayingformuteorno !== null) {
-            musicplayingformuteorno.volume = getvalue
-        }
-    }
+    // const forchangevolume = (e) => {
+    //     const getvalue = e.target.value
+    //     localStorage.setItem("volumenumber", getvalue)
+    //     const musicplayingformuteorno = document.getElementById(musicplaying)
+    //     if (musicplayingformuteorno !== null) {
+    //         musicplayingformuteorno.volume = getvalue
+    //     }
+    // }
 
-    const forcloseplayermusic = () => {
-        const musicmain = document.getElementById(musicplaying)
-        if (musicmain !== null) {
-            musicmain.pause()
-            dispatch(chnagemusicended(false))
-        }
-        dispatch(addmusicplaying(''))
+    // const forcloseplayermusic = () => {
+    //     const musicmain = document.getElementById(musicplaying)
+    //     if (musicmain !== null) {
+    //         musicmain.pause()
+    //         dispatch(chnagemusicended(false))
+    //     }
+    //     dispatch(addmusicplaying(''))
 
-    }
+    // }
 
-    // ========================================================================================= //
+    // // ========================================================================================= //
 
-    const [widthscreen, setWidthCcreen] = useState(0);
-    const updateDimensions = () => {
-        setWidthCcreen(document.getElementById("progressbarmusic").clientWidth);
-    }
-    useEffect(() => {
-        window.addEventListener("resize", updateDimensions);
-        setWidthCcreen(document.getElementById("progressbarmusic").clientWidth)
+    // const [widthscreen, setWidthCcreen] = useState(0);
+    // const updateDimensions = () => {
+    //     setWidthCcreen(document.getElementById("progressbarmusic").clientWidth);
+    // }
+    // useEffect(() => {
+    //     window.addEventListener("resize", updateDimensions);
+    //     setWidthCcreen(document.getElementById("progressbarmusic").clientWidth)
 
-        if (musicplaying.length === 0 || musicplaying === null || musicplaying === undefined) setshowmusicplayer("hidden")
-        else setshowmusicplayer("grid")
+    //     if (musicplaying.length === 0 || musicplaying === null || musicplaying === undefined) setshowmusicplayer("hidden")
+    //     else setshowmusicplayer("grid")
 
-        return () => window.removeEventListener("resize", updateDimensions);
-    }, [<Musicplayer />]);
+    //     return () => window.removeEventListener("resize", updateDimensions);
+    // }, [<Musicplayer />]);
 
-    function oninputrangevolume(e) {
-        var value = (e.target.value - e.target.min) / (e.target.max - e.target.min) * 100
-        e.target.style.background = 'linear-gradient(to right, #3369ff 0%, #3369ff ' + value + '%, #fff ' + value + '%, white 100%)'
-    };
-
-
+    // function oninputrangevolume(e) {
+    //     var value = (e.target.value - e.target.min) / (e.target.max - e.target.min) * 100
+    //     e.target.style.background = 'linear-gradient(to right, #3369ff 0%, #3369ff ' + value + '%, #fff ' + value + '%, white 100%)'
+    // };
 
     return (
         <Fragment>
-            <div className={`${showmusicplayer} grid-cols-12 bg-blackopacitylittle text-3xl text-white h-13/100 rounded-3xl border-grayprodark border-1 z-auto w-full backdrop-blur-sm`}>
+            {/* <div className={`${showmusicplayer} grid-cols-12 bg-blackopacitylittle text-3xl text-white h-13/100 rounded-3xl border-grayprodark border-1 z-auto w-full backdrop-blur-sm`}>
                 <div className="lg:col-span-2 zero:col-span-2 flex items-center justify-center cursor-pointer">
                     <img src={testimg1} className="lg:w-14 lg:h-10 zero:w-10 zero:h-10 rounded-lg mr-2 lg:ml-5 zero:ml-0" />
                     <div className="zero:hidden lg:block">
@@ -275,7 +271,7 @@ const Musicplayer = () => {
                         <p className="text-xs text-grayprolight lg:block zero:hidden">350k</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </Fragment>
     )
 }

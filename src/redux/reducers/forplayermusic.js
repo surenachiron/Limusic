@@ -1,73 +1,99 @@
-export const updateallstateplayermusic = (state = 0, action) => {
+/// new music control
+
+import { useDispatch } from "react-redux"
+import { addpageplayedmusic, changevalueorplayorpause, changevolumemusicwithprops, findindexmusic, initialseforclosemusiccontrol } from "../actions/forplayermusic"
+
+export const isplayorispause = (state = false, action) => {
     switch (action.type) {
-        case "UPDATEALLPLAYERMUSIC":
+        case "CHANGEVALUETOPLAYORPAUSE":
+            return !state
+        case "CHANGEVALUETOPLAYORPAUSEWITHPROPS":
+            return action.payload
+        case "UPDATEISPLAYORPAUSE":
+            return state
+        default:
+            return state
+    }
+}
+
+export const forclosemusiccontrol = (state = false, action) => {
+    switch (action.type) {
+        case "INITIALISEFORCLOSEMUSICCONTROL":
             return action.payload
         default:
             return state
     }
 }
 
-export const musicplaying = (state = "", action) => {
+export const volumemusic = (state = false, action) => {
     switch (action.type) {
-        case "ADDMUSICPLAYING":
+        case "CHANGEVOLUMEMUSIC":
+            return !state
+        case "CHANGEVOLUMEMUSICWITHPROPS":
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export const currenttimemusic = (state = [], action) => {
+    switch (action.type) {
+        case "CHANGECURRENTTIMEMUSIC":
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export const durationtimemusic = (state = [], action) => {
+    switch (action.type) {
+        case "CHANGEDURATIONTIMEMUSIC":
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export const activerandom = (state = false, action) => {
+    switch (action.type) {
+        case "CHANGE_ACTIVERANDOM":
+            return !state;
+        case "CHANGE_ACTIVERANDOMWITHPROPS":
+            return action.payload
+        default:
+            return state;
+    }
+}
+
+export const numberretweet = (state = 0, action) => {
+    switch (action.type) {
+        case "CHANGENUMBERRETWEET":
+            return action.payload
+        case "CHANGENUMBERRETWEETWITHPROPS":
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export const numberplaysonginplaylist = (state = 0, action) => {
+    switch (action.type) {
+        case "ADD_NUMBERPLAYSONGINPLAYLIST":
+            return action.payload;
+        case "LOWOFF_NUMBERPLAYSONGINPLAYLIST":
+            return action.payload;
+        case "FINDINDEXMUSIC":
             return action.payload;
         default:
             return state;
     }
-};
+}
 
-export const lastmusicplayed = (state = "", action) => {
+export const howpageplayedmusic = (state = [], action) => {
     switch (action.type) {
-        case "ADDLASTMUSICPLAYED":
+        case "ADD_PAGEPLAYEDMUSIC":
             return action.payload;
         default:
             return state;
-    }
-}
-
-export const minuteduration = (state = 0, action) => {
-    switch (action.type) {
-        case "ADDMINUTEDURATION":
-            return action.payload;
-        default:
-            return state
-    }
-}
-
-export const secondduration = (state = 0, action) => {
-    switch (action.type) {
-        case "ADDSECONDDURATION":
-            return action.payload;
-        default:
-            return state
-    }
-}
-
-export const minutecurrenttime = (state = 0, action) => {
-    switch (action.type) {
-        case "ADDMINUTECURRENTTIME":
-            return action.payload;
-        default:
-            return state
-    }
-}
-
-export const secondcurrenttime = (state = 0, action) => {
-    switch (action.type) {
-        case "ADDSECONDCURRENTTIME":
-            return action.payload;
-        default:
-            return state
-    }
-}
-
-export const numeberloop = (state = 0, action) => {
-    switch (action.type) {
-        case "INCREMENTNUMBERLOOP":
-            return action.payload
-        case "CLEARNUMBERLOOP":
-            return action.payload
-        default:
-            return state
     }
 }

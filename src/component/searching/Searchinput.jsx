@@ -8,6 +8,7 @@ import { changefocusinputsearch } from "../../redux/actions/truefalse";
 import { useRef } from "react";
 import { initializedetailssearched } from "../../redux/actions/search";
 import ReactLoading from 'react-loading';
+import { useLocation } from "react-router";
 
 const Searchinput = () => {
 
@@ -44,16 +45,21 @@ const Searchinput = () => {
         dispatch(changefocusinputsearch(true))
     }
 
+    const location = useLocation()
+    useEffect(() => {
+        dispatch(changefocusinputsearch(false))
+    }, [location])
+
     return (
         <>
             {focusinputsearch === true ? <div className="bg-gray-800 fixed inset-0 opacity-25"></div> : ""}
-            <div className="relative bg-white flex justify-between w-full rounded-2xl pr-3">
+            <div className="relative bg-white flex justify-between w-full rounded-2xl pr-3" ref={inputsearchref}>
                 {forloadingsearch === true ?
                     <div className="flex items-center pl-3">
                         <ReactLoading type={"spin"} color="#0085ff" height={20} width={20} />
                     </div>
                     : ""}
-                <input type="text" name="searchinapp" id="searchinputheader" className="p-2 rounded-3xl text-black border-0 w-full text-center" placeholder="Type your seach here" onChange={e => changetextsearch(e)} onFocus={() => dispatch(changefocusinputsearch(true))} ref={inputsearchref} />
+                <input type="text" name="searchinapp" id="searchinputheader" className="p-2 rounded-3xl text-black border-0 w-full text-center" placeholder="Type your seach here" onChange={e => changetextsearch(e)} onFocus={() => dispatch(changefocusinputsearch(true))} />
                 <button className="p-2" onClick={clickiconsearch}>
                     <FontAwesomeIcon icon={faSearch} className="text-blacklight cursor-pointer"></FontAwesomeIcon>
                 </button>

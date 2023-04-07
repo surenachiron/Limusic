@@ -18,9 +18,10 @@ const Song = () => {
     const loading = useSelector(state => state.forloading)
     const songalldetails = useSelector(state => state.songselected)
     const topsongalldetails = useSelector(state => state.topsongbyartist)
+    const showtopsongorno = useSelector(state => state.showtopsongorno)
     const similarsongalldetails = useSelector(state => state.similarsong)
+    const showsimilatsongorno = useSelector(state => state.showsimilatsongorno)
     const overvieworlyrics = useSelector(state => state.overvieworlyrics)
-
 
     let borderoverview = ""
     let borderlyric = ""
@@ -60,8 +61,6 @@ const Song = () => {
         getcountplaysong(dispatch, keysongselected)
     }, [location.pathname])
 
-    console.log(topsongalldetails.length)
-
     return (
         <Fragment>
 
@@ -95,10 +94,10 @@ const Song = () => {
                                         </div>
                                         : <></>}
                                     <div id="topsongartist" className="mt-10">
-                                        {topsongalldetails.length !== 0 && topsongalldetails.length !== undefined && topsongalldetails.errors === undefined ?
+                                        {showtopsongorno === true ?
                                             <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                                 <h3 className="text-2xl">Top Songs By {songalldetails.subtitle}</h3>
-                                                {topsongalldetails.length === 0 ?
+                                                {topsongalldetails === undefined && topsongalldetails.length === 0 ?
                                                     <div className="flex items-center justify-center ml-5">
                                                         <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
                                                     </div>
@@ -106,15 +105,15 @@ const Song = () => {
                                             </div>
                                             : <></>
                                         }
-                                        {topsongalldetails.length !== 0 && topsongalldetails.length !== undefined && topsongalldetails.errors === undefined ?
+                                        {topsongalldetails.length !== 0 && topsongalldetails.errors === undefined ?
                                             <Mapintopsong />
                                             : <></>}
                                     </div>
                                     <div id="similarsongs" className="mt-10">
-                                        {similarsongalldetails.length !== 0 && similarsongalldetails.length !== undefined && similarsongalldetails.errors === undefined ?
+                                        {showsimilatsongorno === true ?
                                             <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                                 <h3 className="text-2xl">Similar Songs</h3>
-                                                {similarsongalldetails.length === 0 ?
+                                                {similarsongalldetails === undefined && similarsongalldetails.length === 0 ?
                                                     <div className="flex items-center justify-center ml-5">
                                                         <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
                                                     </div>
@@ -122,7 +121,7 @@ const Song = () => {
                                             </div>
                                             : <></>
                                         }
-                                        {similarsongalldetails.length !== 0 && similarsongalldetails.length !== undefined && similarsongalldetails.errors === undefined ?
+                                        {similarsongalldetails.length !== 0 && similarsongalldetails.errors === undefined ?
                                             <Mapinsimilarsong />
                                             : <></>}
                                     </div>

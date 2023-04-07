@@ -10,7 +10,6 @@ const Mapinsimilarsong = () => {
     const truefalsesimilarsonglength = useSelector(state => state.showsimilarsong)
     const similarsongall = useSelector(state => state.similarsong)
     const littlesimilarsong = useSelector(state => state.littlesimilarsong)
-    console.log(littlesimilarsong)
 
     return (
         <>

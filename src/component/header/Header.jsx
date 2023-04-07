@@ -1,12 +1,10 @@
-import React, { useRef, useState } from "react";
-import { faBars, faBell, faCog } from "@fortawesome/fontawesome-free-solid";
+import React from "react";
+import { faBars } from "@fortawesome/fontawesome-free-solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import accountprson from '../../assets/images/ananymousformusicorartist.png'
 import looglg from '../../assets/images/looglg.jpg'
 import logosm from '../../assets/images/logosm.jpg'
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { changeheadermobileshow } from "../../redux/actions/truefalse";
 import Searchinput from "../searching/Searchinput";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +13,6 @@ const Header = () => {
 
     const headermenushow = useSelector(state => state.headermobileshow)
     const dispatch = useDispatch()
-    const focusinputsearch = useSelector(state => state.focusinputsearch)
 
     const dorshowhisemenumobile = () => {
         dispatch(changeheadermobileshow())
