@@ -10,7 +10,7 @@ import Musicvideosong from "../component/trackpage/Musicvideosong";
 import Showdetailssong from "../component/trackpage/Showdetailssong";
 import { changeovervieworlyrics } from "../redux/actions/truefalse";
 import { initializelittlesimilarsong, initializesimilarsong, initializesong, initializetopsong } from "../redux/actions/song";
-import { callsimilarsongs, callsongdetails, getcountplaysong } from "../services/useDetailspagesong";
+import { callsimilarsongs, callsongdetails, getcountplaysong } from "../services/useDetailspagesong.js";
 
 const Song = () => {
 
