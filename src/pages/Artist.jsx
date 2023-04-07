@@ -7,7 +7,7 @@ import Latestreleaseartist from '../component/artistpage/Latestreleaseartist'
 import Mapalbumbyartist from "../component/artistpage/Mapalbumbyartist";
 import Maptopsongbyartist from "../component/artistpage/Maptopsongbyartist";
 import { useEffect } from "react";
-import { getalbumsartist, getalldetailsartist, getlatestreleaseartist, gettopsongartist } from "../services/useEndpointspageartist";
+import { getalbumsartist, getalldetailsartist, getlatestreleaseartist, gettopsongartist } from "../services/useEndpointspageartist.js";
 import { initializeartist, initializetopsongartist, initializelatestreleaseartist, initializealbumsartist } from "../redux/actions/artist";
 import { useLocation } from "react-router-dom"; 
 
