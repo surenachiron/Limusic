@@ -8,19 +8,19 @@ export const callsongdetails = async (dispatch, keysong) => {
         url: 'https://shazam.p.rapidapi.com/songs/get-details',
         params: { key: keysong, locale: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '73b0c57e7dmshfc234d7c5ddefe9p1c562fjsn5ca792270ed1',
+            'X-RapidAPI-Key': '67b1c5624amshc1a02ae289e60eap14890ajsnf2158b3aff9c',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
 
     dispatch(actionloading(true))
     await axios.request(options).then(function (response) {
-        dispatch(actionloading(false))
         dispatch(initializesong(response.data))
         dispatch(initializeplaylistpagesongorginalysorginaly())
         if (response.data.artists.map(o => o.adamid)[0] !== undefined) {
             calltopsongartistinsong(dispatch, response.data.artists.map(o => o.adamid)[0])
         }
+        dispatch(actionloading(false))
     }).catch(function (error) {
         dispatch(actionloading(false))
         console.error(error);
@@ -33,7 +33,7 @@ export const getcountplaysong = async (dispatch, keysong) => {
         url: 'https://shazam.p.rapidapi.com/songs/get-count',
         params: { key: keysong },
         headers: {
-            'X-RapidAPI-Key': '73b0c57e7dmshfc234d7c5ddefe9p1c562fjsn5ca792270ed1',
+            'X-RapidAPI-Key': '67b1c5624amshc1a02ae289e60eap14890ajsnf2158b3aff9c',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -51,7 +51,7 @@ export const calltopsongartistinsong = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-top-songs',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '73b0c57e7dmshfc234d7c5ddefe9p1c562fjsn5ca792270ed1',
+            'X-RapidAPI-Key': '67b1c5624amshc1a02ae289e60eap14890ajsnf2158b3aff9c',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -76,7 +76,7 @@ export const callsimilarsongs = async (dispatch, keysong) => {
         url: 'https://shazam.p.rapidapi.com/songs/list-recommendations',
         params: { key: keysong, locale: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '73b0c57e7dmshfc234d7c5ddefe9p1c562fjsn5ca792270ed1',
+            'X-RapidAPI-Key': '67b1c5624amshc1a02ae289e60eap14890ajsnf2158b3aff9c',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };

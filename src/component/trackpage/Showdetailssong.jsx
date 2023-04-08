@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/fontawesome-free-solid";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { addpageplayedmusic, changevalueorplayorpause, changevolumemusicwithprops, findindexmusic, initialseforclosemusiccontrol } from "../../redux/actions/forplayermusic";
 import ReactLoading from 'react-loading';
 import ananymousartist from '../../assets/images/ananymousformusicorartist.png'
 import { setplaylistsongsotginalyfake } from "../../redux/actions/song";
@@ -49,7 +48,15 @@ const Showdetailssong = () => {
                         <div className={`absolute transition-all top-1/2 block peer-hover/img:block`}>
                             {playlistpagesongorginaly.length > 2 ?
                                 <>
-                                    {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === songalldetails.title ? <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>}
+                                    {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                                        <>
+                                            {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === songalldetails.title ?
+                                                <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>}
+                                        </> :
+                                        <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
+                                            <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                        </div>
+                                    }
                                 </>
                                 : <div className="flex items-center">
                                     <ReactLoading type={"spin"} color="white" height={20} width={20} />

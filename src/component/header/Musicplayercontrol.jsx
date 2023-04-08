@@ -12,6 +12,8 @@ const Musicplayercontrol = () => {
 
     const dispatch = useDispatch()
     const playlistpagesongfake = useSelector(state => state.playlistpagesongorginalyfake)
+    const plylisttrendmusic = useSelector(state => state.plylisttrendmusic)
+    const plylistcharttopmusic = useSelector(state => state.plylistcharttopmusic)
     const numberplaysonginplaylist = useSelector(state => state.numberplaysonginplaylist)
     const isplayorispause = useSelector(state => state.isplayorispause)
     const volumemusic = useSelector(state => state.volumemusic)
@@ -22,7 +24,12 @@ const Musicplayercontrol = () => {
     const mouseDownOnSlider = useSelector(state => state.mouseDownOnSlider);
     const howplaylistisactive = useSelector(state => state.howpageplayedmusic)
 
+    let musicplay = useRef(null)
+    let inputrangevolume = useRef(null)
+    let inputprofressbarmusic = useRef(null)
+
     let namemusicplayingorplayed, artistmusicplayingorplayed, imagemusicplayingorplayed, soundmusicplayingorplayed, linksongmusicplayingorplayed, linkartistmusicplayingorplayed = ''
+
     if (howplaylistisactive === playlistpagesongfake) {
         namemusicplayingorplayed = playlistpagesongfake[numberplaysonginplaylist].namesong
         artistmusicplayingorplayed = playlistpagesongfake[numberplaysonginplaylist].nameartist
@@ -32,12 +39,26 @@ const Musicplayercontrol = () => {
         linkartistmusicplayingorplayed = playlistpagesongfake[numberplaysonginplaylist].linkpageartist
     }
 
-    console.log(playlistpagesongfake)
-    console.log(howplaylistisactive === playlistpagesongfake)
+    if (howplaylistisactive === plylisttrendmusic) {
+        namemusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].namesong
+        artistmusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].nameartist
+        imagemusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].imagesong
+        soundmusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].soundsong
+        linksongmusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].linkpagesong
+        linkartistmusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].linkpageartist
+    }
 
-    let musicplay = useRef(null)
-    let inputrangevolume = useRef(null)
-    let inputprofressbarmusic = useRef(null)
+    if (howplaylistisactive === plylistcharttopmusic) {
+        namemusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].namesong
+        artistmusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].nameartist
+        imagemusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].imagesong
+        soundmusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].soundsong
+        linksongmusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].linkpagesong
+        linkartistmusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].linkpageartist
+    }
+
+    console.log(namemusicplayingorplayed, artistmusicplayingorplayed, imagemusicplayingorplayed, soundmusicplayingorplayed, linkartistmusicplayingorplayed, linksongmusicplayingorplayed)
+
 
     /// play and pause 
     const playandpause = () => {
@@ -45,14 +66,8 @@ const Musicplayercontrol = () => {
     }
 
     useEffect(() => {
-        if (isplayorispause === true) {
-            musicplay.current.play()
-            dispatch(changevalueorplayorpausewithprops(true))
-        }
-        else {
-            musicplay.current.pause()
-            dispatch(changevalueorplayorpausewithprops(false))
-        }
+        if (isplayorispause === true) musicplay.current.play()
+        else musicplay.current.pause()
         localStorage.setItem("namemusicplayingorplayed", namemusicplayingorplayed)
         localStorage.setItem("artistmusicplayingorplayed", artistmusicplayingorplayed)
     }, [isplayorispause])
@@ -202,13 +217,13 @@ const Musicplayercontrol = () => {
             <div className={`grid grid-cols-12 bg-blackopacitylittle text-3xl text-white h-13/100 rounded-3xl border-grayprodark border-1 z-auto w-full backdrop-blur-sm`}>
 
                 <div className="md:col-span-3 zero:col-span-2 flex items-center md:justify-start zero:justify-center cursor-pointer">
-                    {/* <NavLink to={`/song/${linksongmusicplayingorplayed}`}> */}
-                    <img src={imagemusicplayingorplayed === undefined ? "" : imagemusicplayingorplayed} width={55} height={55} className="rounded-lg mr-2 lg:ml-3 zere:ml-0" />
-                    {/* </NavLink> */}
+                    <NavLink to={`/song/${linksongmusicplayingorplayed !== undefined && linkartistmusicplayingorplayed.length !== 0 ? linksongmusicplayingorplayed : ""}`}>
+                        <img src={imagemusicplayingorplayed === undefined ? "" : imagemusicplayingorplayed} width={55} height={55} className="rounded-lg mr-2 lg:ml-3 zere:ml-0" />
+                    </NavLink>
                     <div className="zero:hidden lg:block">
-                        {/* <NavLink to={`/song/${linksongmusicplayingorplayed}`}> */}
-                        <h3 className="text-base">{namemusicplayingorplayed.length >= 12 ? namemusicplayingorplayed.slice(0, 12) + ".." : namemusicplayingorplayed}</h3>
-                        {/* </NavLink> */}
+                        <NavLink to={`/song/${linksongmusicplayingorplayed !== undefined && linkartistmusicplayingorplayed.length !== 0 ? linksongmusicplayingorplayed : ""}`}>
+                            <h3 className="text-base">{namemusicplayingorplayed.length >= 12 ? namemusicplayingorplayed.slice(0, 12) + ".." : namemusicplayingorplayed}</h3>
+                        </NavLink>
                         <NavLink to={`/artist/${linkartistmusicplayingorplayed}`}>
                             <h5 className="text-sm text-graypro">{artistmusicplayingorplayed.length >= 10 ? artistmusicplayingorplayed.slice(0, 10) + ".." : artistmusicplayingorplayed}</h5>
                         </NavLink>

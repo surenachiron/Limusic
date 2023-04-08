@@ -3,10 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/fontawesome-free-solid";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { addpageplayedmusic, changevalueorplayorpause, changevolumemusicwithprops, findindexmusic, initialseforclosemusiccontrol } from "../../redux/actions/forplayermusic";
 import ananymousartist from '../../assets/images/ananymousformusicorartist.png'
 import { setplaylistsongsotginalyfake } from "../../redux/actions/song";
-
+import ReactLoading from 'react-loading';
 
 const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermusic, widthforcovermusic, heightforcovermusic }) => {
 
@@ -55,7 +54,21 @@ const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermu
                     <img src={aslcovermusic === undefined ? ananymousartist : aslcovermusic} alt={`picture music ${namemusic}`} className={`w-24 lg:h-24 md:h-24 sm:h-16 rounded-full ${getopacityandhoverforimage}`} />
                 </div>
                 <div className={`absolute transition-all ${getblockorhideplay} peer-hover/img:block`} style={transform}>
-                    {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === namemusic ? <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon>}
+                    {playlistpagesongorginaly.length > 2 ?
+                        <>
+                            {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                                <>
+                                    {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === namemusic ?
+                                        <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} color="white" className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>}
+                                </> :
+                                <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
+                                    <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                </div>
+                            }
+                        </>
+                        : <div className="flex items-center">
+                            <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                        </div>}
                 </div>
             </div>
             <div className="flex flex-col ml-3">

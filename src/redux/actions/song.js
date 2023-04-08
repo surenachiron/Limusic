@@ -1,4 +1,4 @@
-import { addpageplayedmusic, changeactiverendomwithprops, changevalueorplayorpause, changevolumemusicwithprops, findindexmusic, initialseforclosemusiccontrol } from "./forplayermusic"
+import { addpageplayedmusic, changeactiverendomwithprops, changevalueorplayorpause, changevalueorplayorpausewithprops, changevolumemusicwithprops, findindexmusic, initialseforclosemusiccontrol } from "./forplayermusic"
 
 export const initializesong = (songalldetail) => {
     return async (dispatch) => {
@@ -75,12 +75,17 @@ export const addsonginplaysitsongorginaly = (topsongs) => {
 
 export const setplaylistsongsotginalyfake = (value, namemusic) => {
     return async (dispatch) => {
-        await dispatch(initialseforclosemusiccontrol(false))
-        await dispatch(changevalueorplayorpause())
-        await dispatch(changevolumemusicwithprops(false))
-        await dispatch(changeactiverendomwithprops(false))
-        await dispatch(findindexmusic(namemusic, value))
-        await dispatch({ type: 'SET_PLAYLIST_SONGS_ORGINALY_FAKE', payload: value });
-        await dispatch(addpageplayedmusic(value))
+        if (localStorage.getItem("namemusicplayingorplayed") === namemusic) {
+            await dispatch(changevalueorplayorpause())
+        } else {
+            await dispatch(initialseforclosemusiccontrol(true))
+            await dispatch(changevalueorplayorpausewithprops(true))
+            await dispatch(changevolumemusicwithprops(false))
+            await dispatch(changeactiverendomwithprops(false))
+            await dispatch(findindexmusic(namemusic, value))
+            await dispatch({ type: 'SET_PLAYLIST_SONGS_ORGINALY_FAKE', payload: value });
+            await dispatch(addpageplayedmusic(value))
+
+        }
     }
 }

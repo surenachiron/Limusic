@@ -8,15 +8,15 @@ export const getalldetailsartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-details',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '73b0c57e7dmshfc234d7c5ddefe9p1c562fjsn5ca792270ed1',
+            'X-RapidAPI-Key': '67b1c5624amshc1a02ae289e60eap14890ajsnf2158b3aff9c',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
 
     dispatch(actionloading(true))
     await axios.request(options).then(function (response) {
-        dispatch(actionloading(false))
         dispatch(initializeartist(response.data))
+        dispatch(actionloading(false))
         console.log(response.data);
     }).catch(function (error) {
         dispatch(actionloading(false))
@@ -30,7 +30,7 @@ export const gettopsongartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-top-songs',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '73b0c57e7dmshfc234d7c5ddefe9p1c562fjsn5ca792270ed1',
+            'X-RapidAPI-Key': '67b1c5624amshc1a02ae289e60eap14890ajsnf2158b3aff9c',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -49,7 +49,7 @@ export const getlatestreleaseartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-latest-release',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '73b0c57e7dmshfc234d7c5ddefe9p1c562fjsn5ca792270ed1',
+            'X-RapidAPI-Key': '67b1c5624amshc1a02ae289e60eap14890ajsnf2158b3aff9c',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -68,7 +68,7 @@ export const getalbumsartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-summary',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '73b0c57e7dmshfc234d7c5ddefe9p1c562fjsn5ca792270ed1',
+            'X-RapidAPI-Key': '67b1c5624amshc1a02ae289e60eap14890ajsnf2158b3aff9c',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };

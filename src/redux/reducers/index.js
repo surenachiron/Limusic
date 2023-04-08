@@ -4,12 +4,16 @@ import { albumsartist, artistdetails, latestreleaseartist, topsongsartist } from
 import { isplayorispause, forclosemusiccontrol, volumemusic, currenttimemusic, durationtimemusic, numberretweet, numberplaysonginplaylist, howpageplayedmusic, activerandom } from "./forplayermusic";
 import { countplaysong, littlesimilarsong, playlistpagesongorginalyfake, playlistpagesongorginalyorginaly, savesongselected, showsimilatsongorno, showtopsongorno, similarsong, topsongbyartist } from "./song";
 import { mouseDownOnSlider, musicended, randomeplaymusic, volumeallmusic, headermobileshow, forloading, overvieworlyricsforsong, showlittleorgreatsimilarsong, focusinputsearch, forloadingsearch, showsongorartistinsearching } from "./truefalse";
-import { chartsspecificsong } from "./chartshome";
+import { chartsspecificsong, loadinghomepage, plylistcharttopmusic, plylisttrendmusic, songtrendhomepage } from "./homepage";
 import { detailssearched } from "./search";
 
 export const reducers = combineReducers({
     /// home
+    loadinghomepage: loadinghomepage,
+    songtrendhomepage: songtrendhomepage,
+    plylisttrendmusic: plylisttrendmusic,
     chartsspecificsong: chartsspecificsong,
+    plylistcharttopmusic: plylistcharttopmusic,
     /// song
     songselected: savesongselected,
     countplaysong: countplaysong,

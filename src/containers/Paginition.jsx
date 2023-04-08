@@ -29,6 +29,9 @@ const Paginition = () => {
     const forclosemusiccontrol = useSelector(state => state.forclosemusiccontrol)
     const howpageplayedmusic = useSelector(state => state.howpageplayedmusic)
     const playlistpagesongfake = useSelector(state => state.playlistpagesongorginalyfake)
+    const plylisttrendmusic = useSelector(state => state.plylisttrendmusic)
+    const plylistcharttopmusic = useSelector(state => state.plylistcharttopmusic)
+    
 
     return (
         <Fragment>
@@ -53,7 +56,7 @@ const Paginition = () => {
                         </Routes>
                     </div>
                     <div className="fixed bottom-0 flex flex-col px-5 z-50" style={{ width: widthplayermusic }} >
-                        {forclosemusiccontrol === true && howpageplayedmusic.length !== undefined && howpageplayedmusic.length >= 2 && (howpageplayedmusic === playlistpagesongfake) ? <Musicplayercontrol /> : ""}
+                        {forclosemusiccontrol === true && howpageplayedmusic.length !== undefined && howpageplayedmusic.length >= 1 && (howpageplayedmusic === playlistpagesongfake || howpageplayedmusic === plylisttrendmusic || howpageplayedmusic === plylistcharttopmusic) ? <Musicplayercontrol /> : ""}
                         <Headerhelperinmobile />
                     </div>
                 </div>
