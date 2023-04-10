@@ -8,7 +8,7 @@ export const getdailstextsearch = async (dispatch, textsearch) => {
         url: 'https://shazam.p.rapidapi.com/search',
         params: { term: textsearch, locale: 'en-US', offset: '0', limit: '5' },
         headers: {
-            'X-RapidAPI-Key': '67b1c5624amshc1a02ae289e60eap14890ajsnf2158b3aff9c',
+            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };

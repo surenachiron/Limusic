@@ -17,7 +17,7 @@ export const songtrendhomepage = (state = [], action) => {
     }
 }
 
-export const plylisttrendmusic = (state = [], action) => {
+export const plylisttrendmusic = (state = {}, action) => {
     switch (action.type) {
         case "INITIALIZE_PLAYLISTTRENDMUSIC":
             return action.payload;
@@ -28,16 +28,16 @@ export const plylisttrendmusic = (state = [], action) => {
 
 /// chart home page
 
-export const chartsspecificsong = (state = null, action) => {
+export const chartsspecificsong = (state = [], action) => {
     switch (action.type) {
-        case ("INITIALIZECHARTSSPECIFICSONG"):
+        case "INITIALIZECHARTSSPECIFICSONG":
             return action.payload;
         default:
             return state
     }
 }
 
-export const plylistcharttopmusic = (state = null, action) => {
+export const plylistcharttopmusic = (state = [], action) => {
     switch (action.type) {
         case "INITIALIZE_PLAYLISTCHARTTOPMUSIC":
             return action.payload;

@@ -7,14 +7,22 @@ import { NavLink } from "react-router-dom";
 import { addnumberplaysonginplaylist, changeactiverendom, changeactiverendomwithprops, changecurrenttimemusic, changedurationtimemusic, changenumberretweet, changenumberretweetwithprops, changevalueorplayorpause, changevalueorplayorpausewithprops, changevolumemusic, changevolumemusicwithprops, createnumberrandomforplay, initialseforclosemusiccontrol, lowoffnumberplaysonginplaylist } from "../../redux/actions/forplayermusic";
 import { changemousedown } from "../../redux/actions/truefalse";
 import ReactLoading from 'react-loading';
+import { initializeplaylistalbumpage } from "../../redux/actions/albums";
+import { initializeplaylisttopsongmusicartistpage } from "../../redux/actions/artist";
+import { initializeplaylistcharttopmusic, initializeplaylisttrendmusic } from "../../redux/actions/homepage";
 
 const Musicplayercontrol = () => {
 
     const dispatch = useDispatch()
+
     const playlistpagesongfake = useSelector(state => state.playlistpagesongorginalyfake)
     const plylisttrendmusic = useSelector(state => state.plylisttrendmusic)
     const plylistcharttopmusic = useSelector(state => state.plylistcharttopmusic)
+    const playlisttopsongartist = useSelector(state => state.playlisttopsongartist)
+    const playlistalbumpage = useSelector(state => state.playlistalbumpage)
     const numberplaysonginplaylist = useSelector(state => state.numberplaysonginplaylist)
+    const howplaylistisactive = useSelector(state => state.howpageplayedmusic)
+
     const isplayorispause = useSelector(state => state.isplayorispause)
     const volumemusic = useSelector(state => state.volumemusic)
     const currenttimemusic = useSelector(state => state.currenttimemusic)
@@ -22,7 +30,6 @@ const Musicplayercontrol = () => {
     const activerandom = useSelector(state => state.activerandom)
     const numberretweet = useSelector(state => state.numberretweet)
     const mouseDownOnSlider = useSelector(state => state.mouseDownOnSlider);
-    const howplaylistisactive = useSelector(state => state.howpageplayedmusic)
 
     let musicplay = useRef(null)
     let inputrangevolume = useRef(null)
@@ -40,12 +47,12 @@ const Musicplayercontrol = () => {
     }
 
     if (howplaylistisactive === plylisttrendmusic) {
-        namemusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].namesong
-        artistmusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].nameartist
-        imagemusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].imagesong
-        soundmusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].soundsong
-        linksongmusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].linkpagesong
-        linkartistmusicplayingorplayed = plylisttrendmusic[numberplaysonginplaylist].linkpageartist
+        namemusicplayingorplayed = plylisttrendmusic[0].namesong
+        artistmusicplayingorplayed = plylisttrendmusic[0].nameartist
+        imagemusicplayingorplayed = plylisttrendmusic[0].imagesong
+        soundmusicplayingorplayed = plylisttrendmusic[0].soundsong
+        linksongmusicplayingorplayed = plylisttrendmusic[0].linkpagesong
+        linkartistmusicplayingorplayed = plylisttrendmusic[0].linkpageartist
     }
 
     if (howplaylistisactive === plylistcharttopmusic) {
@@ -57,8 +64,23 @@ const Musicplayercontrol = () => {
         linkartistmusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].linkpageartist
     }
 
-    console.log(namemusicplayingorplayed, artistmusicplayingorplayed, imagemusicplayingorplayed, soundmusicplayingorplayed, linkartistmusicplayingorplayed, linksongmusicplayingorplayed)
+    if (howplaylistisactive === playlisttopsongartist) {
+        namemusicplayingorplayed = playlisttopsongartist[numberplaysonginplaylist].namesong
+        artistmusicplayingorplayed = playlisttopsongartist[numberplaysonginplaylist].nameartist
+        imagemusicplayingorplayed = playlisttopsongartist[numberplaysonginplaylist].imagesong
+        soundmusicplayingorplayed = playlisttopsongartist[numberplaysonginplaylist].soundsong
+        linksongmusicplayingorplayed = playlisttopsongartist[numberplaysonginplaylist].linkpagesong
+        linkartistmusicplayingorplayed = playlisttopsongartist[numberplaysonginplaylist].linkpageartist
+    }
 
+    if (howplaylistisactive === playlistalbumpage) {
+        namemusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].namesong
+        artistmusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].nameartist
+        imagemusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].imagesong
+        soundmusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].soundsong
+        linksongmusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].linkpagesong
+        linkartistmusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].linkpageartist
+    }
 
     /// play and pause 
     const playandpause = () => {
@@ -82,7 +104,7 @@ const Musicplayercontrol = () => {
         dispatch(changevalueorplayorpausewithprops(true))
         localStorage.setItem("namemusicplayingorplayed", namemusicplayingorplayed)
         localStorage.setItem("artistmusicplayingorplayed", artistmusicplayingorplayed)
-    }, [numberplaysonginplaylist])
+    }, [numberplaysonginplaylist, howplaylistisactive])
 
     /// close and clear music play or pause
     const closeandclearmusic = () => {
@@ -90,6 +112,13 @@ const Musicplayercontrol = () => {
         dispatch(changevalueorplayorpausewithprops(false))
         dispatch(changeactiverendomwithprops(false))
         dispatch(changenumberretweetwithprops(0))
+        /// clear playlist 
+        dispatch({ type: 'SET_PLAYLIST_SONGS_ORGINALY_FAKE', payload: '' });
+        dispatch(initializeplaylisttrendmusic(""))
+        dispatch(initializeplaylistcharttopmusic(""))
+        dispatch(initializeplaylisttopsongmusicartistpage(""))
+        dispatch(initializeplaylistalbumpage(""))
+        ///
         musicplay.current.pause()
         musicplay.current.load()
         localStorage.removeItem("namemusicplayingorplayed")
@@ -217,13 +246,14 @@ const Musicplayercontrol = () => {
             <div className={`grid grid-cols-12 bg-blackopacitylittle text-3xl text-white h-13/100 rounded-3xl border-grayprodark border-1 z-auto w-full backdrop-blur-sm`}>
 
                 <div className="md:col-span-3 zero:col-span-2 flex items-center md:justify-start zero:justify-center cursor-pointer">
-                    <NavLink to={`/song/${linksongmusicplayingorplayed !== undefined && linkartistmusicplayingorplayed.length !== 0 ? linksongmusicplayingorplayed : ""}`}>
+                    {linksongmusicplayingorplayed !== undefined && linkartistmusicplayingorplayed.length !== 0 ? <NavLink to={`/song/${linksongmusicplayingorplayed}`}>
                         <img src={imagemusicplayingorplayed === undefined ? "" : imagemusicplayingorplayed} width={55} height={55} className="rounded-lg mr-2 lg:ml-3 zere:ml-0" />
-                    </NavLink>
+                    </NavLink> : <img src={imagemusicplayingorplayed === undefined ? "" : imagemusicplayingorplayed} width={55} height={55} className="rounded-lg mr-2 lg:ml-3 zere:ml-0" />}
+
                     <div className="zero:hidden lg:block">
-                        <NavLink to={`/song/${linksongmusicplayingorplayed !== undefined && linkartistmusicplayingorplayed.length !== 0 ? linksongmusicplayingorplayed : ""}`}>
+                        {linksongmusicplayingorplayed !== undefined && linkartistmusicplayingorplayed.length !== 0 ? <NavLink to={`/song/${linksongmusicplayingorplayed}`}>
                             <h3 className="text-base">{namemusicplayingorplayed.length >= 12 ? namemusicplayingorplayed.slice(0, 12) + ".." : namemusicplayingorplayed}</h3>
-                        </NavLink>
+                        </NavLink> : <h3 className="text-base">{namemusicplayingorplayed.length >= 12 ? namemusicplayingorplayed.slice(0, 12) + ".." : namemusicplayingorplayed}</h3>}
                         <NavLink to={`/artist/${linkartistmusicplayingorplayed}`}>
                             <h5 className="text-sm text-graypro">{artistmusicplayingorplayed.length >= 10 ? artistmusicplayingorplayed.slice(0, 10) + ".." : artistmusicplayingorplayed}</h5>
                         </NavLink>

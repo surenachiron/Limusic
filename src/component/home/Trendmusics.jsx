@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import trendeartist from '../../assets/images/artisttrand.png'
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { setplaylisttrendmusicorginalyfake } from "../../redux/actions/homepage";
+import { playlisttrendmusichomepage } from "../../redux/actions/homepage";
 
 const Trendmusics = () => {
 
@@ -12,7 +12,7 @@ const Trendmusics = () => {
     const trendmusic = useSelector(state => state.songtrendhomepage)
 
     const playmusicselected = () => {
-        dispatch(setplaylisttrendmusicorginalyfake(trendmusic, trendmusic[0].namesong))
+        dispatch(playlisttrendmusichomepage(trendmusic, trendmusic[0].namesong))
     }
 
     return (

@@ -21,13 +21,13 @@ const Detailsartist = () => {
                     <img src={aslcovermusic} alt={`picture artist ${artistdetails.data.map(o => o.attributes.name)[0]}`} className="lg:h-52 lg:w-52 sm:w-64 sm:h-64 zero:w-full zero:h-96 shadow-lg sm:z-10 zero:z-0 rounded-2xl" />
                     <div className="sm:hidden zero:block absolute bottom-0 text-center mb-5 z-10">
                         <h2 className="text-2xl mb-3">{artistdetails.data.map(o => o.attributes.name)[0]}</h2>
-                        <h5 className="text-lg lg:text-start sm:text-center">{artistdetails.data.map(o => o.attributes.genreNames)[0]}</h5>
+                        <h5 className="text-lg lg:text-start sm:text-center text-grayprolight">{artistdetails.data.map(o => o.attributes.genreNames)[0]}</h5>
                     </div>
                 </div>
 
                 <div className="sm:block zero:hidden z-10 relative">
                     <h2 className="text-2xl mb-3 sm:text-center lg:text-start">{artistdetails.data.map(o => o.attributes.name)[0]}</h2>
-                    <h5 className="text-lg sm:text-center lg:text-start">{artistdetails.data.map(o => o.attributes.genreNames)[0]}</h5>
+                    <h5 className="text-lg sm:text-center lg:text-start text-grayprolight">{artistdetails.data.map(o => o.attributes.genreNames)[0]}</h5>
                 </div>
             </div>
         </>

@@ -40,7 +40,7 @@ const Homelayout = () => {
                     </div>
                     :
                     <>
-                        {trendmusic.length !== 0 && chartsspecificsong.length !== 0 && chartsspecificsong !== undefined && trendmusic !== undefined ?
+                        {trendmusic.length !== 0 && chartsspecificsong !== null && trendmusic !== undefined ?
                             <>
                                 <Trendmusics />
                                 <Mapcharttop50 />

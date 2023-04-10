@@ -10,6 +10,7 @@ import Artist from "../pages/Artist";
 import { updatewidthplayermusic } from "../redux/actions/another";
 import Searchinputformobile from "../component/searching/Searchinputformobile";
 import Musicplayercontrol from "../component/header/Musicplayercontrol";
+import Albums from "../pages/Album";
 
 const Paginition = () => {
 
@@ -31,7 +32,8 @@ const Paginition = () => {
     const playlistpagesongfake = useSelector(state => state.playlistpagesongorginalyfake)
     const plylisttrendmusic = useSelector(state => state.plylisttrendmusic)
     const plylistcharttopmusic = useSelector(state => state.plylistcharttopmusic)
-    
+    const playlisttopsongartist = useSelector(state => state.playlisttopsongartist)
+    const playlistalbumpage = useSelector(state => state.playlistalbumpage)
 
     return (
         <Fragment>
@@ -43,11 +45,8 @@ const Paginition = () => {
                     <Header />
                     <div className="md:mb-16 zero:mb-24">
                         <Routes>
-                            {/* <Route path="/albums/:idalbum" element={<Song />} />
-                            <Route path="/albums" element={<Song />} /> */}
                             {/* <Route path="/liked" element={<Song />} /> */}
-                            {/* <Route path="/playlist/:idplaylists" element={<Song />} /> */}
-                            {/* <Route path="/playlist" element={<Song />} /> */}
+                            <Route path="/albums/:idalbum" element={<Albums />} />
                             <Route path="/search" element={<Searchinputformobile />} />
                             <Route path="/artist/:idartist" element={<Artist />} />
                             <Route path="/song/:idsong" element={<Song />} />
@@ -56,7 +55,7 @@ const Paginition = () => {
                         </Routes>
                     </div>
                     <div className="fixed bottom-0 flex flex-col px-5 z-50" style={{ width: widthplayermusic }} >
-                        {forclosemusiccontrol === true && howpageplayedmusic.length !== undefined && howpageplayedmusic.length >= 1 && (howpageplayedmusic === playlistpagesongfake || howpageplayedmusic === plylisttrendmusic || howpageplayedmusic === plylistcharttopmusic) ? <Musicplayercontrol /> : ""}
+                        {forclosemusiccontrol === true && howpageplayedmusic.length !== undefined && howpageplayedmusic.length >= 1 && (howpageplayedmusic === playlistpagesongfake || howpageplayedmusic === plylisttrendmusic || howpageplayedmusic === plylistcharttopmusic || howpageplayedmusic === playlisttopsongartist || howpageplayedmusic === playlistalbumpage) ? <Musicplayercontrol /> : ""}
                         <Headerhelperinmobile />
                     </div>
                 </div>

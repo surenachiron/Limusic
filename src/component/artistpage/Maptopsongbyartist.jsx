@@ -11,9 +11,7 @@ import { useSelector } from "react-redux";
 
 const Maptopsongbyartist = () => {
 
-    const artistdetails = useSelector(state => state.artistdetails)
     const topsongartist = useSelector(state => state.topsongsartist)
-    console.log(topsongartist)
 
     return (
         <>
@@ -28,16 +26,14 @@ const Maptopsongbyartist = () => {
                     pagination={{ clickable: true }}
                     className="myswiper"
                 >
-                    {topsongartist.data.map(o => (
-                        <SwiperSlide className="justify-start" key={o.index}>
+                    {topsongartist[0].map(o => (
+                        <SwiperSlide className="justify-start">
                             <Topsongbyartist
-                                namemusic={o.attributes.name}
-                                artistsong={o.attributes.artistName}
-                                linkpagemusic={o.id}
-                                linkpageartist={artistdetails.data.map(o => o.id)[0]}
-                                covermusic={o.attributes.artwork.url}
-                                widthforcovermusic={o.attributes.artwork.width}
-                                heightforcovermusic={o.attributes.artwork.height}
+                                namemusic={o.namesong}
+                                artistsong={o.nameartist}
+                                linkpagemusic={o.linkpagesong}
+                                linkpageartist={o.linkpageartist}
+                                covermusic={o.imagesong}
                             ></Topsongbyartist>
                         </SwiperSlide>
                     ))}

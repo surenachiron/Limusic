@@ -7,18 +7,25 @@ import Latestreleaseartist from '../component/artistpage/Latestreleaseartist'
 import Mapalbumbyartist from "../component/artistpage/Mapalbumbyartist";
 import Maptopsongbyartist from "../component/artistpage/Maptopsongbyartist";
 import { useEffect } from "react";
-import { getalbumsartist, getalldetailsartist, getlatestreleaseartist, gettopsongartist } from "../services/useendpointspageartist";
-import { initializeartist, initializetopsongartist, initializelatestreleaseartist, initializealbumsartist } from "../redux/actions/artist";
-import { useLocation } from "react-router-dom"; 
+import { getalbumsartist, getalldetailsartist, getlatestreleaseartist, gettopsongartist } from "../services/useEndpointspageartist";
+import { initializeartist, initializetopsongartist, initializelatestreleaseartist, initializealbumsartist, initializeshowlatestrelease, initializeshowalbumartist, initializeshowtopsongorno } from "../redux/actions/artist";
+import { useLocation } from "react-router-dom";
 
 const Artist = () => {
 
     const dispatch = useDispatch()
     const artistdetails = useSelector(state => state.artistdetails)
     const topsongartist = useSelector(state => state.topsongsartist)
+    const showtopsongorno = useSelector(state => state.showtopsongorno)
+    const showlatestrelaseorno = useSelector(state => state.showlatestrelaseorno)
+    const showalbumartist = useSelector(state => state.showalbumartist)
     const latestreleasesongartist = useSelector(state => state.latestreleaseartist)
     const albumsartist = useSelector(state => state.albumsartist)
     const loading = useSelector(state => state.forloading)
+
+    if (topsongartist.length === 0) dispatch(initializeshowtopsongorno(true))
+    if (latestreleasesongartist.length === 0) dispatch(initializeshowlatestrelease(true))
+    if (albumsartist.length === 0) dispatch(initializeshowalbumartist(true))
 
     const location = useLocation()
     const idartistselected = location.pathname.slice(8,)
@@ -44,9 +51,9 @@ const Artist = () => {
         getalbumsartist(dispatch, idartistselected)
     }, [location.pathname])
 
+
     return (
         <>
-
             {loading === true ? <div className="flex flex-col items-center justify-center" style={{ height: "90vh" }}>
                 <ReactLoading type={"spin"} color="#3369ff" height={172} width={149} />
                 <h4>reciveing data</h4>
@@ -65,7 +72,7 @@ const Artist = () => {
                                     <Detailsartist />
                                 </div>
                                 <div id="topsongartist" className="mt-10">
-                                    {topsongartist.errors !== undefined && topsongartist === undefined ? <></>
+                                    {showtopsongorno === true ? <></>
                                         : <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                             <h2 className="text-xl">Top Songs By {artistdetails.data.map(o => o.attributes.name)[0]}</h2>
                                             {topsongartist.length === 0 ?
@@ -80,7 +87,7 @@ const Artist = () => {
                                         : <></>}
                                 </div>
                                 <div id="latestrelease" className="lg:col-span-4 zero:col-span-12 mt-10">
-                                    {latestreleasesongartist.errors !== undefined && latestreleasesongartist === undefined ? <></>
+                                    {showlatestrelaseorno === true ? <></>
                                         : <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                             <h2 className="text-xl">Latest Release</h2>
                                             {latestreleasesongartist.length === 0 ?
@@ -95,7 +102,7 @@ const Artist = () => {
                                         : <></>}
                                 </div>
                                 <div id="albumsbyartist" className="lg:col-span-8 zero:col-span-12 mt-10">
-                                    {albumsartist.errors !== undefined && albumsartist === undefined ? <></>
+                                    {showalbumartist === true ? <></>
                                         : <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                             <h2 className="text-xl">Albums BY {artistdetails.data.map(o => o.attributes.name)[0]}</h2>
                                             {albumsartist.length === 0 ?

@@ -3,15 +3,13 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/fontawesome-free-solid";
-import ananymousartist from '../../assets/images/ananymousformusicorartist.png'
-import { setplaylistsongsotginalyfake } from "../../redux/actions/song";
+import { playlistcharttopmusichomepage } from "../../redux/actions/homepage";
 import ReactLoading from 'react-loading';
 
 import 'swiper/css';
 import "swiper/swiper-bundle.min.css";
 import "swiper/css/pagination"
 import "./swiperslide.css"
-import { setplaylistcharttopmusicorginalyfake } from "../../redux/actions/homepage";
 
 const Charttop50 = ({ covermusic, titlemusic, linkpagetitlemusic, artistmusic, linkpageartistmusic }) => {
 
@@ -24,7 +22,7 @@ const Charttop50 = ({ covermusic, titlemusic, linkpagetitlemusic, artistmusic, l
     const chartsspecificsong = useSelector(state => state.chartsspecificsong[0])
 
     const playmusicselected = () => {
-        dispatch(setplaylistcharttopmusicorginalyfake(chartsspecificsong, titlemusic))
+        dispatch(playlistcharttopmusichomepage(chartsspecificsong, titlemusic))
     }
 
     /// styles

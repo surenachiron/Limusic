@@ -19,7 +19,7 @@ const Latestreleaseartist = () => {
                     <div>
                         <img src={aslcovermusic} alt={`picture music ${o.attributes.name}`} className="mt-3 rounded-2xl" width='270' height='270' />
                         <h2 className="text-lg my-3">{o.attributes.name.length >= 20 ? (o.attributes.name).slice(0, 20) + " ..." : o.attributes.name}</h2>
-                        <p className="text-sm">{slicetextreleasedate}</p>
+                        <p className="text-sm text-grayprolight">{slicetextreleasedate}</p>
                     </div>
                 ))}
             </div>

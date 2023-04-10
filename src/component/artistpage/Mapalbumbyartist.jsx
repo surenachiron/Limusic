@@ -10,31 +10,15 @@ import { useSelector } from "react-redux";
 
 const Mapalbumbyartist = () => {
 
-    const albumsartist = useSelector(state => state.albumsartist)
+    const albumsartist = useSelector(state => state.albumsartist).map(o => o.attributes).sort((a, b) => b.trackCount - a.trackCount).slice(0, 15).sort((a, b) => b.releaseDate - a.releaseDate).slice(0,9)
 
-    let albums = albumsartist.resources.albums
+    console.log(albumsartist)
 
-    const [widthplayermusicc, swidthplayermusicc] = useState(window.innerWidth);
-    const upadatewidthplayermusic = () => {
-        swidthplayermusicc(window.innerWidth);
-    }
-    useEffect(() => {
-        window.addEventListener("resize", upadatewidthplayermusic);
-        return () => window.removeEventListener("resize", upadatewidthplayermusic);
-    }, [window]);
-    useEffect(() => {
-        window.addEventListener("resize", upadatewidthplayermusic);
-        return () => window.removeEventListener("resize", upadatewidthplayermusic);
-    }, [<Mapalbumbyartist />]);
+    const widthplayermusic = useSelector(state => state.widthplayermusic)
     let lengthslide = ''
-    if (widthplayermusicc <= 640) lengthslide = 2
-    else if (widthplayermusicc <= 768) lengthslide = 3
-    else if (widthplayermusicc <= 1024 || widthplayermusicc >= 1024) lengthslide = 4
-
-    ///////
-    // انجام دادن سورت کردن آلبوم های بر اساس تعداد آهنگ ها
-    //////
-
+    if (widthplayermusic <= 640) lengthslide = 2
+    else if (widthplayermusic <= 768) lengthslide = 3
+    else if (widthplayermusic <= 1024 || widthplayermusic >= 1024) lengthslide = 4
     
 
     return (
@@ -50,15 +34,15 @@ const Mapalbumbyartist = () => {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    {Object.keys(albums).reverse().slice(0, 8).map(key => (
+                    {albumsartist.map(key => (
                         <SwiperSlide className="justify-start" key={key}>
                             <Albumsbyartist
-                                namealbume={albums[key].attributes.name}
-                                linkpagealbume={albums[key].id}
-                                covermusic={albums[key].attributes.artwork.url}
-                                widthforcovermusic={albums[key].attributes.artwork.width}
-                                heightforcovermusic={albums[key].attributes.artwork.height}
-                                releasedata={albums[key].attributes.releaseDate}
+                                namealbume={key.name}
+                                linkpagealbume={key.playParams.id}
+                                covermusic={key.artwork.url}
+                                widthforcovermusic={key.artwork.width}
+                                heightforcovermusic={key.artwork.height}
+                                releasedata={key.releaseDate}
                             >
                             </Albumsbyartist>
                         </SwiperSlide>

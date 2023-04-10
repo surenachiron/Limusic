@@ -46,7 +46,7 @@ export const Mapcharttop50 = () => {
                         modules={[Pagination, Grid]}
                         grid={{ rows: rownumber, fill: "row" }} className="mySwiper"
                     >
-                        {chartsspecificsong.length !== 0 && chartsspecificsong !== undefined ? chartsspecificsong.map(o => (
+                        {chartsspecificsong !== undefined ? chartsspecificsong.map(o => (
                             <SwiperSlide className="text-blackpro mb-5">
                                 <Charttop50
                                     covermusic={o.imagesong !== undefined ? o.imagesong : ananymousartist}

@@ -1,11 +1,12 @@
 import { combineReducers } from "redux";
 import { widthplayermusic } from "./another";
-import { albumsartist, artistdetails, latestreleaseartist, topsongsartist } from "./artist";
+import { albumsartist, artistdetails, latestreleaseartist, playlisttopsongartist, showalbumartist, showlatestrelaseorno, showtopsongornoartist, topsongsartist } from "./artist";
 import { isplayorispause, forclosemusiccontrol, volumemusic, currenttimemusic, durationtimemusic, numberretweet, numberplaysonginplaylist, howpageplayedmusic, activerandom } from "./forplayermusic";
 import { countplaysong, littlesimilarsong, playlistpagesongorginalyfake, playlistpagesongorginalyorginaly, savesongselected, showsimilatsongorno, showtopsongorno, similarsong, topsongbyartist } from "./song";
 import { mouseDownOnSlider, musicended, randomeplaymusic, volumeallmusic, headermobileshow, forloading, overvieworlyricsforsong, showlittleorgreatsimilarsong, focusinputsearch, forloadingsearch, showsongorartistinsearching } from "./truefalse";
 import { chartsspecificsong, loadinghomepage, plylistcharttopmusic, plylisttrendmusic, songtrendhomepage } from "./homepage";
 import { detailssearched } from "./search";
+import { backupdetailsalbumsforplaylist, detailsalbums, loadingalbums, playlistalbumpage } from "./albums";
 
 export const reducers = combineReducers({
     /// home
@@ -27,8 +28,17 @@ export const reducers = combineReducers({
     /// artist
     artistdetails: artistdetails,
     topsongsartist: topsongsartist,
+    showtopsongornoartist: showtopsongornoartist,
     latestreleaseartist: latestreleaseartist,
+    showlatestrelaseorno: showlatestrelaseorno,
     albumsartist: albumsartist,
+    showalbumartist: showalbumartist,
+    playlisttopsongartist: playlisttopsongartist,
+    /// Albums
+    detailsalbums: detailsalbums,
+    backupdetailsalbumsforplaylist: backupdetailsalbumsforplaylist,
+    loadingalbums: loadingalbums,
+    playlistalbumpage: playlistalbumpage,
     /// playmusic
     isplayorispause: isplayorispause,
     forclosemusiccontrol: forclosemusiccontrol,

@@ -28,9 +28,11 @@ export const initializeplaylisttrendmusic = (playlisytrensmuci) => {
     }
 }
 
-export const setplaylisttrendmusicorginalyfake = (value, namemusic) => {
-    return async (dispatch) => {
-        console.log(value, namemusic)
+export const playlisttrendmusichomepage = (value, namemusic) => {
+    return async (dispatch, getState) => {
+        const plylisttrendmusic = getState().plylisttrendmusic
+        const howpageplayedmusic = getState().howpageplayedmusic
+        console.log(plylisttrendmusic, howpageplayedmusic)
         if (localStorage.getItem("namemusicplayingorplayed") === namemusic) {
             await dispatch(changevalueorplayorpause())
         } else {
@@ -48,8 +50,7 @@ export const setplaylisttrendmusicorginalyfake = (value, namemusic) => {
 /// chart home page
 export const initializechartsspecificsong = (chartsspecifice) => {
     return async (dispatch) => {
-        const newArray = chartsspecifice.tracks.slice(0, 5).concat(chartsspecifice.tracks.slice(6));
-        console.log(newArray);
+        const newArray = chartsspecifice.tracks.filter(obj => obj.title !== "Hotline Bling");
         const songsArray = newArray.map((song) => {
             return {
                 namesong: (song.title !== undefined ? song.title : ""),
@@ -70,9 +71,8 @@ export const initializeplaylistcharttopmusic = (playlisytrensmuci) => {
     }
 }
 
-export const setplaylistcharttopmusicorginalyfake = (value, namemusic) => {
+export const playlistcharttopmusichomepage = (value, namemusic) => {
     return async (dispatch) => {
-        console.log(value, namemusic)
         if (localStorage.getItem("namemusicplayingorplayed") === namemusic) {
             await dispatch(changevalueorplayorpause())
         } else {

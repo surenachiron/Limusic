@@ -1,4 +1,5 @@
 import { addpageplayedmusic, changeactiverendomwithprops, changevalueorplayorpause, changevalueorplayorpausewithprops, changevolumemusicwithprops, findindexmusic, initialseforclosemusiccontrol } from "./forplayermusic"
+import { initializeplaylistcharttopmusic, initializeplaylisttrendmusic } from "./homepage"
 
 export const initializesong = (songalldetail) => {
     return async (dispatch) => {
@@ -75,6 +76,8 @@ export const addsonginplaysitsongorginaly = (topsongs) => {
 
 export const setplaylistsongsotginalyfake = (value, namemusic) => {
     return async (dispatch) => {
+        initializeplaylistcharttopmusic([])
+        initializeplaylisttrendmusic([])
         if (localStorage.getItem("namemusicplayingorplayed") === namemusic) {
             await dispatch(changevalueorplayorpause())
         } else {
