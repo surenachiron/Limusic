@@ -1,6 +1,6 @@
 import { changeloadingalbums, initializealbumsartist, initializebackupdetailsalbumsforplaylist, initializelinkartistpage } from "../redux/actions/albums";
 import axios from "axios";
-import { getalldetailsartist } from "./useEndpointspageartist";
+import { getalldetailsartist } from "./useendpointspageartist";
 
 export const usealldetailsalbums = async (dispatch, idalbum) => {
     const options = {
