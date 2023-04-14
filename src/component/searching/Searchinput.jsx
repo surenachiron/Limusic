@@ -14,34 +14,47 @@ const Searchinput = () => {
 
     const inputsearchref = useRef()
     const dispatch = useDispatch()
+    const [emptytext, setemptytext] = useState(2)
     const [textsearch, settextsearch] = useState()
-    const getdetailsfortextsearch = useSelector(state => state.detailssearch)
     const focusinputsearch = useSelector(state => state.focusinputsearch)
     const forloadingsearch = useSelector(state => state.forloadingsearch)
 
     useEffect(() => {
-
         const checkIfClickedOutside = e => {
             if (inputsearchref.current && !inputsearchref.current.contains(e.target)) {
                 dispatch(changefocusinputsearch(false))
             }
         }
-
         document.addEventListener("mousedown", checkIfClickedOutside)
-
         return () => {
             document.removeEventListener("mousedown", checkIfClickedOutside)
         }
-
     }, [inputsearchref])
 
     const changetextsearch = (e) => {
         settextsearch(e.target.value)
         dispatch(initializedetailssearched(""))
+        if (e.target.value.length !== 0) setemptytext(3)
+        else setemptytext(2)
+        dispatch(changefocusinputsearch(true))
     }
 
     const clickiconsearch = () => {
-        getdailstextsearch(dispatch, textsearch)
+        if (textsearch.length !== 0) {
+            getdailstextsearch(dispatch, textsearch)
+            setemptytext(1)
+        }
+        else setemptytext(2)
+        dispatch(changefocusinputsearch(true))
+    }
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter' && textsearch.length !== 0) {
+            getdailstextsearch(dispatch, textsearch)
+            setemptytext(1)
+        } else {
+            setemptytext(2)
+        }
         dispatch(changefocusinputsearch(true))
     }
 
@@ -59,11 +72,11 @@ const Searchinput = () => {
                         <ReactLoading type={"spin"} color="#0085ff" height={20} width={20} />
                     </div>
                     : ""}
-                <input type="text" name="searchinapp" id="searchinputheader" className="p-2 rounded-3xl text-black border-0 w-full text-center" placeholder="Type your seach here" onChange={e => changetextsearch(e)} onFocus={() => dispatch(changefocusinputsearch(true))} />
+                <input type="text" name="searchinapp" id="searchinputheader" className="p-2 rounded-3xl text-black border-0 w-full text-center" placeholder="Type your seach here" onChange={e => changetextsearch(e)} onFocus={() => dispatch(changefocusinputsearch(true))} onKeyPress={(event) => handleKeyPress(event)} />
                 <button className="p-2" onClick={clickiconsearch}>
                     <FontAwesomeIcon icon={faSearch} className="text-blacklight cursor-pointer"></FontAwesomeIcon>
                 </button>
-                {focusinputsearch === true && getdetailsfortextsearch.length !== 0 && getdetailsfortextsearch !== undefined ? <Showresultsearch></Showresultsearch> : ""}
+                {focusinputsearch === true ? <Showresultsearch emptytext={emptytext} textsearch={textsearch}></Showresultsearch> : ""}
             </div>
         </>
     )

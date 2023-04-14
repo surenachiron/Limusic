@@ -1,6 +1,6 @@
-import { changeloadingalbums, initializealbumsartist, initializebackupdetailsalbumsforplaylist, initializelinkartistpage } from "../redux/actions/albums";
+import { changeloadingalbums, initializealbumsartist, initializebackupdetailsalbumsforplaylist } from "../redux/actions/albums";
 import axios from "axios";
-import { getalldetailsartist } from "./useendpointspageartist";
+import { getalldetailsartist } from "./useEndpointspageartist";
 
 export const usealldetailsalbums = async (dispatch, idalbum) => {
     const options = {
@@ -8,7 +8,7 @@ export const usealldetailsalbums = async (dispatch, idalbum) => {
         url: 'https://shazam.p.rapidapi.com/albums/get-details',
         params: { id: idalbum, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
+            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };

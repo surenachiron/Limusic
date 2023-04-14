@@ -50,17 +50,18 @@ export const playlistmusicspageabum = (value, namemusic) => {
             await dispatch(findindexmusic(namemusic, value))
             await dispatch(initializeplaylistalbumpage(value));
             await dispatch(addpageplayedmusic(value))
+            localStorage.setItem("whichplayinginalbume", document.title)
         }
     }
 }
 
-export const playlistmusicspageabumincopmonentdetailsalbum = () => {
+export const playlistmusicspageabumincopmonentdetailsalbum = (namealbume) => {
     return async (dispatch, getState) => {
         const playlistalbumpage = getState().playlistalbumpage
         const howplaylistisactive = getState().howpageplayedmusic
         const backupdetailsalbumsforplaylist = getState().backupdetailsalbumsforplaylist[0]
 
-        if (howplaylistisactive === playlistalbumpage) {
+        if (howplaylistisactive === playlistalbumpage && namealbume === localStorage.getItem("whichplayinginalbume")) {
             await dispatch(changevalueorplayorpause())
         } else {
             await dispatch(initialseforclosemusiccontrol(true))
@@ -70,6 +71,7 @@ export const playlistmusicspageabumincopmonentdetailsalbum = () => {
             await dispatch({ type: "ADD_NUMBERPLAYSONGINPLAYLIST", payload: 0 })
             await dispatch(initializeplaylistalbumpage(backupdetailsalbumsforplaylist));
             await dispatch(addpageplayedmusic(backupdetailsalbumsforplaylist))
+            localStorage.setItem("whichplayinginalbume", namealbume)
         }
     }
 }

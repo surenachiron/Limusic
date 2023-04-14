@@ -7,7 +7,7 @@ import Latestreleaseartist from '../component/artistpage/Latestreleaseartist'
 import Mapalbumbyartist from "../component/artistpage/Mapalbumbyartist";
 import Maptopsongbyartist from "../component/artistpage/Maptopsongbyartist";
 import { useEffect } from "react";
-import { getalbumsartist, getalldetailsartist, getlatestreleaseartist, gettopsongartist } from "../services/useendpointspageartist";
+import { getalbumsartist, getalldetailsartist, getlatestreleaseartist, gettopsongartist } from "../services/useEndpointspageartist";
 import { initializeartist, initializetopsongartist, initializelatestreleaseartist, initializealbumsartist, initializeshowlatestrelease, initializeshowalbumartist, initializeshowtopsongorno } from "../redux/actions/artist";
 import { useLocation } from "react-router-dom";
 
@@ -16,16 +16,14 @@ const Artist = () => {
     const dispatch = useDispatch()
     const artistdetails = useSelector(state => state.artistdetails)
     const topsongartist = useSelector(state => state.topsongsartist)
-    const showtopsongorno = useSelector(state => state.showtopsongorno)
+    const showtopsongorno = useSelector(state => state.showtopsongornoartist)
     const showlatestrelaseorno = useSelector(state => state.showlatestrelaseorno)
     const showalbumartist = useSelector(state => state.showalbumartist)
     const latestreleasesongartist = useSelector(state => state.latestreleaseartist)
     const albumsartist = useSelector(state => state.albumsartist)
     const loading = useSelector(state => state.forloading)
 
-    if (topsongartist.length === 0) dispatch(initializeshowtopsongorno(true))
-    if (latestreleasesongartist.length === 0) dispatch(initializeshowlatestrelease(true))
-    if (albumsartist.length === 0) dispatch(initializeshowalbumartist(true))
+    console.log(showalbumartist, albumsartist)
 
     const location = useLocation()
     const idartistselected = location.pathname.slice(8,)
@@ -72,45 +70,48 @@ const Artist = () => {
                                     <Detailsartist />
                                 </div>
                                 <div id="topsongartist" className="mt-10">
-                                    {showtopsongorno === true ? <></>
-                                        : <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
+                                    {showtopsongorno === true || topsongartist.length !== 0 ?
+                                        <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                             <h2 className="text-xl">Top Songs By {artistdetails.data.map(o => o.attributes.name)[0]}</h2>
-                                            {topsongartist.length === 0 ?
+                                            {showtopsongorno === true ?
                                                 <div className="flex items-center justify-center ml-5">
                                                     <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
                                                 </div>
                                                 : <></>}
                                         </div>
+                                        : <></>
                                     }
                                     {topsongartist.length !== 0 && topsongartist.errors === undefined ?
                                         <Maptopsongbyartist />
                                         : <></>}
                                 </div>
                                 <div id="latestrelease" className="lg:col-span-4 zero:col-span-12 mt-10">
-                                    {showlatestrelaseorno === true ? <></>
-                                        : <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
+                                    {showlatestrelaseorno === true || latestreleasesongartist.data !== undefined ?
+                                        <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                             <h2 className="text-xl">Latest Release</h2>
-                                            {latestreleasesongartist.length === 0 ?
+                                            {showlatestrelaseorno === true ?
                                                 <div className="flex items-center justify-center ml-5">
                                                     <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
                                                 </div>
                                                 : <></>}
                                         </div>
+                                        : <></>
                                     }
-                                    {latestreleasesongartist.length !== 0 && latestreleasesongartist.errors === undefined ?
+                                    {latestreleasesongartist.data !== undefined && latestreleasesongartist.errors === undefined && showlatestrelaseorno === false ?
                                         <Latestreleaseartist />
                                         : <></>}
                                 </div>
                                 <div id="albumsbyartist" className="lg:col-span-8 zero:col-span-12 mt-10">
-                                    {showalbumartist === true ? <></>
-                                        : <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
+                                    {showalbumartist === true || albumsartist.length !== 0 ?
+                                        <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                             <h2 className="text-xl">Albums BY {artistdetails.data.map(o => o.attributes.name)[0]}</h2>
-                                            {albumsartist.length === 0 ?
+                                            {showalbumartist === true ?
                                                 <div className="flex items-center justify-center ml-5">
                                                     <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
                                                 </div>
                                                 : <></>}
                                         </div>
+                                        : <></>
                                     }
                                     {albumsartist.length !== 0 && albumsartist.errors === undefined ?
                                         <Mapalbumbyartist />

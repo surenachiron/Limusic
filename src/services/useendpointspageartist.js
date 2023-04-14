@@ -8,7 +8,7 @@ export const getalldetailsartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-details',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
+            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -29,7 +29,7 @@ export const gettopsongartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-top-songs',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
+            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -38,7 +38,6 @@ export const gettopsongartist = async (dispatch, idartist) => {
     await axios.request(options).then(function (response) {
         dispatch(initializeshowtopsongorno(false))
         dispatch(initializetopsongartist(response.data))
-        if (response.data.data.length === 0) dispatch(initializeshowtopsongorno(true))
     }).catch(function (error) {
         dispatch(initializeshowtopsongorno(false))
         console.error(error);
@@ -51,7 +50,7 @@ export const getlatestreleaseartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-latest-release',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
+            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -60,7 +59,6 @@ export const getlatestreleaseartist = async (dispatch, idartist) => {
     await axios.request(options).then(function (response) {
         dispatch(initializeshowlatestrelease(false))
         dispatch(initializelatestreleaseartist(response.data))
-        if (response.data.length === 0) dispatch(initializeshowlatestrelease(true))
     }).catch(function (error) {
         console.error(error);
         dispatch(initializeshowlatestrelease(false))
@@ -73,7 +71,7 @@ export const getalbumsartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-summary',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
+            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -82,7 +80,6 @@ export const getalbumsartist = async (dispatch, idartist) => {
     await axios.request(options).then(function (response) {
         dispatch(initializeshowalbumartist(false))
         dispatch(initializealbumsartist(response.data.resources))
-        if (response.data.resources.length === 0) dispatch(initializeshowalbumartist(true))
     }).catch(function (error) {
         console.error(error);
         dispatch(initializeshowalbumartist(false))

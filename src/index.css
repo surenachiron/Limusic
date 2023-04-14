@@ -45,3 +45,8 @@ input[name="searchinapp"]:focus {
 #searchinputheadermobile {
     outline: none !important;
 }
+
+select {
+    /* appearance: none; */
+    outline: none;
+}

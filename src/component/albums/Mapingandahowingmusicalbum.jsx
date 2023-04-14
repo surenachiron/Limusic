@@ -48,15 +48,24 @@ const Mapingandahowingmusicalbum = ({ namemusic, artistsong, covermusic, numberi
                         <div className="peer/img">
                             <img src={covermusic} alt={`picture music ${namemusic}`} className={`md:w-12 md:h-12 zero:w-20 zero:h-20 rounded-3xl ${getopacityandhoverforimage}`} />
                         </div>
-                        <div className={`absolute transition-all ${getblockorhideplay} group-hover:block`} style={transform}>
-                            {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                        <div className={`absolute transition-all ${getblockorhideplay} group-hover:block`} style={transform} onClick={playmusicselected}>
+                            {localStorage.getItem("namemusicplayingorplayed") === namemusic && localStorage.getItem("artistmusicplayingorplayed") === artistsong ? <>
+                                {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                                    <>
+                                        {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === namemusic ?
+                                            <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-sm p-2 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} color="white" className="border-1 bg-blackpro rounded-full text-sm p-2 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>
+                                        }
+                                    </> :
+                                    <div className="border-1 bg-blackpro rounded-full text-sm p-2 cursor-pointer backdrop-blur">
+                                        <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                    </div>
+                                }
+                            </> :
                                 <>
                                     {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === namemusic ?
-                                        <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-sm p-2 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} color="white" className="border-1 bg-blackpro rounded-full text-sm p-2 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>}
-                                </> :
-                                <div className="border-1 bg-blackpro rounded-full text-sm p-2 cursor-pointer backdrop-blur">
-                                    <ReactLoading type={"spin"} color="white" height={20} width={20} />
-                                </div>
+                                        <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-sm p-2 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} color="white" className="border-1 bg-blackpro rounded-full text-sm p-2 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>
+                                    }
+                                </>
                             }
                         </div>
                     </div>
@@ -64,7 +73,8 @@ const Mapingandahowingmusicalbum = ({ namemusic, artistsong, covermusic, numberi
                         <h4 className="text-base font-medium text-grayprolight">{numberinalbum}</h4>
                     </div>
                     <div className="ml-5">
-                        <h4 className="text-base font-medium">{namemusic}</h4>
+                        <h4 className="text-base font-medium md:block zero:hidden">{namemusic}</h4>
+                        <h4 className="text-base font-medium md:hidden zero:block">{namemusic.length <= 30 ? namemusic : namemusic.slice(0, 30) + "..."}</h4>
                     </div>
                 </div>
                 <div className="flex items-cetner justify-center">

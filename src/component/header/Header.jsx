@@ -31,12 +31,15 @@ const Header = () => {
                         <FontAwesomeIcon icon={faClose} className="cursor-pointer text-xl font-bold" onClick={dorshowhisemenumobile}></FontAwesomeIcon>
                     </div>
                     <ul className="py-8">
-                        <NavLink to='/'>
+                        <NavLink to='/home'>
                             <li className="py-4 px-2 hover:border-l-1 transition-all">Home</li>
                         </NavLink>
-                        <li className="py-4 px-2 hover:border-l-1 transition-all">Musics</li>
-                        <li className="py-4 px-2 hover:border-l-1 transition-all">Artists</li>
-                        <li className="py-4 px-2 hover:border-l-1 transition-all">Albums</li>
+                        <NavLink to='/charts'>
+                            <li className="py-4 px-2 hover:border-l-1 transition-all">Charts</li>
+                        </NavLink>
+                        <NavLink to='/favourite'>
+                            <li className="py-4 px-2 hover:border-l-1 transition-all">Favourite</li>
+                        </NavLink>
                     </ul>
                 </nav>
             </div>
@@ -62,7 +65,7 @@ const Header = () => {
                     <img src={logosm} alt="logo" className="w-10 cursor-pointer" />
                 </NavLink>
             </div>
-            <div className="lg:hidden md:flex items-center justify-end text-end zero:col-span-3 transition-all">
+            <div className="lg:hidden md:flex zero:hidden items-center justify-end text-end zero:col-span-3 transition-all">
                 <div className="transition-all text-start">
                     {menumobile}
                 </div>

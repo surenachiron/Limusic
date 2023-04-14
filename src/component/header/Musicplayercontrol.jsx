@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faPause, faPlay, faRandom, faRetweet, faStepBackward, faStepForward } from "@fortawesome/fontawesome-free-solid";
 import { faVolumeHigh, faVolumeXmark, faClose } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
-import { addnumberplaysonginplaylist, changeactiverendom, changeactiverendomwithprops, changecurrenttimemusic, changedurationtimemusic, changenumberretweet, changenumberretweetwithprops, changevalueorplayorpause, changevalueorplayorpausewithprops, changevolumemusic, changevolumemusicwithprops, createnumberrandomforplay, initialseforclosemusiccontrol, lowoffnumberplaysonginplaylist } from "../../redux/actions/forplayermusic";
+import { addnumberplaysonginplaylist, changeactiverendom, changeactiverendomwithprops, changecurrenttimemusic, changedurationtimemusic, changeismusicwaiting, changenumberretweet, changenumberretweetwithprops, changevalueorplayorpause, changevalueorplayorpausewithprops, changevolumemusic, changevolumemusicwithprops, createnumberrandomforplay, initialseforclosemusiccontrol, lowoffnumberplaysonginplaylist } from "../../redux/actions/forplayermusic";
 import { changemousedown } from "../../redux/actions/truefalse";
 import ReactLoading from 'react-loading';
 import { initializeplaylistalbumpage } from "../../redux/actions/albums";
 import { initializeplaylisttopsongmusicartistpage } from "../../redux/actions/artist";
 import { initializeplaylistcharttopmusic, initializeplaylisttrendmusic } from "../../redux/actions/homepage";
+import { initializeplaylisttrackschartforcountrie } from "../../redux/actions/charts";
 
 const Musicplayercontrol = () => {
 
@@ -20,9 +21,11 @@ const Musicplayercontrol = () => {
     const plylistcharttopmusic = useSelector(state => state.plylistcharttopmusic)
     const playlisttopsongartist = useSelector(state => state.playlisttopsongartist)
     const playlistalbumpage = useSelector(state => state.playlistalbumpage)
+    const playlisttrackschartforcountrie = useSelector(state => state.playlisttrackschartforcountrie)
     const numberplaysonginplaylist = useSelector(state => state.numberplaysonginplaylist)
     const howplaylistisactive = useSelector(state => state.howpageplayedmusic)
 
+    const ismusicwaiting = useSelector(state => state.ismusicwaiting)
     const isplayorispause = useSelector(state => state.isplayorispause)
     const volumemusic = useSelector(state => state.volumemusic)
     const currenttimemusic = useSelector(state => state.currenttimemusic)
@@ -82,6 +85,15 @@ const Musicplayercontrol = () => {
         linkartistmusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].linkpageartist
     }
 
+    if (howplaylistisactive === playlisttrackschartforcountrie) {
+        namemusicplayingorplayed = playlisttrackschartforcountrie[numberplaysonginplaylist].namesong
+        artistmusicplayingorplayed = playlisttrackschartforcountrie[numberplaysonginplaylist].nameartist
+        imagemusicplayingorplayed = playlisttrackschartforcountrie[numberplaysonginplaylist].imagesong
+        soundmusicplayingorplayed = playlisttrackschartforcountrie[numberplaysonginplaylist].soundsong
+        linksongmusicplayingorplayed = playlisttrackschartforcountrie[numberplaysonginplaylist].linkpagesong
+        linkartistmusicplayingorplayed = playlisttrackschartforcountrie[numberplaysonginplaylist].linkpageartist
+    }
+
     /// play and pause 
     const playandpause = () => {
         dispatch(changevalueorplayorpause())
@@ -118,11 +130,13 @@ const Musicplayercontrol = () => {
         dispatch(initializeplaylistcharttopmusic(""))
         dispatch(initializeplaylisttopsongmusicartistpage(""))
         dispatch(initializeplaylistalbumpage(""))
+        dispatch(initializeplaylisttrackschartforcountrie(""))
         ///
         musicplay.current.pause()
         musicplay.current.load()
         localStorage.removeItem("namemusicplayingorplayed")
         localStorage.removeItem("artistmusicplayingorplayed")
+        localStorage.removeItem("whichplayingincountrie ")
     }
 
     /// change volume music
@@ -158,6 +172,7 @@ const Musicplayercontrol = () => {
     }
 
     const forupdatemusicplaying = (e) => {
+        dispatch(changeismusicwaiting(false))
         if (!mouseDownOnSlider) {
             inputprofressbarmusic.current.value = musicplay.current.currentTime / musicplay.current.duration * 100;
         }
@@ -243,7 +258,7 @@ const Musicplayercontrol = () => {
 
     return (
         <>
-            <div className={`grid grid-cols-12 bg-blackopacitylittle text-3xl text-white h-13/100 rounded-3xl border-grayprodark border-1 z-auto w-full backdrop-blur-sm`}>
+            <div className={`grid grid-cols-12 bg-blackopacitylittle text-3xl text-white h-fit rounded-3xl border-grayprodark border-1 z-auto w-full backdrop-blur-sm`}>
 
                 <div className="md:col-span-3 zero:col-span-2 flex items-center md:justify-start zero:justify-center cursor-pointer">
                     {linksongmusicplayingorplayed !== undefined && linkartistmusicplayingorplayed.length !== 0 ? <NavLink to={`/song/${linksongmusicplayingorplayed}`}>
@@ -274,16 +289,23 @@ const Musicplayercontrol = () => {
                         <div id="plauandpause" className="bg-bluepro rounded-full py-3 px-3 flex items-center justify-cetnter" onClick={playandpause}>
                             {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
                                 <>
-                                    {isplayorispause === true ?
-                                        <FontAwesomeIcon icon={faPause} className={`cursor-pointer text-white text-sm`} />
-                                        : <FontAwesomeIcon icon={faPlay} className={`cursor-pointer text-white text-sm`} />
+                                    {ismusicwaiting === false ?
+                                        <>
+                                            {isplayorispause === true ?
+                                                <FontAwesomeIcon icon={faPause} className={`cursor-pointer text-white text-sm`} />
+                                                : <FontAwesomeIcon icon={faPlay} className={`cursor-pointer text-white text-sm`} />
+                                            }
+                                        </>
+                                        : <div className="flex items-center">
+                                            <ReactLoading type={"spin"} color="white" height={15} width={15} />
+                                        </div>
                                     }
-                                </> :
-                                <div className="flex items-center">
-                                    <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                </>
+                                : <div className="flex items-center">
+                                    <ReactLoading type={"spin"} color="white" height={15} width={15} />
                                 </div>
                             }
-                            <audio ref={musicplay} onTimeUpdate={e => forupdatemusicplaying(e)} onEnded={e => endedmusicplaying(e)}>
+                            <audio ref={musicplay} onTimeUpdate={e => forupdatemusicplaying(e)} onEnded={e => endedmusicplaying(e)} onWaiting={() => dispatch(changeismusicwaiting(true))}>
                                 <source src={soundmusicplayingorplayed} type="audio/x-m4a" />
                             </audio>
                         </div>

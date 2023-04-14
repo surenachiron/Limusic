@@ -14,16 +14,31 @@ const Searchinputformobile = () => {
 
     const dispatch = useDispatch()
     const [textsearch, settextsearch] = useState()
-    const getdetailsfortextsearch = useSelector(state => state.detailssearch)
+    const [emptytext, setemptytext] = useState(2)
     const forloadingsearch = useSelector(state => state.forloadingsearch)
-    
+
     const changetextsearch = (e) => {
         settextsearch(e.target.value)
         dispatch(initializedetailssearched(""))
+        if (e.target.value.length !== 0) setemptytext(3)
+        else setemptytext(2)
     }
 
     const clickiconsearch = () => {
-        getdailstextsearch(dispatch, textsearch)
+        if (textsearch.length !== 0) {
+            getdailstextsearch(dispatch, textsearch)
+            setemptytext(1)
+        }
+        else setemptytext(2)
+    }
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter' && textsearch.length !== 0) {
+            getdailstextsearch(dispatch, textsearch)
+            setemptytext(1)
+        } else {
+            setemptytext(2)
+        }
     }
 
     const clickbuttonclear = () => {
@@ -42,7 +57,7 @@ const Searchinputformobile = () => {
                 <button className="p-2" onClick={clickiconsearch}>
                     <FontAwesomeIcon icon={faSearch} className="text-bluepro cursor-pointer"></FontAwesomeIcon>
                 </button>
-                <input type="text" name="searchinappmobile" id="searchinputheadermobile" className="p-2 rounded-3xl text-white border-0 w-full bg-transparent" placeholder="Type your seach here" onChange={e => changetextsearch(e)} ref={searchtext} />
+                <input type="text" name="searchinappmobile" id="searchinputheadermobile" className="p-2 rounded-3xl text-white border-0 w-full bg-transparent" placeholder="Type your seach here" onChange={e => changetextsearch(e)} ref={searchtext} onKeyPress={(event) => handleKeyPress(event)} />
                 {textsearch !== undefined && textsearch !== "" ?
                     <div className="flex items-center">
                         {forloadingsearch === true ?
@@ -56,7 +71,7 @@ const Searchinputformobile = () => {
                     </div>
                     : ""}
             </div>
-            {getdetailsfortextsearch.length !== 0 && getdetailsfortextsearch !== undefined ? <Showresultsearchformobile></Showresultsearchformobile> : ""}
+            <Showresultsearchformobile emptytext={emptytext} textsearch={textsearch}></Showresultsearchformobile>
         </div>
     )
 }

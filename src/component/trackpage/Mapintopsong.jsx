@@ -13,7 +13,6 @@ const Mapintopsong = () => {
 
     const songalldetails = useSelector(state => state.songselected)
     const topsongalldetails = useSelector(state => state.topsongbyartist)
-    const countplaysong = useSelector(state => state.countplaysong)
 
     return (
         <div className="flex mb-7 mt-3 kosnanaekhamenei2 rounded-xl">

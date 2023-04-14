@@ -10,7 +10,7 @@ import Musicvideosong from "../component/trackpage/Musicvideosong";
 import Showdetailssong from "../component/trackpage/Showdetailssong";
 import { changeovervieworlyrics } from "../redux/actions/truefalse";
 import { initializelittlesimilarsong, initializesimilarsong, initializesong, initializetopsong } from "../redux/actions/song";
-import { callsimilarsongs, callsongdetails, getcountplaysong } from "../services/usedetailspagesong";
+import { callsimilarsongs, callsongdetails, getcountplaysong } from "../services/useDetailspagesong";
 
 const Song = () => {
 
@@ -22,6 +22,8 @@ const Song = () => {
     const similarsongalldetails = useSelector(state => state.similarsong)
     const showsimilatsongorno = useSelector(state => state.showsimilatsongorno)
     const overvieworlyrics = useSelector(state => state.overvieworlyrics)
+
+    console.log(topsongalldetails, similarsongalldetails)
 
     let borderoverview = ""
     let borderlyric = ""
@@ -61,8 +63,6 @@ const Song = () => {
         getcountplaysong(dispatch, keysongselected)
     }, [location.pathname])
 
-    console.log(songalldetails)
-
     return (
         <Fragment>
 
@@ -81,10 +81,12 @@ const Song = () => {
                                 <Showdetailssong />
                             </div>
                             <div className="lg:hidden zero:grid grid-cols-12 md:mt-10 zero:mt-3 text-center cursor-pointer">
-                                <h2 className={`col-span-6 text-2xl border-b-1 ${borderoverview}`} onClick={() => dispatch(changeovervieworlyrics(false))}>OVERVIEW</h2>
                                 {songalldetails.sections[1].text !== undefined ?
-                                    <h2 className={`col-span-6 text-2xl border-b-1 ${borderlyric}`} onClick={() => dispatch(changeovervieworlyrics(true))}>LYRICS</h2>
-                                    : <></>
+                                    <>
+                                        <h2 className={`col-span-6 text-2xl border-b-1 ${borderoverview}`} onClick={() => dispatch(changeovervieworlyrics(false))}>OVERVIEW</h2>
+                                        <h2 className={`col-span-6 text-2xl border-b-1 ${borderlyric}`} onClick={() => dispatch(changeovervieworlyrics(true))}>LYRICS</h2>
+                                    </>
+                                    : ""
                                 }
                             </div>
                             <div className="grid grid-cols-12 mt-10">
@@ -96,10 +98,10 @@ const Song = () => {
                                         </div>
                                         : <></>}
                                     <div id="topsongartist" className="mt-10">
-                                        {showtopsongorno === true ?
+                                        {showtopsongorno === true || topsongalldetails.length !== 0 ?
                                             <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                                 <h3 className="text-2xl">Top Songs By {songalldetails.subtitle}</h3>
-                                                {topsongalldetails === undefined && topsongalldetails.length === 0 ?
+                                                {showtopsongorno === true ?
                                                     <div className="flex items-center justify-center ml-5">
                                                         <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
                                                     </div>
@@ -112,10 +114,10 @@ const Song = () => {
                                             : <></>}
                                     </div>
                                     <div id="similarsongs" className="mt-10">
-                                        {showsimilatsongorno === true ?
+                                        {showsimilatsongorno === true || (similarsongalldetails.length !== undefined) ?
                                             <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                                 <h3 className="text-2xl">Similar Songs</h3>
-                                                {similarsongalldetails === undefined && similarsongalldetails.length === 0 ?
+                                                {showsimilatsongorno === true ?
                                                     <div className="flex items-center justify-center ml-5">
                                                         <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
                                                     </div>

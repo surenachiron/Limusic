@@ -108,6 +108,11 @@ export const addpageplayedmusic = (result) => {
     return async (dispatch) => {
         await dispatch({ type: "ADD_PAGEPLAYEDMUSIC", payload: result })
         await dispatch(initialseforclosemusiccontrol(true))
+    }
+}
 
+export const changeismusicwaiting = (result) => {
+    return async (dispatch) => {
+        await dispatch({ type: "CHANGE_ISMUSICWAITING", payload: result })
     }
 }

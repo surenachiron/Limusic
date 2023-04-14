@@ -17,6 +17,7 @@ const Charttop50 = ({ covermusic, titlemusic, linkpagetitlemusic, artistmusic, l
     let slicetextartist = artistmusic.slice(0, 10) + "..."
 
     const dispatch = useDispatch()
+    const ismusicwaiting = useSelector(state => state.ismusicwaiting)
     const isplayorispause = useSelector(state => state.isplayorispause)
     const durationtimemusic = useSelector(state => state.durationtimemusic)
     const chartsspecificsong = useSelector(state => state.chartsspecificsong[0])
@@ -52,16 +53,32 @@ const Charttop50 = ({ covermusic, titlemusic, linkpagetitlemusic, artistmusic, l
                         <img src={covermusic} alt={`picture music ${titlemusic}`} className={`w-full lg:h-32 md:h-28 sm:h-24 rounded-3xl ${getopacityandhoverforimage}`} />
                     </div>
                     <div className={`absolute transition-all ${getblockorhideplay} peer-hover/img:block`} style={transform}>
-                        {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                        {localStorage.getItem("namemusicplayingorplayed") === titlemusic && localStorage.getItem("artistmusicplayingorplayed") === artistmusic ? <>
+                            {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                                <>
+                                    {ismusicwaiting === false ?
+                                        <>
+                                            {isplayorispause === true ?
+                                                <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur text-white" />
+                                                : <FontAwesomeIcon icon={faPlay} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur text-white" />
+                                            }
+                                        </>
+                                        : <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
+                                            <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                        </div>
+                                    }
+                                </>
+                                : <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
+                                    <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                </div>
+                            }
+                        </> :
                             <>
                                 {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === titlemusic ?
-                                    <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} color="white" className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>}
-                            </> :
-                            <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
-                                <ReactLoading type={"spin"} color="white" height={20} width={20} />
-                            </div>
+                                    <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} color="white" className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>
+                                }
+                            </>
                         }
-
                     </div>
                 </div>
                 <div className="ml-1 mt-2">

@@ -1,8 +1,3 @@
-/// new music control
-
-import { useDispatch } from "react-redux"
-import { addpageplayedmusic, changevalueorplayorpause, changevolumemusicwithprops, findindexmusic, initialseforclosemusiccontrol } from "../actions/forplayermusic"
-
 export const isplayorispause = (state = false, action) => {
     switch (action.type) {
         case "CHANGEVALUETOPLAYORPAUSE":
@@ -92,6 +87,15 @@ export const numberplaysonginplaylist = (state = 0, action) => {
 export const howpageplayedmusic = (state = [], action) => {
     switch (action.type) {
         case "ADD_PAGEPLAYEDMUSIC":
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const ismusicwaiting = (state = false, action) => {
+    switch (action.type) {
+        case "CHANGE_ISMUSICWAITING":
             return action.payload;
         default:
             return state;

@@ -14,6 +14,7 @@ const Showdetailssong = () => {
     const isplayorispause = useSelector(state => state.isplayorispause)
     const durationtimemusic = useSelector(state => state.durationtimemusic)
     const countplaysong = useSelector(state => state.countplaysong)
+    const ismusicwaiting = useSelector(state => state.ismusicwaiting)
     const conversioncoutplaytostring = String(countplaysong).split('').reverse();
     let conversioncountplay = []
     for (let i = 0; i < conversioncoutplaytostring.length; i++) {
@@ -25,6 +26,7 @@ const Showdetailssong = () => {
 
     /// for play music
     const playlistpagesongorginaly = useSelector(state => state.playlistpagesongorginalyorginaly.songs)
+    const howpageplayedmusic = useSelector(state => state.howpageplayedmusic)
     const playmusicselected = () => {
         dispatch(setplaylistsongsotginalyfake(playlistpagesongorginaly, songalldetails.title))
     }
@@ -40,7 +42,7 @@ const Showdetailssong = () => {
     return (
         <>
             <div className={`flex flex-col lg:mt-8`}>
-                <div id="musicshow" className="h-70/100 px-5 backdrop-blur-sm lg:border-1 zero:border-0 p-4 rounded-3xl mt-4 flex flex-col items-center justify-center">
+                <div id="musicshow" className="h-fit px-5 backdrop-blur-sm lg:border-1 zero:border-0 p-4 rounded-3xl mt-4 flex flex-col items-center justify-center">
                     <div className="flex items-start justify-center relative group">
                         <div className="w-3/4 h-10/12 peer/img">
                             <img src={songalldetails.images === undefined ? ananymousartist : songalldetails.images.coverart} alt={`picture music ${songalldetails.title}`} className={`rounded-xl h-full w-full transition-all ${getopacityandhoverforimage}`} />
@@ -48,18 +50,33 @@ const Showdetailssong = () => {
                         <div className={`absolute transition-all top-1/2 block peer-hover/img:block`}>
                             {playlistpagesongorginaly.length > 2 ?
                                 <>
-                                    {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                                    {localStorage.getItem("namemusicplayingorplayed") === songalldetails.title && localStorage.getItem("artistmusicplayingorplayed") === songalldetails.subtitle ? <>
+                                        {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                                            <>
+                                                {ismusicwaiting === false ?
+                                                    <>
+                                                        {isplayorispause === true ?
+                                                            <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur text-white" />
+                                                            : <FontAwesomeIcon icon={faPlay} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur text-white" />
+                                                        }
+                                                    </>
+                                                    : <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
+                                                        <ReactLoading type={"spin"} color="white" height={15} width={15} />
+                                                    </div>
+                                                }
+                                            </>
+                                            : <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
+                                                <ReactLoading type={"spin"} color="white" height={15} width={15} />
+                                            </div>
+                                        }
+                                    </> :
                                         <>
-                                            {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === songalldetails.title ?
-                                                <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>}
-                                        </> :
-                                        <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
-                                            <ReactLoading type={"spin"} color="white" height={20} width={20} />
-                                        </div>
+                                            <FontAwesomeIcon icon={faPlay} color="white" className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>
+                                        </>
                                     }
                                 </>
-                                : <div className="flex items-center">
-                                    <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                : <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
+                                    <ReactLoading type={"spin"} color="white" height={15} width={15} />
                                 </div>}
                         </div>
                     </div>

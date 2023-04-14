@@ -2,10 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { usealldetailsalbums } from '../services/useAlldetailsAlbums'
-import ReactLoading from 'react-loading';
 import { useLocation } from "react-router";
 import { Helmet } from "react-helmet";
 import Detailsalbum from '../component/albums/Detailsalbum'
+import ReactLoading from 'react-loading';
 import Showmusicsalbum from "../component/albums/Showmusicsalbum";
 
 const Albums = () => {
@@ -14,6 +14,7 @@ const Albums = () => {
     const detailsalbums = useSelector(state => state.detailsalbums.data)
     const artistdetails = useSelector(state => state.artistdetails)
     const loadingalbums = useSelector(state => state.loadingalbums)
+    const loading = useSelector(state => state.forloading)
 
     const location = useLocation()
     const idalbumselected = location.pathname.slice(8,)
@@ -45,11 +46,15 @@ const Albums = () => {
                                     <Detailsalbum />
                                 </div>
                             </div>
-                            {artistdetails.length !== 0 && artistdetails !== undefined && artistdetails.errors === undefined ?
+                            {loading === true || artistdetails.length !== 0 && artistdetails !== undefined && artistdetails.errors === undefined ?
                                 <div className="sm:mt-10">
-                                    <div id="musicsalbum">
-                                        <Showmusicsalbum />
-                                    </div>
+                                    {loading === true ?
+                                        <div className="flex items-center justify-center ml-5">
+                                            <ReactLoading type={"spin"} color="white" className="w-6 h-6" />
+                                        </div>
+                                        : <div id="musicsalbum">
+                                            <Showmusicsalbum />
+                                        </div>}
                                 </div>
                                 : ""}
                         </>

@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/fontawesome-free-solid";
+import { faBars, faChartBar } from "@fortawesome/fontawesome-free-solid";
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
-import { faHeart, faListAlt } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router";
 import { useEffect } from "react";
@@ -25,7 +25,7 @@ const Headerhelperinmobile = () => {
             document.getElementById("searchinheaderhelperplaermusic").style.backgroundColor = ""
             document.getElementById("searchinheaderhelperplaermusic").style.color = "#979797"
         }
-        if (location.pathname === "/playlists") {
+        if (location.pathname === "/charts") {
             document.getElementById("playlistsinheaderhelperplaermusic").style.backgroundColor = "#3369ff"
             document.getElementById("playlistsinheaderhelperplaermusic").style.color = "white"
         } else {
@@ -58,9 +58,9 @@ const Headerhelperinmobile = () => {
                         </NavLink>
                     </div>
                     <div className="col-span-3">
-                        <NavLink id="playlistsinheaderhelperplaermusic" to="/playlists" className="cursor-pointer flex flex-col justify-center items-center px-8 py-1 mx-2 rounded-2xl">
-                            <FontAwesomeIcon icon={faListAlt}></FontAwesomeIcon>
-                            <p className="text-sm">Playlists</p>
+                        <NavLink id="playlistsinheaderhelperplaermusic" to="/charts" className="cursor-pointer flex flex-col justify-center items-center px-8 py-1 mx-2 rounded-2xl">
+                            <FontAwesomeIcon icon={faChartBar}></FontAwesomeIcon>
+                            <p className="text-sm">Charts</p>
                         </NavLink>
                     </div>
                     <div className="col-span-3">

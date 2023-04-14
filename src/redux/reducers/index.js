@@ -1,12 +1,13 @@
 import { combineReducers } from "redux";
 import { widthplayermusic } from "./another";
 import { albumsartist, artistdetails, latestreleaseartist, playlisttopsongartist, showalbumartist, showlatestrelaseorno, showtopsongornoartist, topsongsartist } from "./artist";
-import { isplayorispause, forclosemusiccontrol, volumemusic, currenttimemusic, durationtimemusic, numberretweet, numberplaysonginplaylist, howpageplayedmusic, activerandom } from "./forplayermusic";
+import { isplayorispause, forclosemusiccontrol, volumemusic, currenttimemusic, durationtimemusic, numberretweet, numberplaysonginplaylist, howpageplayedmusic, activerandom, ismusicwaiting } from "./forplayermusic";
 import { countplaysong, littlesimilarsong, playlistpagesongorginalyfake, playlistpagesongorginalyorginaly, savesongselected, showsimilatsongorno, showtopsongorno, similarsong, topsongbyartist } from "./song";
 import { mouseDownOnSlider, musicended, randomeplaymusic, volumeallmusic, headermobileshow, forloading, overvieworlyricsforsong, showlittleorgreatsimilarsong, focusinputsearch, forloadingsearch, showsongorartistinsearching } from "./truefalse";
 import { chartsspecificsong, loadinghomepage, plylistcharttopmusic, plylisttrendmusic, songtrendhomepage } from "./homepage";
 import { detailssearched } from "./search";
 import { backupdetailsalbumsforplaylist, detailsalbums, loadingalbums, playlistalbumpage } from "./albums";
+import { disableorallowtop100, listcountrieforcharts, listtopmusicforcountriecahrts, loadinglistchart, loadingtracktopcountrie, playlisttrackschartforcountrie } from "./charts";
 
 export const reducers = combineReducers({
     /// home
@@ -39,6 +40,13 @@ export const reducers = combineReducers({
     backupdetailsalbumsforplaylist: backupdetailsalbumsforplaylist,
     loadingalbums: loadingalbums,
     playlistalbumpage: playlistalbumpage,
+    /// charts
+    listcountrieforcharts: listcountrieforcharts,
+    loadinglistchart: loadinglistchart,
+    disableorallowtop100: disableorallowtop100,
+    listtopmusicforcountriecahrts: listtopmusicforcountriecahrts,
+    playlisttrackschartforcountrie: playlisttrackschartforcountrie,
+    loadingtracktopcountrie: loadingtracktopcountrie,
     /// playmusic
     isplayorispause: isplayorispause,
     forclosemusiccontrol: forclosemusiccontrol,
@@ -49,6 +57,7 @@ export const reducers = combineReducers({
     numberretweet: numberretweet,
     numberplaysonginplaylist: numberplaysonginplaylist,
     howpageplayedmusic: howpageplayedmusic,
+    ismusicwaiting: ismusicwaiting,
     /// search
     detailssearch: detailssearched,
     focusinputsearch: focusinputsearch,
@@ -63,6 +72,6 @@ export const reducers = combineReducers({
     forloading: forloading,
     overvieworlyrics: overvieworlyricsforsong,
     showsimilarsong: showlittleorgreatsimilarsong,
-    /// amother
+    /// another
     widthplayermusic: widthplayermusic,
 });

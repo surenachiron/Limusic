@@ -19,6 +19,7 @@ const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermu
 
     const dispatch = useDispatch()
     const isplayorispause = useSelector(state => state.isplayorispause)
+    const ismusicwaiting = useSelector(state => state.ismusicwaiting)
     const durationtimemusic = useSelector(state => state.durationtimemusic)
     const playlistpagesongorginaly = useSelector(state => state.playlistpagesongorginalyorginaly.songs)
 
@@ -46,7 +47,6 @@ const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermu
         left: "50%"
     };
 
-
     return (
         <div className="flex items-center cursor-pointer">
             <div className="flex items-start justify-center relative group">
@@ -56,14 +56,31 @@ const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermu
                 <div className={`absolute transition-all ${getblockorhideplay} peer-hover/img:block`} style={transform}>
                     {playlistpagesongorginaly.length > 2 ?
                         <>
-                            {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                            {localStorage.getItem("namemusicplayingorplayed") === namemusic && localStorage.getItem("artistmusicplayingorplayed") === artistsong ? <>
+                                {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
+                                    <>
+                                        {ismusicwaiting === false ?
+                                            <>
+                                                {isplayorispause === true ?
+                                                    <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur text-white" />
+                                                    : <FontAwesomeIcon icon={faPlay} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur text-white" />
+                                                }
+                                            </>
+                                            : <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
+                                                <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                            </div>
+                                        }
+                                    </>
+                                    : <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
+                                        <ReactLoading type={"spin"} color="white" height={20} width={20} />
+                                    </div>
+                                }
+                            </> :
                                 <>
                                     {isplayorispause === true && localStorage.getItem("namemusicplayingorplayed") === namemusic ?
-                                        <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} color="white" className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>}
-                                </> :
-                                <div className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur">
-                                    <ReactLoading type={"spin"} color="white" height={20} width={20} />
-                                </div>
+                                        <FontAwesomeIcon icon={faPause} className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" color="white" onClick={playmusicselected}></FontAwesomeIcon> : <FontAwesomeIcon icon={faPlay} color="white" className="border-1 bg-blackpro rounded-full text-base p-3 cursor-pointer backdrop-blur" onClick={playmusicselected}></FontAwesomeIcon>
+                                    }
+                                </>
                             }
                         </>
                         : <div className="flex items-center">

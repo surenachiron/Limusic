@@ -8,7 +8,7 @@ export const callsongdetails = async (dispatch, keysong) => {
         url: 'https://shazam.p.rapidapi.com/songs/get-details',
         params: { key: keysong, locale: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
+            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -33,7 +33,7 @@ export const getcountplaysong = async (dispatch, keysong) => {
         url: 'https://shazam.p.rapidapi.com/songs/get-count',
         params: { key: keysong },
         headers: {
-            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
+            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -51,19 +51,16 @@ export const calltopsongartistinsong = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-top-songs',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
+            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
 
+    dispatch(changeshowtopsongorno(true))
     await axios.request(options).then(function (response) {
+        dispatch(changeshowtopsongorno(false))
         dispatch(addsonginplaysitsongorginaly(response.data))
-        dispatch(changeshowtopsongorno(true))
-        if (response.data.data.length !== 0 && response.data.data.length !== undefined) {
-            dispatch(initializetopsong(response.data))
-        } else {
-            dispatch(changeshowtopsongorno(false))
-        }
+        dispatch(initializetopsong(response.data))
     }).catch(function (error) {
         console.error(error);
         dispatch(changeshowtopsongorno(false))
@@ -76,20 +73,17 @@ export const callsimilarsongs = async (dispatch, keysong) => {
         url: 'https://shazam.p.rapidapi.com/songs/list-recommendations',
         params: { key: keysong, locale: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '728cd60dacmsh74f0780cb00eb90p1eda2cjsn4300a1df01fb',
+            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
 
+    dispatch(changeshowsimilarsongorno(true))
     await axios.request(options).then(function (response) {
-        dispatch(changeshowsimilarsongorno(true))
-        if (response.data.tracks.length !== 0 && response.data.tracks.length !== undefined) {
-            dispatch(initializesimilarsong(response.data))
-            if (response.data.tracks.length >= 5) {
-                dispatch(initializelittlesimilarsong(response.data.tracks.slice(0, 5)))
-            }
-        } else {
-            dispatch(changeshowsimilarsongorno(false))
+        dispatch(changeshowsimilarsongorno(false))
+        dispatch(initializesimilarsong(response.data))
+        if (response.data.tracks.length >= 5) {
+            dispatch(initializelittlesimilarsong(response.data.tracks.slice(0, 5)))
         }
     }).catch(function (error) {
         console.error(error);

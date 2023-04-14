@@ -7,7 +7,7 @@ export const activeloadinghomepage = (value) => {
     }
 }
 
-/// tren music
+/// trend music
 export const initializesongtrendhomepage = (trenmusic) => {
     return async (dispatch) => {
         const songtrend = {
@@ -19,6 +19,7 @@ export const initializesongtrendhomepage = (trenmusic) => {
             linkpageartist: trenmusic.artists.map(o => o.adamid)[0],
         };
         await dispatch({ type: "INITIIALIZE_SONGTRENDOHOMEPAGE", payload: [songtrend] })
+        await dispatch(activeloadinghomepage(false))
     }
 }
 
