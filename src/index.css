@@ -7,15 +7,6 @@ body {
     font-family: 'Poppins', sans-serif !important;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-    background-color: #000000;
-    font-family: 'Poppins', sans-serif !important;
-}
-
 h1,
 h2,
 h3,
