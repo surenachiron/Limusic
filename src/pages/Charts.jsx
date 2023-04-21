@@ -9,9 +9,9 @@ const Charts = () => {
 
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     usegetlistcountirechart(dispatch)
-    // }, [dispatch])
+    useEffect(() => {
+        usegetlistcountirechart(dispatch)
+    }, [dispatch])
 
     const listcountrieforcharts = useSelector(state => state.listcountrieforcharts)
     const loadinglistchart = useSelector(state => state.loadinglistchart)
