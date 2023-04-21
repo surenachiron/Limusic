@@ -100,7 +100,7 @@ const Showtrackstopcountrie = ({ covermusic, titlemusic, linkpagetitlemusic, art
                             }
                         </div>
                     </div>
-                    <div className="ml-5 z-50">
+                    <div className="ml-5 z-20">
                         <NavLink to={`/song/${linkpagetitlemusic}`}>
                             <h4 className="text-base font-medium md:block zero:hidden">{titlemusic.length <= 60 ? titlemusic : titlemusic.slice(0, 40) + "..."}</h4>
                             <h4 className="text-base font-medium md:hidden zero:bloc">{titlemusic.length <= 30 ? titlemusic : slicetexttitle}</h4>
