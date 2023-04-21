@@ -39,7 +39,7 @@ const Header = () => {
                             <NavLink to='/charts'>
                                 <li className="py-4 px-2 hover:border-l-1 transition-all">Charts</li>
                             </NavLink>
-                            <NavLink to='/favourite'>
+                            <NavLink to='/favourites'>
                                 <li className="py-4 px-2 hover:border-l-1 transition-all">Favourite</li>
                             </NavLink>
                         </ul>
