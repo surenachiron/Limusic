@@ -2,13 +2,17 @@
 
 ![GitHub language count](https://img.shields.io/github/languages/count/Suren-chiron/Limusic) ![GitHub top language](https://img.shields.io/github/languages/top/Suren-chiron/Limusic?color=green&style=plastic) ![GitHub last commit](https://img.shields.io/github/last-commit/Suren-chiron/Limusic?color=orange&label=last%20update) ![GitHub](https://img.shields.io/github/license/Suren-chiron/Limusic)
 
-## Welcome to our project!
+## Welcome to our project
 
 In this project, you can view the top 20 songs worldwide or check out the top 20 songs for each country on the charts page based on their overall ranking in the country or based on their ranking by city or genre. We have created pages for songs, artists, and albums where you can access a lot of details.
 
 This project includes an amazing music player that allows you to play your favorite songs. You can skip to the next or previous song, use shuffle or repeat mode, adjust the volume, like your favorite song, and more.
 
 The project also includes a favorites page where you can view your liked music.
+
+## Overview:
+
+![overview  project2](https://user-images.githubusercontent.com/106313130/233668823-1688050a-790f-499c-b5ad-bb5b1ec163d3.png)
 
 ## Technologies:
 
