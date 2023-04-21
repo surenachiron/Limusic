@@ -37,7 +37,7 @@ const Charttop50 = ({ covermusic, titlemusic, linkpagetitlemusic, artistmusic, l
             setblockorhideplay("hover:block hidden")
             setopacityandhoverforimage("hover:opacity-80 group-hover:opacity-80")
         }
-    }, [isplayorispause, durationtimemusic])
+    }, [isplayorispause, durationtimemusic, artistmusic, titlemusic])
 
     const transform = {
         transform: 'translate(-50%, -43%)',
@@ -50,7 +50,7 @@ const Charttop50 = ({ covermusic, titlemusic, linkpagetitlemusic, artistmusic, l
             <div className="cursor-pointer zero:w-full lg:w-auto">
                 <div className="flex items-start justify-center relative group">
                     <div className="peer/img">
-                        <img src={covermusic} alt={`picture music ${titlemusic}`} className={`w-full lg:h-32 md:h-28 sm:h-24 rounded-3xl ${getopacityandhoverforimage}`} />
+                        <img src={covermusic} alt={`cover music ${titlemusic}`} className={`w-full lg:h-32 md:h-28 sm:h-24 rounded-3xl ${getopacityandhoverforimage}`} />
                     </div>
                     <div className={`absolute transition-all ${getblockorhideplay} peer-hover/img:block`} style={transform}>
                         {localStorage.getItem("namemusicplayingorplayed") === titlemusic && localStorage.getItem("artistmusicplayingorplayed") === artistmusic ? <>
@@ -84,15 +84,15 @@ const Charttop50 = ({ covermusic, titlemusic, linkpagetitlemusic, artistmusic, l
                 <div className="ml-1 mt-2">
                     {linkpagetitlemusic !== undefined && linkpagetitlemusic.length !== 0 ?
                         <NavLink to={`/song/${linkpagetitlemusic}`} >
-                            <h5 className="mdlg:text-base zero:text-base text-white w-full">{titlemusic.length >= 10 ? slicetexttitle : titlemusic}</h5>
+                            <h5 className="md:text-base zero:text-base text-white w-full">{titlemusic.length >= 10 ? slicetexttitle : titlemusic}</h5>
                         </NavLink>
-                        : <h3 className="mdlg:text-base zero:text-base text-bluepro mt-3">{titlemusic.length >= 10 ? slicetexttitle : titlemusic}</h3>
+                        : <h3 className="md:text-base zero:text-base text-bluepro mt-3">{titlemusic.length >= 10 ? slicetexttitle : titlemusic}</h3>
                     }
                     {linkpageartistmusic !== undefined && linkpageartistmusic.length !== 0 ?
                         <NavLink to={`/artist/${linkpageartistmusic}`} >
-                            <h3 className="mdlg:text-base zero:text-base text-bluepro mt-3">{artistmusic.length >= 10 ? slicetextartist : artistmusic}</h3>
+                            <h3 className="md:text-base zero:text-base text-bluepro mt-3">{artistmusic.length >= 10 ? slicetextartist : artistmusic}</h3>
                         </NavLink>
-                        : <h3 className="mdlg:text-base zero:text-base text-bluepro mt-3">{artistmusic.length >= 10 ? slicetextartist : artistmusic}</h3>
+                        : <h3 className="md:text-base zero:text-base text-bluepro mt-3">{artistmusic.length >= 10 ? slicetextartist : artistmusic}</h3>
                     }
                 </div>
             </div>

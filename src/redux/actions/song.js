@@ -53,6 +53,7 @@ export const initializeplaylistpagesongorginalysorginaly = () => {
             soundsong: songalldetails.hub.actions.slice(1, 2).map(o => o.uri)[0],
             linkpagesong: songalldetails.key,
             linkpageartist: songalldetails.artists.map(o => o.adamid)[0],
+            like: false
         }
         await dispatch({ type: 'SET_PLAYLIST_SONGS_ORGINALY', payload: songsobject });
     }
@@ -66,8 +67,9 @@ export const addsonginplaysitsongorginaly = (topsongs) => {
                 nameartist: song.attributes.artistName,
                 imagesong: song.attributes.artwork.url.slice(0, song.attributes.artwork.url.length - 13) + song.attributes.artwork.width + "x" + song.attributes.artwork.height + "bb.jpg",
                 soundsong: song.attributes.previews.map((previews) => previews.url)[0],
-                linkpagesong: song.attributes.playParams.id,
+                linkpagesong: "",
                 linkpageartist: getState().songselected.artists.map(o => o.adamid)[0],
+                like: false
             };
         });
         await dispatch({ type: 'ADD_SONGS_TO_PLAYLIST_ORGINALY', payload: [songsArray] });
@@ -75,20 +77,33 @@ export const addsonginplaysitsongorginaly = (topsongs) => {
 }
 
 export const setplaylistsongsotginalyfake = (value, namemusic) => {
-    return async (dispatch) => {
+    return (dispatch) => {
         initializeplaylistcharttopmusic([])
         initializeplaylisttrendmusic([])
         if (localStorage.getItem("namemusicplayingorplayed") === namemusic) {
-            await dispatch(changevalueorplayorpause())
+            dispatch(changevalueorplayorpause())
         } else {
-            await dispatch(initialseforclosemusiccontrol(true))
-            await dispatch(changevalueorplayorpausewithprops(true))
-            await dispatch(changevolumemusicwithprops(false))
-            await dispatch(changeactiverendomwithprops(false))
-            await dispatch(findindexmusic(namemusic, value))
-            await dispatch({ type: 'SET_PLAYLIST_SONGS_ORGINALY_FAKE', payload: value });
-            await dispatch(addpageplayedmusic(value))
+            dispatch(initialseforclosemusiccontrol(true))
+            dispatch(changevalueorplayorpausewithprops(true))
+            dispatch(changevolumemusicwithprops(false))
+            dispatch(changeactiverendomwithprops(false))
+            dispatch(findindexmusic(namemusic, value))
+            dispatch({ type: 'SET_PLAYLIST_SONGS_ORGINALY_FAKE', payload: value });
+            dispatch(addpageplayedmusic(value))
 
         }
+    }
+}
+
+/////
+export const changeovervieworlyrics = (result) => {
+    return async dispatch => {
+        await dispatch({ type: "CHANGEOVERVIEWORLYRICS", payload: result })
+    }
+}
+
+export const changesimilarsonglength = () => {
+    return async dispatch => {
+        await dispatch({ type: "CHANGESIMILARSONGLENGTH" })
     }
 }

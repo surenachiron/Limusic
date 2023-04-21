@@ -18,7 +18,7 @@ const Showdetailssong = () => {
     const conversioncoutplaytostring = String(countplaysong).split('').reverse();
     let conversioncountplay = []
     for (let i = 0; i < conversioncoutplaytostring.length; i++) {
-        if (i === 2 || i === 5 || i === 8 || i === 11) {
+        if ((i === 2 && conversioncoutplaytostring.length > 3) || (i === 5 && conversioncoutplaytostring.length > 6) || (i === 8 && conversioncoutplaytostring.length > 9) || (i === 11 && conversioncoutplaytostring.length > 12)) {
             conversioncountplay[i] = ("," + conversioncoutplaytostring[i]);
         } else
             conversioncountplay[i] = conversioncoutplaytostring[i];
@@ -26,7 +26,6 @@ const Showdetailssong = () => {
 
     /// for play music
     const playlistpagesongorginaly = useSelector(state => state.playlistpagesongorginalyorginaly.songs)
-    const howpageplayedmusic = useSelector(state => state.howpageplayedmusic)
     const playmusicselected = () => {
         dispatch(setplaylistsongsotginalyfake(playlistpagesongorginaly, songalldetails.title))
     }
@@ -37,7 +36,7 @@ const Showdetailssong = () => {
         if (localStorage.getItem("namemusicplayingorplayed") === songalldetails.title && localStorage.getItem("artistmusicplayingorplayed") === songalldetails.subtitle)
             setopacityandhoverforimage("opacity-80")
         else setopacityandhoverforimage("hover:opacity-80 group-hover:opacity-80")
-    }, [isplayorispause, durationtimemusic])
+    }, [isplayorispause, durationtimemusic, songalldetails.title, songalldetails.subtitle])
 
     return (
         <>
@@ -45,9 +44,9 @@ const Showdetailssong = () => {
                 <div id="musicshow" className="h-fit px-5 backdrop-blur-sm lg:border-1 zero:border-0 p-4 rounded-3xl mt-4 flex flex-col items-center justify-center">
                     <div className="flex items-start justify-center relative group">
                         <div className="w-3/4 h-10/12 peer/img">
-                            <img src={songalldetails.images === undefined ? ananymousartist : songalldetails.images.coverart} alt={`picture music ${songalldetails.title}`} className={`rounded-xl h-full w-full transition-all ${getopacityandhoverforimage}`} />
+                            <img src={songalldetails.images === undefined ? ananymousartist : songalldetails.images.coverart} alt={`${songalldetails.title}`} className={`rounded-xl h-full w-full transition-all ${getopacityandhoverforimage}`} />
                         </div>
-                        <div className={`absolute transition-all top-1/2 block peer-hover/img:block`}>
+                        <div className={`absolute transition-all top-1/2 block peer-hover/img:block`} onClick={playmusicselected}>
                             {playlistpagesongorginaly.length > 2 ?
                                 <>
                                     {localStorage.getItem("namemusicplayingorplayed") === songalldetails.title && localStorage.getItem("artistmusicplayingorplayed") === songalldetails.subtitle ? <>

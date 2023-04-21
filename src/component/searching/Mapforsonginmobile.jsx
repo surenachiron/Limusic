@@ -26,11 +26,11 @@ const Mapforsonginmobile = () => {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    {getdetailsfortextsearch.tracks.hits.map(o =>
-                        <SwiperSlide className="justify-start">
+                    {getdetailsfortextsearch.tracks.hits.map((o, index) =>
+                        <SwiperSlide className="justify-start" key={index}>
                             <NavLink to={`/song/${o.track.key}`}>
                                 <div className="flex flex-col items-center pt-5 px-5 transition-all">
-                                    <img src={o.track.images.coverart !== undefined ? o.track.images.coverart : ananymousartist } alt={`cover image ${o.track.title}`} width='150' height='150' className="rounded-2xl" />
+                                    <img src={o.track.images.coverart !== undefined ? o.track.images.coverart : ananymousartist } alt={`cover ${o.track.title}`} width='150' height='150' className="rounded-2xl" />
                                     <div className="mt-3">
                                         <h3 className="text-sm font-bold">{o.track.title.length >= 10 ? o.track.title.slice(0, 10) + " .." : o.track.title}</h3>
                                         <h5 className="text-xs font-medium text-grayprolight mt-2">{o.track.subtitle.length >= 10 ? o.track.subtitle.slice(0, 10) + ".." : o.track.subtitle}</h5>

@@ -8,7 +8,7 @@ import Mapalbumbyartist from "../component/artistpage/Mapalbumbyartist";
 import Maptopsongbyartist from "../component/artistpage/Maptopsongbyartist";
 import { useEffect } from "react";
 import { getalbumsartist, getalldetailsartist, getlatestreleaseartist, gettopsongartist } from "../services/useendpointspageartist";
-import { initializeartist, initializetopsongartist, initializelatestreleaseartist, initializealbumsartist, initializeshowlatestrelease, initializeshowalbumartist, initializeshowtopsongorno } from "../redux/actions/artist";
+import { initializeartist, initializetopsongartist, initializelatestreleaseartist, initializealbumsartist } from "../redux/actions/artist";
 import { useLocation } from "react-router-dom";
 
 const Artist = () => {
@@ -23,8 +23,6 @@ const Artist = () => {
     const albumsartist = useSelector(state => state.albumsartist)
     const loading = useSelector(state => state.forloading)
 
-    console.log(showalbumartist, albumsartist)
-
     const location = useLocation()
     const idartistselected = location.pathname.slice(8,)
 
@@ -37,7 +35,7 @@ const Artist = () => {
         gettopsongartist(dispatch, idartistselected)
         getalbumsartist(dispatch, idartistselected)
         getlatestreleaseartist(dispatch, idartistselected)
-    }, [])
+    }, [dispatch, idartistselected])
     useEffect(() => {
         dispatch(initializeartist([]))
         dispatch(initializetopsongartist([]))
@@ -46,15 +44,15 @@ const Artist = () => {
         getalldetailsartist(dispatch, idartistselected)
         gettopsongartist(dispatch, idartistselected)
         getlatestreleaseartist(dispatch, idartistselected)
-        getalbumsartist(dispatch, idartistselected)
-    }, [location.pathname])
+        getalbumsartist()
+    }, [dispatch, idartistselected,location.pathname])
 
 
     return (
         <>
-            {loading === true ? <div className="flex flex-col items-center justify-center" style={{ height: "90vh" }}>
-                <ReactLoading type={"spin"} color="#3369ff" height={172} width={149} />
-                <h4>reciveing data</h4>
+            {loading === true ? <div className="flex flex-col items-center justify-center md:h-80/100 zero:h-60/100 zero:mt-10 md:mt-0">
+                <ReactLoading type={"spin"} color="#3369ff" height={130} width={130} />
+                <h4 className="mt-3">Reciveing Data</h4>
             </div> :
                 <>
                     {artistdetails.length !== 0 && artistdetails.errors === undefined ?
@@ -120,9 +118,10 @@ const Artist = () => {
                             </div>
                         </>
                         :
-                        <div className="md:h-90/100 zero:h-80/100 w-full flex items-center justify-center">
+                        <div className="flex flex-col items-center justify-center md:h-80/100 zero:h-60/100 zero:mt-10 md:mt-0">
                             <div className="rounded-3xl border-1 border-red-700 md:w-1/2 zero:mx-4 md:p-10 zero:px-5 zero:py-8">
-                                <h3 className="text-xl">Communication with the server failed. Please try again</h3>
+                                <h3 className="text-base">Communication with the server failed.</h3>
+                                <h3 className="text-base">Please check your internet connection <span className="text-grayprolight">(make sure vpn is connected or dns is set)</span> and try again</h3>
                             </div>
                         </div>
                     }

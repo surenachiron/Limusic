@@ -16,8 +16,9 @@ export const initializetopsongartist = (topsongartist) => {
                 nameartist: (topsong.attributes.artistName !== undefined ? topsong.attributes.artistName : ""),
                 imagesong: (topsong.attributes.artwork.url !== undefined ? topsong.attributes.artwork.url.slice(0, topsong.attributes.artwork.url.length - 13) + topsong.attributes.artwork.width + "x" + topsong.attributes.artwork.height + "bb.jpg" : ananymousfase),
                 soundsong: (topsong.attributes.previews !== undefined ? topsong.attributes.previews.map((previews) => previews.url)[0] : ""),
-                linkpagesong: (topsong.attributes.playParams.id !== undefined ? topsong.attributes.playParams.id : ""),
+                linkpagesong: "",
                 linkpageartist: (linkartist !== undefined ? linkartist : ""),
+                like: false
             };
         });
         await dispatch({ type: "INITIALIZETOPSONGARTIST", payload: [topsongsArray] })
@@ -46,7 +47,8 @@ export const initializealbumsartist = (albumsartist) => {
     return async (dispatch) => {
         const formatingdata = Object.values(albumsartist.albums).map(value => value);
         Object.values(albumsartist.albums).map(value => value).map(o => o.attributes).map(p => p.releaseDate = parseInt(p.releaseDate.slice(0, 4)))
-        await dispatch({ type: "INITIALIZEALBUMSARTIST", payload: formatingdata })
+        const formatingdata2 = formatingdata.map(o => o.attributes).filter(p => p.trackCount > 1).sort((a, b) => b.trackCount - a.trackCount).slice(0, 50).sort((a, b) => b.releaseDate - a.releaseDate).slice(0, 15)
+        await dispatch({ type: "INITIALIZEALBUMSARTIST", payload: formatingdata2 })
     }
 }
 
@@ -65,17 +67,24 @@ export const initializeplaylisttopsongmusicartistpage = (playlisytopsongartistmu
 }
 
 export const playlisttopsongartisti = (value, namemusic) => {
-    return async (dispatch) => {
+    return (dispatch) => {
         if (localStorage.getItem("namemusicplayingorplayed") === namemusic) {
-            await dispatch(changevalueorplayorpause())
+            dispatch(changevalueorplayorpause())
         } else {
-            await dispatch(initialseforclosemusiccontrol(true))
-            await dispatch(changevalueorplayorpausewithprops(true))
-            await dispatch(changevolumemusicwithprops(false))
-            await dispatch(changeactiverendomwithprops(false))
-            await dispatch(findindexmusic(namemusic, value))
-            await dispatch(initializeplaylisttopsongmusicartistpage(value));
-            await dispatch(addpageplayedmusic(value))
+            dispatch(initialseforclosemusiccontrol(true))
+            dispatch(changevalueorplayorpausewithprops(true))
+            dispatch(changevolumemusicwithprops(false))
+            dispatch(changeactiverendomwithprops(false))
+            dispatch(findindexmusic(namemusic, value))
+            dispatch(initializeplaylisttopsongmusicartistpage(value));
+            dispatch(addpageplayedmusic(value))
         }
+    }
+}
+
+///
+export const actionloading = (result) => {
+    return async dispatch => {
+        await dispatch({ type: "ACTIONLOADING", payload: result })
     }
 }

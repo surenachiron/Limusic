@@ -38,6 +38,5 @@ input[name="searchinapp"]:focus {
 }
 
 select {
-    /* appearance: none; */
     outline: none;
 }

@@ -26,11 +26,11 @@ const Mapforartistinmobile = () => {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    {getdetailsfortextsearch.artists.hits.map(o =>
-                        <SwiperSlide className="justify-start">
+                    {getdetailsfortextsearch.artists.hits.map((o, index) =>
+                        <SwiperSlide className="justify-start" key={index}>
                             <NavLink to={`/artist/${o.artist.adamid}`}>
                                 <div className="flex flex-col items-center pt-3 px-5 transition-all">
-                                    <img src={o.artist.avatar !== undefined ? o.artist.avatar : ananymousartist} alt={`cover image ${o.artist.name}`} width='150' height='150' className="rounded-2xl" />
+                                    <img src={o.artist.avatar !== undefined ? o.artist.avatar : ananymousartist} alt={`cover ${o.artist.name}`} width='150' height='150' className="rounded-2xl" />
                                     <h3 className="text-base mt-3">{o.artist.name.length >= 15 ? o.artist.name.slice(0, 15) + " .." : o.artist.name}</h3>
                                 </div>
                             </NavLink>

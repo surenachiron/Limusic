@@ -11,7 +11,7 @@ const Albumsbyartist = ({ namealbume, linkpagealbume, covermusic, widthforcoverm
         <>
             <NavLink to={`/albums/${linkpagealbume}`}>
                 <div className="text-white cursor-pointer">
-                    <img src={aslcovermusic} alt={`picture album ${aslcovermusic}`} width='150' height='150' className="rounded-2xl" />
+                    <img src={aslcovermusic} alt={`cover album ${aslcovermusic}`} width='150' height='150' className="rounded-2xl" />
                     <h2 className="text-lg my-3 transition-all hover:text-bluepro hover:underline">{namealbume.length >= 12 ? littlenamealbummdtolg : namealbume}</h2>
                     <p className="text-sm text-grayprolight">{releasedata}</p>
                 </div>

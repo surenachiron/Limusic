@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Albumsbyartist from "./Albumsbyartist";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
@@ -10,16 +10,14 @@ import { useSelector } from "react-redux";
 
 const Mapalbumbyartist = () => {
 
-    const albumsartist = useSelector(state => state.albumsartist).map(o => o.attributes).sort((a, b) => b.trackCount - a.trackCount).slice(0, 15).sort((a, b) => b.releaseDate - a.releaseDate).slice(0,9)
-
-    console.log(albumsartist)
+    const albumsartist = useSelector(state => state.albumsartist.objects)
 
     const widthplayermusic = useSelector(state => state.widthplayermusic)
     let lengthslide = ''
     if (widthplayermusic <= 640) lengthslide = 2
     else if (widthplayermusic <= 768) lengthslide = 3
     else if (widthplayermusic <= 1024 || widthplayermusic >= 1024) lengthslide = 4
-    
+
 
     return (
         <>

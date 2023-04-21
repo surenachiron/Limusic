@@ -17,26 +17,28 @@ const Trendmusics = () => {
 
     return (
         <Fragment>
-            <div className="h-4/5 flex grid grid-cols-12 border-1 rounded-3xl items-center justify-center mb-5">
-                <div className="col-span-6 pl-14 py-3">
-                    <h2 className="mdlg:text-base sm:text-sm zero:text-xs">Trending</h2>
-                    <NavLink to={`/song/${trendmusic[0].linkpagesong}`}>
-                        <h3 className="mdlg:text-5xl sm:text-4xl zero:text-3xl my-5">{trendmusic[0].namesong}</h3>
-                    </NavLink>
-                    <NavLink to={`/artist/${trendmusic[0].linkpageartist}`}>
-                        <h4 className="mdlg:text-base sm:text-sm zero:text-xs">{trendmusic[0].nameartist}</h4>
-                    </NavLink>
-                    <div className="flex items-end mt-5">
-                        <button id="PlayMusicTrand" className="lg:px-10 lg:py-3 md:px-2 md:py-2 zero:py-2 zero:px-2 bg-bluepro rounded-2xl" onClick={playmusicselected}>Play Now
-                            <FontAwesomeIcon icon={faPlayCircle} className={`ml-2 cursor-pointer text-base`}></FontAwesomeIcon>
-                        </button>
+            {trendmusic[0] !== undefined ?
+                <div className="h-fit flex grid grid-cols-12 border-1 rounded-3xl items-center justify-center mb-5">
+                    <div className="col-span-6 md:pl-12 sm:pl-8 zero:pl-4 py-3">
+                        <h2 className="md:text-base sm:text-sm zero:text-xs">Trending</h2>
+                        <NavLink to={`/song/${trendmusic[0].linkpagesong}`}>
+                            <h3 className="md:text-5xl sm:text-4xl zero:text-3xl mt-5 mb-3">{trendmusic[0].namesong}</h3>
+                        </NavLink>
+                        <NavLink to={`/artist/${trendmusic[0].linkpageartist}`}>
+                            <h4 className="md:text-base sm:text-sm zero:text-xs text-grayprolight">{trendmusic[0].nameartist}</h4>
+                        </NavLink>
+                        <div className="flex items-end mt-5">
+                            <button id="PlayMusicTrand" className="md:py-2 zero:py-2 lg:py-3 md:px-2 lg:px-10 zero:px-2 bg-bluepro rounded-2xl" onClick={playmusicselected}>Play Now
+                                <FontAwesomeIcon icon={faPlayCircle} className={`ml-1 cursor-pointer text-base`}></FontAwesomeIcon>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="col-span-6 md:pr-12 sm:pl-8 zero:pl-4">
+                        <img src={trendeartist} alt="" className="w-full h-full rounded-3xl sm:p-8 zero:p-0" />
                     </div>
                 </div>
-                <div className="col-span-6 pr-10">
-                    <img src={trendeartist} alt="" className="w-full h-full rounded-3xl smmdlg:p-8 zero:p-0" />
-                </div>
-            </div>
-        </Fragment>
+                : ""}
+        </Fragment >
     )
 }
 

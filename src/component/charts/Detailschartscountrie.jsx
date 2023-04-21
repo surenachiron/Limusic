@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/fontawesome-free-solid";
 import { usegettrackschart } from "../../services/useCharts";
 import ReactLoading from 'react-loading';
-import { changedisableorallowtop100, initializeplaylisttrackschartforcountrie, playlisttrackscharttopmusicforcountrie } from "../../redux/actions/charts";
+import { changedisableorallowtop100, playlisttrackscharttopmusicforcountrie } from "../../redux/actions/charts";
 import { Helmet } from "react-helmet";
 
 const Detailschartscountrie = () => {
@@ -70,7 +70,7 @@ const Detailschartscountrie = () => {
                 }
             }
         }
-    }, [, selectedCountry])
+    }, [selectedCountry])
 
     const handleSelectChange = (event) => {
         setSelectedCountry(event.target.value);
@@ -150,7 +150,7 @@ const Detailschartscountrie = () => {
     return (
         <>
             <Helmet>
-                <title>{getdataselectedcountrie.name}</title>
+                <title>{`TOP 20 ${getdataselectedcountrie.name} Popular Song`}</title>
             </Helmet>
             <div className="flex justify-between items-center text-white bg-grayprodark rounded-lg md:w-72 zero:w-full h-13 pr-3">
                 <select id="countrie" name="countrie" className="text-white bg-grayprodark w-full py-3 px-3 font-bold rounded-lg" ref={reflistselectcountrie} onChange={handleSelectChange} value={localStorage.getItem("namecountrieselected") !== null ? localStorage.getItem("namecountrieselected") : "Argentina"}>
@@ -163,7 +163,7 @@ const Detailschartscountrie = () => {
                 <div onClick={playmusicselected}>
                     {loadingtracktopcountrie === false ?
                         <button className="px-4 py-3 border border-grayprolight rounded-full flex items-center" onClick={playmusicselected}>
-                            {howplaylistisactive === playlisttrackschartforcountrie && getdataselectedcountrie.name === localStorage.getItem("whichplayingincountrie") ? <>
+                            {howplaylistisactive === playlisttrackschartforcountrie && getdataselectedcountrie.name === (localStorage.getItem("namecountrieselected") !== null ? localStorage.getItem("namecountrieselected") : "Argentina") ? <>
                                 {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
                                     <>
                                         {ismusicwaiting === false ?
@@ -205,7 +205,7 @@ const Detailschartscountrie = () => {
 
                 {getdataselectedcountrie.length !== 0 && getdataselectedcountrie.cities.length !== 0 && reflistselectcountrie.current !== null ?
                     <div className={`${selectedpartcitiesstyle} flex justify-between items-center rounded-xl px-3 mx-3 w-36`}>
-                        <select id="countrie" name="countrie" className={`${selectedpartcitiesstyle} w-full h-full py-2`} onChange={changecities} value={localStorage.getItem("whatnamepartfordataincountrieselected") === "cities" ? localStorage.getItem("namecountrieselected") : "Cities"}>
+                        <select id="countrie" name="countrie" className={`${selectedpartcitiesstyle} w-full h-full py-2`} onChange={changecities} value={localStorage.getItem("whatnamepartfordataincountrieselected") === "cities" ? localStorage.getItem("whatshowdataforcountrieselected") : "Cities"}>
                             <option value="Cities" hidden disabled>Cities</option>
                             {getdataselectedcountrie.cities.map((o, index) => (
                                 <option className="px-4" key={index} value={o.name} selected={localStorage.getItem("whatshowdataforcountrieselected") === o.name ? true : false} >{o.name}</option>
@@ -216,7 +216,7 @@ const Detailschartscountrie = () => {
 
                 {getdataselectedcountrie.length !== 0 && getdataselectedcountrie.genres.length !== 0 && reflistselectcountrie.current !== null ?
                     <div className={`${selectedpartgenresstyle} flex justify-between items-center rounded-xl px-3 w-36`}>
-                        <select id="countrie" name="countrie" className={`${selectedpartgenresstyle} w-full h-full py-2`} onChange={changegenres} value={localStorage.getItem("whatnamepartfordataincountrieselected") === "genres" ? localStorage.getItem("namecountrieselected") : "Genres"}>
+                        <select id="countrie" name="countrie" className={`${selectedpartgenresstyle} w-full h-full py-2`} onChange={changegenres} value={localStorage.getItem("whatnamepartfordataincountrieselected") === "genres" ? localStorage.getItem("whatshowdataforcountrieselected") : "Genres"}>
                             <option value="Genres" hidden disabled>Genres</option>
                             {getdataselectedcountrie.genres.map((o, index) => (
                                 <option className="px-4" key={index} value={o.name} selected={localStorage.getItem("whatshowdataforcountrieselected") === o.name ? true : false} >{o.name}</option>

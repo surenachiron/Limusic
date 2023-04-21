@@ -7,15 +7,15 @@ export const usegetspecificchartsong = async (dispatch) => {
         url: 'https://shazam.p.rapidapi.com/charts/track',
         params: { locale: 'en-US', pageSize: '20', startFrom: '0' },
         headers: {
-            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
+            'X-RapidAPI-Key': '695d520e3cmsh8c864660f412e8cp10f6c8jsn786925583432',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
 
-    await axios.request(options).then(function (response) {
+    dispatch(activeloadinghomepage(true))
+    axios.request(options).then(function (response) {
         dispatch(initializechartsspecificsong(response.data))
     }).catch(function (error) {
-        console.error(error);
     });
 }
 
@@ -25,15 +25,14 @@ export const usegetsongtrend = async (dispatch) => {
         url: 'https://shazam.p.rapidapi.com/songs/get-details',
         params: { key: "543335256", locale: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
+            'X-RapidAPI-Key': '695d520e3cmsh8c864660f412e8cp10f6c8jsn786925583432',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
+
     dispatch(activeloadinghomepage(true))
     axios.request(options).then(function (response) {
         dispatch(initializesongtrendhomepage(response.data))
     }).catch(function (error) {
-        dispatch(activeloadinghomepage(false))
-        console.error(error);
     });
 }

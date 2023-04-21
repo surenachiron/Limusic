@@ -26,8 +26,8 @@ const Maptopsongbyartist = () => {
                     pagination={{ clickable: true }}
                     className="myswiper"
                 >
-                    {topsongartist[0].map(o => (
-                        <SwiperSlide className="justify-start">
+                    {topsongartist[0].map((o, index) => (
+                        <SwiperSlide className="justify-start" key={index}>
                             <Topsongbyartist
                                 namemusic={o.namesong}
                                 artistsong={o.nameartist}

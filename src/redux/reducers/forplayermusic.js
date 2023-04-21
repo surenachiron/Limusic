@@ -4,8 +4,6 @@ export const isplayorispause = (state = false, action) => {
             return !state
         case "CHANGEVALUETOPLAYORPAUSEWITHPROPS":
             return action.payload
-        case "UPDATEISPLAYORPAUSE":
-            return state
         default:
             return state
     }
@@ -99,5 +97,32 @@ export const ismusicwaiting = (state = false, action) => {
             return action.payload;
         default:
             return state;
+    }
+}
+
+export const widthplayermusic = (state = 0, action) => {
+    switch (action.type) {
+        case "UODATEWIDTCHPLAYERMUSIC":
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export const mouseDownOnSlider = (state = false, action) => {
+    switch (action.type) {
+        case "CHANGEMOUSEDOWN":
+            return !state;
+        default:
+            return state;
+    }
+}
+
+export const currenttimelikedmusicformusicplayer = (state = 1, action) => {
+    switch (action.type) {
+        case "CHANGECURRENTTIMELIKEDMUSICFORMUSICPLAYER":
+            return action.payload
+        default:
+            return state
     }
 }

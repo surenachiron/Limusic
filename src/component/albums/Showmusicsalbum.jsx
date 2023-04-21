@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Mapingandahowingmusicalbum from "./Mapingandahowingmusicalbum";
 
@@ -17,7 +17,7 @@ const Showmusicsalbum = () => {
 
     return (
         <>
-            <div className="grid grid-cols-12 sm:h-60/100 border-t-1 border-grayprolight pt-10">
+            <div className="grid grid-cols-12 sm:h-fit border-t-1 border-grayprolight pt-10">
                 <div className="md:col-span-2 zero:col-span-12 sm:flex md:block zero:hidden items-start">
                     <div className="w-fit text-center">
                         <img src={aslcovermusic} alt={`cover artist ${artistdetails.data.map(o => o.attributes)[0].name}`} className="rounded-full w-36 h-36 border-1 border-grayprolight" />
@@ -40,13 +40,16 @@ const Showmusicsalbum = () => {
                         <p className="font-normal text-grayprolight">{detailsalbums.attributes.releaseDate}</p>
                     </div>
                     <div className="block sm:mt-10 zero:mt-0 sm:mb-20 zero:mb-8">
-                        {backupdetailsalbumsforplaylist[0].map(o => (
+                        {backupdetailsalbumsforplaylist[0].map((o, index) => (
                             <>
                                 <Mapingandahowingmusicalbum
                                     namemusic={o.namesong}
                                     artistsong={o.nameartist}
                                     covermusic={o.imagesong}
-                                    numberinalbum={o.numberinalbum}
+                                    soundsong={o.soundsong}
+                                    linkpageartist={o.linkpageartist}
+                                    like={o.like}
+                                    key={index}
                                 ></Mapingandahowingmusicalbum>
                             </>
                         ))}

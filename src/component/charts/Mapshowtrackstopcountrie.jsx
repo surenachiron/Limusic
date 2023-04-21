@@ -8,7 +8,7 @@ const Mapshowtrackstopcountrie = () => {
 
     return (
         <>
-            {listtopmusicforcountriecahrts !== undefined ? listtopmusicforcountriecahrts.map(o => (
+            {listtopmusicforcountriecahrts !== undefined ? listtopmusicforcountriecahrts.map((o, index) => (
                 <Showtrackstopcountrie
                     covermusic={o.imagesong !== undefined ? o.imagesong : ""}
                     titlemusic={o.namesong}
@@ -16,6 +16,9 @@ const Mapshowtrackstopcountrie = () => {
                     artistmusic={o.nameartist}
                     linkpageartistmusic={o.linkpageartist !== undefined ? o.linkpageartist : ""}
                     numberinalbum={o.numberinalbum}
+                    soundsong={o.soundsong}
+                    like={o.like}
+                    key={index}
                 >
                 </Showtrackstopcountrie>
             )) : <h2 className="text-grayprolight font-bold p-2 my-3">sory we cant coldnt with server</h2>

@@ -1,5 +1,5 @@
-import { changeloadingalbums, initializealbumsartist, initializebackupdetailsalbumsforplaylist } from "../redux/actions/albums";
 import axios from "axios";
+import { changeloadingalbums, initializealbumsartist, initializebackupdetailsalbumsforplaylist } from "../redux/actions/albums";
 import { getalldetailsartist } from "./useendpointspageartist";
 
 export const usealldetailsalbums = async (dispatch, idalbum) => {
@@ -8,7 +8,7 @@ export const usealldetailsalbums = async (dispatch, idalbum) => {
         url: 'https://shazam.p.rapidapi.com/albums/get-details',
         params: { id: idalbum, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '8c6feac019mshba9d640dfc67c3ap119555jsna7c605a30b66',
+            'X-RapidAPI-Key': '695d520e3cmsh8c864660f412e8cp10f6c8jsn786925583432',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -21,6 +21,5 @@ export const usealldetailsalbums = async (dispatch, idalbum) => {
         dispatch(changeloadingalbums(false))
     }).catch(function (error) {
         dispatch(changeloadingalbums(false))
-        console.error(error);
     });
 }

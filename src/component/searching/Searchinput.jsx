@@ -4,9 +4,8 @@ import { faSearch } from "@fortawesome/fontawesome-free-solid";
 import { getdailstextsearch } from "../../services/useGetdetailssearch.js";
 import { useDispatch, useSelector } from "react-redux";
 import Showresultsearch from "./Showresultsearch";
-import { changefocusinputsearch } from "../../redux/actions/truefalse";
 import { useRef } from "react";
-import { initializedetailssearched } from "../../redux/actions/search";
+import { changefocusinputsearch, initializedetailssearched } from "../../redux/actions/search";
 import ReactLoading from 'react-loading';
 import { useLocation } from "react-router";
 
@@ -29,7 +28,7 @@ const Searchinput = () => {
         return () => {
             document.removeEventListener("mousedown", checkIfClickedOutside)
         }
-    }, [inputsearchref])
+    }, [inputsearchref, dispatch])
 
     const changetextsearch = (e) => {
         settextsearch(e.target.value)
@@ -61,7 +60,7 @@ const Searchinput = () => {
     const location = useLocation()
     useEffect(() => {
         dispatch(changefocusinputsearch(false))
-    }, [location])
+    }, [location, dispatch])
 
     return (
         <>

@@ -38,6 +38,7 @@ export const listtopmusicforcountriecharts = (result) => {
                 linkpagesong: (song.key !== undefined ? song.key : ""),
                 linkpageartist: (song.artists !== undefined ? song.artists[0].adamid : ""),
                 numberinalbum: index + 1,
+                like: false,
             };
         });
         await dispatch({ type: "INITIALIZELISTTOPMUSICFORCOUNTRIECHATS", payload: [songsArray] })
@@ -51,39 +52,37 @@ export const initializeplaylisttrackschartforcountrie = (playlisytrensmuci) => {
 }
 
 export const playlisttrackstopforcountrie = (value, namemusic) => {
-    return async (dispatch) => {
+    return (dispatch) => {
         if (localStorage.getItem("namemusicplayingorplayed") === namemusic) {
-            await dispatch(changevalueorplayorpause())
+            dispatch(changevalueorplayorpause())
         } else {
-            await dispatch(initialseforclosemusiccontrol(true))
-            await dispatch(changevalueorplayorpausewithprops(true))
-            await dispatch(changevolumemusicwithprops(false))
-            await dispatch(changeactiverendomwithprops(false))
-            await dispatch(findindexmusic(namemusic, value))
-            await dispatch(initializeplaylisttrackschartforcountrie(value));
-            await dispatch(addpageplayedmusic(value))
-            localStorage.setItem("whichplayingincountrie", document.title)
+            dispatch(initialseforclosemusiccontrol(true))
+            dispatch(changevalueorplayorpausewithprops(true))
+            dispatch(changevolumemusicwithprops(false))
+            dispatch(changeactiverendomwithprops(false))
+            dispatch(findindexmusic(namemusic, value))
+            dispatch(initializeplaylisttrackschartforcountrie(value));
+            dispatch(addpageplayedmusic(value))
         }
     }
 }
 
 export const playlisttrackscharttopmusicforcountrie = (namecountrie) => {
-    return async (dispatch, getState) => {
+    return (dispatch, getState) => {
         const playlisttrackschartforcountrie = getState().playlisttrackschartforcountrie
         const howplaylistisactive = getState().howpageplayedmusic
         const listtopmusicforcountriecahrts = getState().listtopmusicforcountriecahrts[0]
-        
-        if (howplaylistisactive === playlisttrackschartforcountrie && namecountrie === localStorage.getItem("whichplayingincountrie")) {
-            await dispatch(changevalueorplayorpause())
+
+        if (howplaylistisactive === playlisttrackschartforcountrie && namecountrie === ((localStorage.getItem("namecountrieselected")) !== null ? localStorage.getItem("namecountrieselected") : "Argentina")) {
+            dispatch(changevalueorplayorpause())
         } else {
-            await dispatch(initialseforclosemusiccontrol(true))
-            await dispatch(changevalueorplayorpausewithprops(true))
-            await dispatch(changevolumemusicwithprops(false))
-            await dispatch(changeactiverendomwithprops(false))
-            await dispatch({ type: "ADD_NUMBERPLAYSONGINPLAYLIST", payload: 0 })
-            await dispatch(initializeplaylisttrackschartforcountrie(listtopmusicforcountriecahrts));
-            await dispatch(addpageplayedmusic(listtopmusicforcountriecahrts))
-            localStorage.setItem("whichplayingincountrie", namecountrie)
+            dispatch(initialseforclosemusiccontrol(true))
+            dispatch(changevalueorplayorpausewithprops(true))
+            dispatch(changevolumemusicwithprops(false))
+            dispatch(changeactiverendomwithprops(false))
+            dispatch({ type: "ADD_NUMBERPLAYSONGINPLAYLIST", payload: 0 })
+            dispatch(initializeplaylisttrackschartforcountrie(listtopmusicforcountriecahrts));
+            dispatch(addpageplayedmusic(listtopmusicforcountriecahrts))
         }
     }
 }

@@ -8,12 +8,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      screens: {
-        'zero': '140px',
-        'smmd': '640px',
-        'mdlg': '768px',
-        'smmdlg': '640px'
-      },
+      screens: { 'zero': '140px' },
       // e6e6e6
       colors: {
         'blackpro': '#09121c',
@@ -24,26 +19,15 @@ module.exports = {
         'grayprolight': '#979797',
         'grayprodark': '#323232',
         'grayprosearch': '#8a929a',
-        'orangepro': '#ffbb0c',
         'testbacksecond': 'rgba(32, 32, 32, 0.86)',
-        'videobackgroundbeforewhow': '#f3f3f3e0',
+        'videobackgroundbeforewhow': '#484848c7',
         'hoversong': '#363636',
         'textlyrics': '#b9b9b9',
-        'deleteafter': '#781f28'
       },
       spacing: {
-        '13/100': '13vh',
-        '30/100': '35vh',
-        '50/100': '50vh',
         '60/100': '60vh',
         '70/100': '70vh',
         '80/100': '80vh',
-        '90/100': '90vh',
-        '17': '4.5rem',
-        '2/7': '46%',
-        '2/8': '48%',
-        '200': '87%',
-        '100': '100%'
       },
       borderWidth: {
         '1': '1px'

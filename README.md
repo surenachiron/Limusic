@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# LiMusic is an online audio distribution platform like Soundcloud
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![GitHub language count](https://img.shields.io/github/languages/count/Suren-chiron/Limusic) ![GitHub top language](https://img.shields.io/github/languages/top/Suren-chiron/Limusic?color=green&style=plastic) ![GitHub last commit](https://img.shields.io/github/last-commit/Suren-chiron/Limusic?color=orange&label=last%20update) ![GitHub](https://img.shields.io/github/license/Suren-chiron/Limusic)
 
-## Available Scripts
+## Welcome to our project
 
-In the project directory, you can run:
+In this project, you can view the top 20 songs worldwide or check out the top 20 songs for each country on the charts page based on their overall ranking in the country or based on their ranking by city or genre. We have created pages for songs, artists, and albums where you can access a lot of details.
 
-### `npm start`
+This project includes an amazing music player that allows you to play your favorite songs. You can skip to the next or previous song, use shuffle or repeat mode, adjust the volume, like your favorite song, and more.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The project also includes a favorites page where you can view your liked music.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Overview:
 
-### `npm test`
+![overview  project2](https://user-images.githubusercontent.com/106313130/233668823-1688050a-790f-499c-b5ad-bb5b1ec163d3.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies:
 
-### `npm run build`
+React has been used as the main developer library in this project. We used Redux for managing data and states, Tailwind for styling, and React Router for pagination. The popular Axios library was used for fetching data, along with other libraries such as React Helmet, React Loading, Swiper, and Fortawesome.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Challenges and Future Features:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Music playback was the hardest and most challenging part of this project. Many days were spent learning HTMLMediaElement and MediaSession and implementing them in this project, especially if you try to implement it without using a library.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In the future, I hope to create sections such as the playlist page and pages to display top artists.
 
-### `npm run eject`
+## How to Use the Project:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Simply download the project and type npm start to see the project.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Helpful resources:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Here are the articles, videos, and anything else that helped me create this project, which may also help you if your goal is to create a similar project.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The best API for this task, including a free and fast plan: https://rapidapi.com/apidojo/api/shazam
 
-## Learn More
+For familiarity with properties and media events in the web: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For creating great metadata of the music currently playing for the browser: https://developer.mozilla.org/en-US/docs/Web/API/MediaSession
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+You can also view project details here: https://docs.google.com/document/d/13PeFwRlPEhMw_HPyrIrInvQuKaVWnpNmcv-y3NA208s/edit#
 
-### Code Splitting
+Documentation like React, Tailwind, and Redux also helps a lot in navigating the project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+These are just a small but important part of the project that I recommend studying if you want to create a similar project, as you will need them later on.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -8,13 +8,11 @@ import Mapinsimilarsong from "../component/trackpage/Mapinsimilarsong";
 import Lyricssong from "../component/trackpage/Lyricssong";
 import Musicvideosong from "../component/trackpage/Musicvideosong";
 import Showdetailssong from "../component/trackpage/Showdetailssong";
-import { changeovervieworlyrics } from "../redux/actions/truefalse";
-import { initializelittlesimilarsong, initializesimilarsong, initializesong, initializetopsong } from "../redux/actions/song";
+import { changeovervieworlyrics, initializelittlesimilarsong, initializesimilarsong, initializesong, initializetopsong } from "../redux/actions/song";
 import { callsimilarsongs, callsongdetails, getcountplaysong } from "../services/usedetailspagesong";
 
 const Song = () => {
 
-    const dispatch = useDispatch()
     const loading = useSelector(state => state.forloading)
     const songalldetails = useSelector(state => state.songselected)
     const topsongalldetails = useSelector(state => state.topsongbyartist)
@@ -22,8 +20,6 @@ const Song = () => {
     const similarsongalldetails = useSelector(state => state.similarsong)
     const showsimilatsongorno = useSelector(state => state.showsimilatsongorno)
     const overvieworlyrics = useSelector(state => state.overvieworlyrics)
-
-    console.log(topsongalldetails, similarsongalldetails)
 
     let borderoverview = ""
     let borderlyric = ""
@@ -41,10 +37,11 @@ const Song = () => {
         showlyric = 'zero:col-span-0 zero:hidden'
     }
 
+    const dispatch = useDispatch()
     const location = useLocation()
-    const keysongselected = location.pathname.slice(6,)
 
     useEffect(() => {
+        const keysongselected = location.pathname.slice(6,)
         dispatch(initializetopsong([]))
         dispatch(initializesong([]))
         dispatch(initializesimilarsong([]))
@@ -52,8 +49,9 @@ const Song = () => {
         callsongdetails(dispatch, keysongselected);
         callsimilarsongs(dispatch, keysongselected);
         getcountplaysong(dispatch, keysongselected)
-    }, [])
+    }, [dispatch, location.pathname])
     useEffect(() => {
+        const keysongselected = location.pathname.slice(6,)
         dispatch(initializetopsong([]))
         dispatch(initializesong([]))
         dispatch(initializesimilarsong([]))
@@ -61,7 +59,7 @@ const Song = () => {
         callsongdetails(dispatch, keysongselected);
         callsimilarsongs(dispatch, keysongselected)
         getcountplaysong(dispatch, keysongselected)
-    }, [location.pathname])
+    }, [dispatch, location.pathname])
 
     return (
         <Fragment>
@@ -70,9 +68,9 @@ const Song = () => {
                 <title>{songalldetails.title}</title>
             </Helmet>
 
-            {loading === true ? <div className="flex flex-col items-center justify-center" style={{ height: "90vh" }}>
-                <ReactLoading type={"spin"} color="#3369ff" height={172} width={149} />
-                <h4>reciveing data</h4>
+            {loading === true ? <div className="flex flex-col items-center justify-center md:h-80/100 zero:h-60/100 zero:mt-10 md:mt-0">
+                <ReactLoading type={"spin"} color="#3369ff" height={130} width={130} />
+                <h4 className="mt-3">Reciveing Data</h4>
             </div> :
                 <Fragment>
                     {songalldetails.length !== 0 ?
@@ -92,7 +90,7 @@ const Song = () => {
                             <div className="grid grid-cols-12 mt-10">
                                 <div id="contentsong" className={`lg:col-span-9 lg:block lg:mr-7 ${showoverview}`}>
                                     {songalldetails.sections[1].youtubeurl !== undefined || songalldetails.sections[2].youtubeurl !== undefined ?
-                                        <div id="musicvedio" className="h-80/100">
+                                        <div id="musicvedio">
                                             <h3 className="text-2xl border-b-1 border-slate-400 pb-4 mb-5">Music Video</h3>
                                             <Musicvideosong />
                                         </div>
@@ -114,7 +112,7 @@ const Song = () => {
                                             : <></>}
                                     </div>
                                     <div id="similarsongs" className="mt-10">
-                                        {showsimilatsongorno === true || (similarsongalldetails.length !== undefined) ?
+                                        {showsimilatsongorno === true || similarsongalldetails.tracks !== undefined ?
                                             <div className="flex border-b-1 border-slate-400 pb-4 mb-5">
                                                 <h3 className="text-2xl">Similar Songs</h3>
                                                 {showsimilatsongorno === true ?
@@ -137,9 +135,10 @@ const Song = () => {
                                 </div>
                             </div>
                         </div>
-                        : <div className="md:h-90/100 zero:h-80/100 w-full flex items-center justify-center">
+                        : <div className="flex flex-col items-center justify-center md:h-80/100 zero:h-60/100 zero:mt-10 md:mt-0">
                             <div className="rounded-3xl border-1 border-red-700 md:w-1/2 zero:mx-4 md:p-10 zero:px-5 zero:py-8">
-                                <h3 className="text-xl">Communication with the server failed. Please try again</h3>
+                                <h3 className="text-base">Communication with the server failed.</h3>
+                                <h3 className="text-base">Please check your internet connection <span className="text-grayprolight">(make sure vpn is connected or dns is set)</span> and try again</h3>
                             </div>
                         </div>
                     }

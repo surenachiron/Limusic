@@ -54,9 +54,7 @@ export const changeactiverendomwithprops = (value) => {
 export const createnumberrandomforplay = () => {
     return async (dispatch, getState) => {
         const lingthmax = getState().howpageplayedmusic.length;
-        console.log(lingthmax)
         const numberrandom = Math.floor((Math.random() * (lingthmax)));
-        console.log(numberrandom)
         await dispatch({ type: "FINDINDEXMUSIC", payload: numberrandom })
     }
 }
@@ -114,5 +112,23 @@ export const addpageplayedmusic = (result) => {
 export const changeismusicwaiting = (result) => {
     return async (dispatch) => {
         await dispatch({ type: "CHANGE_ISMUSICWAITING", payload: result })
+    }
+}
+
+export const updatewidthplayermusic = (width) => {
+    return async dispatch => {
+        dispatch({ type: "UODATEWIDTCHPLAYERMUSIC", payload: width })
+    }
+}
+
+export const changemousedown = () => {
+    return async dispatch => {
+        await dispatch({ type: "CHANGEMOUSEDOWN" })
+    }
+}
+
+export const chagenecurrenttimelikedmusicfotmusicplayer = (currenttime) => {
+    return async (dispatch) => {
+        await dispatch({ type: "CHANGECURRENTTIMELIKEDMUSICFORMUSICPLAYER", payload: currenttime })
     }
 }

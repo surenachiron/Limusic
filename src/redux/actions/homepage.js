@@ -17,9 +17,9 @@ export const initializesongtrendhomepage = (trenmusic) => {
             soundsong: trenmusic.hub.actions.slice(1, 2).map(o => o.uri)[0],
             linkpagesong: trenmusic.key,
             linkpageartist: trenmusic.artists.map(o => o.adamid)[0],
+            like: false
         };
         await dispatch({ type: "INITIIALIZE_SONGTRENDOHOMEPAGE", payload: [songtrend] })
-        await dispatch(activeloadinghomepage(false))
     }
 }
 
@@ -30,20 +30,17 @@ export const initializeplaylisttrendmusic = (playlisytrensmuci) => {
 }
 
 export const playlisttrendmusichomepage = (value, namemusic) => {
-    return async (dispatch, getState) => {
-        const plylisttrendmusic = getState().plylisttrendmusic
-        const howpageplayedmusic = getState().howpageplayedmusic
-        console.log(plylisttrendmusic, howpageplayedmusic)
+    return (dispatch, getState) => {
         if (localStorage.getItem("namemusicplayingorplayed") === namemusic) {
-            await dispatch(changevalueorplayorpause())
+            dispatch(changevalueorplayorpause())
         } else {
-            await dispatch(initialseforclosemusiccontrol(true))
-            await dispatch(changevalueorplayorpausewithprops(true))
-            await dispatch(changevolumemusicwithprops(false))
-            await dispatch(changeactiverendomwithprops(false))
-            await dispatch(findindexmusic(namemusic, value))
-            await dispatch(initializeplaylisttrendmusic(value));
-            await dispatch(addpageplayedmusic(value))
+            dispatch(initialseforclosemusiccontrol(true))
+            dispatch(changevalueorplayorpausewithprops(true))
+            dispatch(changevolumemusicwithprops(false))
+            dispatch(changeactiverendomwithprops(false))
+            dispatch(findindexmusic(namemusic, value))
+            dispatch(initializeplaylisttrendmusic(value));
+            dispatch(addpageplayedmusic(value))
         }
     }
 }
@@ -60,9 +57,11 @@ export const initializechartsspecificsong = (chartsspecifice) => {
                 soundsong: (song.hub.actions[1].uri !== undefined ? song.hub.actions[1].uri : ""),
                 linkpagesong: (song.key !== undefined ? song.key : ""),
                 linkpageartist: (song.artists !== undefined ? song.artists.map(o => o.adamid)[0] : ""),
+                like: false
             };
         });
         await dispatch({ type: 'INITIALIZECHARTSSPECIFICSONG', payload: [songsArray] });
+        await dispatch(activeloadinghomepage(false))
     }
 }
 
@@ -73,17 +72,24 @@ export const initializeplaylistcharttopmusic = (playlisytrensmuci) => {
 }
 
 export const playlistcharttopmusichomepage = (value, namemusic) => {
-    return async (dispatch) => {
+    return (dispatch) => {
         if (localStorage.getItem("namemusicplayingorplayed") === namemusic) {
-            await dispatch(changevalueorplayorpause())
+            dispatch(changevalueorplayorpause())
         } else {
-            await dispatch(initialseforclosemusiccontrol(true))
-            await dispatch(changevalueorplayorpausewithprops(true))
-            await dispatch(changevolumemusicwithprops(false))
-            await dispatch(changeactiverendomwithprops(false))
-            await dispatch(findindexmusic(namemusic, value))
-            await dispatch(initializeplaylistcharttopmusic(value));
-            await dispatch(addpageplayedmusic(value))
+            dispatch(initialseforclosemusiccontrol(true))
+            dispatch(changevalueorplayorpausewithprops(true))
+            dispatch(changevolumemusicwithprops(false))
+            dispatch(changeactiverendomwithprops(false))
+            dispatch(findindexmusic(namemusic, value))
+            dispatch(initializeplaylistcharttopmusic(value));
+            dispatch(addpageplayedmusic(value))
         }
+    }
+}
+
+////
+export const changeheadermobileshow = () => {
+    return async (dipatch) => {
+        await dipatch({ type: "CHANGEHEADERMOBILESHOW" })
     }
 }

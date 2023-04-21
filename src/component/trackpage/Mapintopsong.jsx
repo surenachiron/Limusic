@@ -12,7 +12,7 @@ import "./swiperslidegrid.css"
 const Mapintopsong = () => {
 
     const songalldetails = useSelector(state => state.songselected)
-    const topsongalldetails = useSelector(state => state.topsongbyartist)
+    const topsongalldetails = useSelector(state => state.topsongbyartist.topsongs)
 
     return (
         <div className="flex mb-7 mt-3 kosnanaekhamenei2 rounded-xl">
@@ -26,16 +26,16 @@ const Mapintopsong = () => {
                 pagination={{ clickable: true }}
                 className="myswiper"
             >
-                {topsongalldetails.data.map(o => (
-                    <SwiperSlide className="justify-start" key={o.index}>
+                {topsongalldetails.map((o, index) => (
+                    <SwiperSlide className="justify-start" key={index}>
                         <Topsong
-                            namemusic={o.attributes.name}
-                            artistsong={o.attributes.artistName}
-                            linkpagemusic={o.id}
+                            key={index}
+                            namemusic={o.name}
+                            artistsong={o.artistName}
                             linkpageartist={songalldetails.artists.map(o => o.adamid)[0] !== undefined ? songalldetails.artists.map(o => o.adamid)[0] : ""}
-                            covermusic={o.attributes.artwork.url}
-                            widthforcovermusic={o.attributes.artwork.width}
-                            heightforcovermusic={o.attributes.artwork.height}
+                            covermusic={o.artwork.url}
+                            widthforcovermusic={o.artwork.width}
+                            heightforcovermusic={o.artwork.height}
                         ></Topsong>
                     </SwiperSlide>
                 ))}

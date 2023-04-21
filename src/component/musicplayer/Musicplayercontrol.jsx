@@ -1,16 +1,16 @@
 import React, { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faPause, faPlay, faRandom, faRetweet, faStepBackward, faStepForward } from "@fortawesome/fontawesome-free-solid";
+import ReactLoading from 'react-loading';
 import { faVolumeHigh, faVolumeXmark, faClose } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
-import { addnumberplaysonginplaylist, changeactiverendom, changeactiverendomwithprops, changecurrenttimemusic, changedurationtimemusic, changeismusicwaiting, changenumberretweet, changenumberretweetwithprops, changevalueorplayorpause, changevalueorplayorpausewithprops, changevolumemusic, changevolumemusicwithprops, createnumberrandomforplay, initialseforclosemusiccontrol, lowoffnumberplaysonginplaylist } from "../../redux/actions/forplayermusic";
-import { changemousedown } from "../../redux/actions/truefalse";
-import ReactLoading from 'react-loading';
+import { addnumberplaysonginplaylist, chagenecurrenttimelikedmusicfotmusicplayer, changeactiverendom, changeactiverendomwithprops, changecurrenttimemusic, changedurationtimemusic, changeismusicwaiting, changemousedown, changenumberretweet, changenumberretweetwithprops, changevalueorplayorpause, changevalueorplayorpausewithprops, changevolumemusic, changevolumemusicwithprops, createnumberrandomforplay, initialseforclosemusiccontrol, lowoffnumberplaysonginplaylist } from "../../redux/actions/forplayermusic";
 import { initializeplaylistalbumpage } from "../../redux/actions/albums";
 import { initializeplaylisttopsongmusicartistpage } from "../../redux/actions/artist";
 import { initializeplaylistcharttopmusic, initializeplaylisttrendmusic } from "../../redux/actions/homepage";
 import { initializeplaylisttrackschartforcountrie } from "../../redux/actions/charts";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faPause, faPlay, faRandom, faRetweet, faStepBackward, faStepForward } from "@fortawesome/fontawesome-free-solid";
+import { addedtracksfavourite, deletedtracksfavourite } from "../../redux/actions/favourite";
 
 const Musicplayercontrol = () => {
 
@@ -22,6 +22,7 @@ const Musicplayercontrol = () => {
     const playlisttopsongartist = useSelector(state => state.playlisttopsongartist)
     const playlistalbumpage = useSelector(state => state.playlistalbumpage)
     const playlisttrackschartforcountrie = useSelector(state => state.playlisttrackschartforcountrie)
+    const playlistfavouritetracks = useSelector(state => state.playlistfavouritetracks)
     const numberplaysonginplaylist = useSelector(state => state.numberplaysonginplaylist)
     const howplaylistisactive = useSelector(state => state.howpageplayedmusic)
 
@@ -33,12 +34,14 @@ const Musicplayercontrol = () => {
     const activerandom = useSelector(state => state.activerandom)
     const numberretweet = useSelector(state => state.numberretweet)
     const mouseDownOnSlider = useSelector(state => state.mouseDownOnSlider);
+    const currenttimelikedmusicformusicplayer = useSelector(state => state.currenttimelikedmusicformusicplayer);
 
     let musicplay = useRef(null)
     let inputrangevolume = useRef(null)
     let inputprofressbarmusic = useRef(null)
 
-    let namemusicplayingorplayed, artistmusicplayingorplayed, imagemusicplayingorplayed, soundmusicplayingorplayed, linksongmusicplayingorplayed, linkartistmusicplayingorplayed = ''
+    let namemusicplayingorplayed, artistmusicplayingorplayed, imagemusicplayingorplayed, soundmusicplayingorplayed, linksongmusicplayingorplayed, linkartistmusicplayingorplayed, likemusic, namepagemusicplayed = ''
+
 
     if (howplaylistisactive === playlistpagesongfake) {
         namemusicplayingorplayed = playlistpagesongfake[numberplaysonginplaylist].namesong
@@ -47,6 +50,8 @@ const Musicplayercontrol = () => {
         soundmusicplayingorplayed = playlistpagesongfake[numberplaysonginplaylist].soundsong
         linksongmusicplayingorplayed = playlistpagesongfake[numberplaysonginplaylist].linkpagesong
         linkartistmusicplayingorplayed = playlistpagesongfake[numberplaysonginplaylist].linkpageartist
+        likemusic = playlistpagesongfake[numberplaysonginplaylist].like
+        namepagemusicplayed = "song"
     }
 
     if (howplaylistisactive === plylisttrendmusic) {
@@ -56,6 +61,8 @@ const Musicplayercontrol = () => {
         soundmusicplayingorplayed = plylisttrendmusic[0].soundsong
         linksongmusicplayingorplayed = plylisttrendmusic[0].linkpagesong
         linkartistmusicplayingorplayed = plylisttrendmusic[0].linkpageartist
+        likemusic = plylisttrendmusic[0].like
+        namepagemusicplayed = "trendmusichome"
     }
 
     if (howplaylistisactive === plylistcharttopmusic) {
@@ -65,6 +72,8 @@ const Musicplayercontrol = () => {
         soundmusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].soundsong
         linksongmusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].linkpagesong
         linkartistmusicplayingorplayed = plylistcharttopmusic[numberplaysonginplaylist].linkpageartist
+        likemusic = plylistcharttopmusic[numberplaysonginplaylist].like
+        namepagemusicplayed = "charthome"
     }
 
     if (howplaylistisactive === playlisttopsongartist) {
@@ -74,6 +83,8 @@ const Musicplayercontrol = () => {
         soundmusicplayingorplayed = playlisttopsongartist[numberplaysonginplaylist].soundsong
         linksongmusicplayingorplayed = playlisttopsongartist[numberplaysonginplaylist].linkpagesong
         linkartistmusicplayingorplayed = playlisttopsongartist[numberplaysonginplaylist].linkpageartist
+        likemusic = playlisttopsongartist[numberplaysonginplaylist].like
+        namepagemusicplayed = "artist"
     }
 
     if (howplaylistisactive === playlistalbumpage) {
@@ -83,6 +94,8 @@ const Musicplayercontrol = () => {
         soundmusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].soundsong
         linksongmusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].linkpagesong
         linkartistmusicplayingorplayed = playlistalbumpage[numberplaysonginplaylist].linkpageartist
+        likemusic = playlistalbumpage[numberplaysonginplaylist].like
+        namepagemusicplayed = "albume"
     }
 
     if (howplaylistisactive === playlisttrackschartforcountrie) {
@@ -92,6 +105,30 @@ const Musicplayercontrol = () => {
         soundmusicplayingorplayed = playlisttrackschartforcountrie[numberplaysonginplaylist].soundsong
         linksongmusicplayingorplayed = playlisttrackschartforcountrie[numberplaysonginplaylist].linkpagesong
         linkartistmusicplayingorplayed = playlisttrackschartforcountrie[numberplaysonginplaylist].linkpageartist
+        likemusic = playlisttrackschartforcountrie[numberplaysonginplaylist].like
+        namepagemusicplayed = "chartinpagechart"
+    }
+
+    if (howplaylistisactive === playlistfavouritetracks) {
+        if (playlistfavouritetracks.length === 1) {
+            namemusicplayingorplayed = playlistfavouritetracks[0].namesong
+            artistmusicplayingorplayed = playlistfavouritetracks[0].nameartist
+            imagemusicplayingorplayed = playlistfavouritetracks[0].imagesong
+            soundmusicplayingorplayed = playlistfavouritetracks[0].soundsong
+            linksongmusicplayingorplayed = playlistfavouritetracks[0].linkpagesong
+            linkartistmusicplayingorplayed = playlistfavouritetracks[0].linkpageartist
+            likemusic = playlistfavouritetracks[0].like
+            namepagemusicplayed = "favourite"
+        } else {
+            namemusicplayingorplayed = playlistfavouritetracks[numberplaysonginplaylist].namesong
+            artistmusicplayingorplayed = playlistfavouritetracks[numberplaysonginplaylist].nameartist
+            imagemusicplayingorplayed = playlistfavouritetracks[numberplaysonginplaylist].imagesong
+            soundmusicplayingorplayed = playlistfavouritetracks[numberplaysonginplaylist].soundsong
+            linksongmusicplayingorplayed = playlistfavouritetracks[numberplaysonginplaylist].linkpagesong
+            linkartistmusicplayingorplayed = playlistfavouritetracks[numberplaysonginplaylist].linkpageartist
+            likemusic = playlistfavouritetracks[numberplaysonginplaylist].like
+            namepagemusicplayed = "favourite"
+        }
     }
 
     /// play and pause 
@@ -107,6 +144,23 @@ const Musicplayercontrol = () => {
     }, [isplayorispause])
 
     useEffect(() => {
+        if (currenttimelikedmusicformusicplayer !== 0) {
+            musicplay.current.currentTime = currenttimelikedmusicformusicplayer
+        } else {
+            dispatch(changevalueorplayorpausewithprops(false))
+            if (soundmusicplayingorplayed.length >= 1 && soundmusicplayingorplayed !== undefined && soundmusicplayingorplayed !== '') {
+                musicplay.current.pause()
+                musicplay.current.load()
+                musicplay.current.play()
+            }
+            dispatch(changevalueorplayorpausewithprops(true))
+            localStorage.setItem("namemusicplayingorplayed", namemusicplayingorplayed)
+            localStorage.setItem("artistmusicplayingorplayed", artistmusicplayingorplayed)
+        }
+    }, [howplaylistisactive])
+
+    useEffect(() => {
+        dispatch(chagenecurrenttimelikedmusicfotmusicplayer(0))
         dispatch(changevalueorplayorpausewithprops(false))
         if (soundmusicplayingorplayed.length >= 1 && soundmusicplayingorplayed !== undefined && soundmusicplayingorplayed !== '') {
             musicplay.current.pause()
@@ -116,7 +170,7 @@ const Musicplayercontrol = () => {
         dispatch(changevalueorplayorpausewithprops(true))
         localStorage.setItem("namemusicplayingorplayed", namemusicplayingorplayed)
         localStorage.setItem("artistmusicplayingorplayed", artistmusicplayingorplayed)
-    }, [numberplaysonginplaylist, howplaylistisactive])
+    }, [numberplaysonginplaylist])
 
     /// close and clear music play or pause
     const closeandclearmusic = () => {
@@ -124,19 +178,22 @@ const Musicplayercontrol = () => {
         dispatch(changevalueorplayorpausewithprops(false))
         dispatch(changeactiverendomwithprops(false))
         dispatch(changenumberretweetwithprops(0))
-        /// clear playlist 
+        dispatch(changedurationtimemusic([]))
+        /// clear playlist
         dispatch({ type: 'SET_PLAYLIST_SONGS_ORGINALY_FAKE', payload: '' });
         dispatch(initializeplaylisttrendmusic(""))
         dispatch(initializeplaylistcharttopmusic(""))
         dispatch(initializeplaylisttopsongmusicartistpage(""))
         dispatch(initializeplaylistalbumpage(""))
         dispatch(initializeplaylisttrackschartforcountrie(""))
+        dispatch(chagenecurrenttimelikedmusicfotmusicplayer(0))
         ///
         musicplay.current.pause()
         musicplay.current.load()
         localStorage.removeItem("namemusicplayingorplayed")
         localStorage.removeItem("artistmusicplayingorplayed")
-        localStorage.removeItem("whichplayingincountrie ")
+        localStorage.removeItem("currenttimemusicplaying")
+        // localStorage.removeItem("whichplayinginalbume")
     }
 
     /// change volume music
@@ -180,6 +237,7 @@ const Musicplayercontrol = () => {
         transformationtimeforduration(e.target.duration)
         localStorage.setItem("namemusicplayingorplayed", namemusicplayingorplayed)
         localStorage.setItem("artistmusicplayingorplayed", artistmusicplayingorplayed)
+        localStorage.setItem("currenttimemusicplaying", musicplay.current.currentTime)
     }
 
     function transformationtimeforcurrenttime(currentTimeget) {
@@ -205,7 +263,8 @@ const Musicplayercontrol = () => {
     }
 
     /// ended music playing and retweet and random
-    const endedmusicplaying = (e) => {
+    const endedmusicplaying = () => {
+        dispatch(chagenecurrenttimelikedmusicfotmusicplayer(0))
         switch (numberretweet) {
             case 1:
                 musicplay.current.play()
@@ -232,6 +291,7 @@ const Musicplayercontrol = () => {
 
     /// go to next and previos music
     const gotopreviosmusic = () => {
+        dispatch(chagenecurrenttimelikedmusicfotmusicplayer(0))
         dispatch(changevalueorplayorpausewithprops(false))
         musicplay.current.pause()
         if (activerandom === false) dispatch(lowoffnumberplaysonginplaylist(howplaylistisactive))
@@ -244,6 +304,7 @@ const Musicplayercontrol = () => {
     }
 
     const gotonextmusic = () => {
+        dispatch(chagenecurrenttimelikedmusicfotmusicplayer(0))
         musicplay.current.pause()
         dispatch(changevalueorplayorpausewithprops(false))
         if (activerandom === false) dispatch(addnumberplaysonginplaylist(howplaylistisactive))
@@ -255,18 +316,67 @@ const Musicplayercontrol = () => {
         })
     }
 
+    /// add or delete track in favourite list
+
+    const adddordeletetofavoutirelist = () => {
+        if (likemusic === true) {
+            dispatch(deletedtracksfavourite(namemusicplayingorplayed, namepagemusicplayed, localStorage.getItem("currenttimemusicplaying")))
+        } else {
+            const newtrackfavourite = {
+                namesong: namemusicplayingorplayed,
+                nameartist: artistmusicplayingorplayed,
+                imagesong: imagemusicplayingorplayed,
+                soundsong: soundmusicplayingorplayed,
+                linkpagesong: linksongmusicplayingorplayed,
+                linkpageartist: linkartistmusicplayingorplayed,
+                like: true,
+            }
+            dispatch(addedtracksfavourite(newtrackfavourite, namepagemusicplayed, localStorage.getItem("currenttimemusicplaying")))
+        }
+    }
+
+    /// set details tracks playing in MediaMetadata browsing
+
+    const metadata = new MediaMetadata({
+        title: namemusicplayingorplayed,
+        artist: artistmusicplayingorplayed,
+        artwork: [
+            { src: imagemusicplayingorplayed, sizes: '512x512', type: 'image/png' },
+        ]
+    });
+    navigator.mediaSession.metadata = metadata;
+    navigator.mediaSession.setActionHandler("nexttrack", () => gotonextmusic());
+    navigator.mediaSession.setActionHandler("previoustrack", () => gotopreviosmusic());
+    navigator.mediaSession.setActionHandler("seekto", () => musicplay.current.currentTime -= 10);
+    navigator.mediaSession.setActionHandler("seekbackward", (details) => {
+        const skipTime = details.seekOffset || 5;
+        musicplay.current.currentTime = Math.max(musicplay.current.currentTime - skipTime, 0);
+        updatePositionState();
+    });
+    navigator.mediaSession.setActionHandler("seekforward", (details) => {
+        const skipTime = details.seekOffset || 5;
+        musicplay.current.currentTime = Math.max(musicplay.current.currentTime + skipTime, 0);
+        updatePositionState();
+    });
+    function updatePositionState() {
+        navigator.mediaSession.setPositionState({
+            duration: musicplay.current.duration,
+            playbackRate: musicplay.current.playbackRate,
+            position: musicplay.current.currentTime,
+        });
+    }
 
     return (
         <>
-            <div className={`grid grid-cols-12 bg-blackopacitylittle text-3xl text-white h-fit rounded-3xl border-grayprodark border-1 z-auto w-full backdrop-blur-sm`}>
+            <div className={`grid grid-cols-12 bg-blackopacitylittle text-3xl text-white h-fit rounded-3xl border-grayprodark border-1 z-40 w-full backdrop-blur-sm`}>
 
                 <div className="md:col-span-3 zero:col-span-2 flex items-center md:justify-start zero:justify-center cursor-pointer">
-                    {linksongmusicplayingorplayed !== undefined && linkartistmusicplayingorplayed.length !== 0 ? <NavLink to={`/song/${linksongmusicplayingorplayed}`}>
-                        <img src={imagemusicplayingorplayed === undefined ? "" : imagemusicplayingorplayed} width={55} height={55} className="rounded-lg mr-2 lg:ml-3 zere:ml-0" />
-                    </NavLink> : <img src={imagemusicplayingorplayed === undefined ? "" : imagemusicplayingorplayed} width={55} height={55} className="rounded-lg mr-2 lg:ml-3 zere:ml-0" />}
+                    {linksongmusicplayingorplayed !== undefined && linksongmusicplayingorplayed.length !== 0 ? <NavLink to={`/song/${linksongmusicplayingorplayed}`}>
+                        <img src={imagemusicplayingorplayed === undefined ? "" : imagemusicplayingorplayed} width={55} height={55} alt={`cover ${namemusicplayingorplayed}`} className="rounded-lg mr-2 lg:ml-3 zere:ml-2" />
+                    </NavLink> : <img src={imagemusicplayingorplayed === undefined ? "" : imagemusicplayingorplayed} width={55} height={55} alt={`cover ${namemusicplayingorplayed}`} className="rounded-lg mr-2 lg:ml-3 zere:ml-0" />}
 
-                    <div className="zero:hidden lg:block">
-                        {linksongmusicplayingorplayed !== undefined && linkartistmusicplayingorplayed.length !== 0 ? <NavLink to={`/song/${linksongmusicplayingorplayed}`}>
+                    <div className="zero:hidden md:block">
+                        {linksongmusicplayingorplayed !== undefined && linksongmusicplayingorplayed.length !== 0 ? <NavLink to={`/song/${linksongmusicplayingorplayed}`}>
                             <h3 className="text-base">{namemusicplayingorplayed.length >= 12 ? namemusicplayingorplayed.slice(0, 12) + ".." : namemusicplayingorplayed}</h3>
                         </NavLink> : <h3 className="text-base">{namemusicplayingorplayed.length >= 12 ? namemusicplayingorplayed.slice(0, 12) + ".." : namemusicplayingorplayed}</h3>}
                         <NavLink to={`/artist/${linkartistmusicplayingorplayed}`}>
@@ -309,6 +419,10 @@ const Musicplayercontrol = () => {
                                 <source src={soundmusicplayingorplayed} type="audio/x-m4a" />
                             </audio>
                         </div>
+                        <div>
+                            <meta name="artist" content={artistmusicplayingorplayed} />
+                            <meta name="title" content={namemusicplayingorplayed} />
+                        </div>
                         <div className="py-3 px-3 md:ml-5 zero:ml-2">
                             <FontAwesomeIcon icon={faStepForward} className={`block cursor-pointer text-white text-sm`} onClick={gotonextmusic}></FontAwesomeIcon>
                         </div>
@@ -317,7 +431,7 @@ const Musicplayercontrol = () => {
                             {numberretweet === 1 ? <>
                                 <div className={`flex items-center justify-center h-3.5 w-4`}>
                                     <FontAwesomeIcon id="retweetoneplay" icon={faRetweet} color="#3369ff" className={`block cursor-pointer text-sm transition-all`} onClick={changeretweetvalue}></FontAwesomeIcon>
-                                    <p className="text-white text-xs z-50 font-bold">1</p>
+                                    <p className="text-white text-xs z-40 font-bold">1</p>
                                 </div>
                             </> : ""}
                             {numberretweet === 2 ? <FontAwesomeIcon id="retweetoneplay" icon={faRetweet} color="#3369ff" className={`block cursor-pointer text-sm transition-all`} onClick={changeretweetvalue}></FontAwesomeIcon> : ""}
@@ -356,7 +470,8 @@ const Musicplayercontrol = () => {
                             {volumemusic === false ? <FontAwesomeIcon icon={faVolumeHigh} className={`cursor-pointer text-grayprolight text-sm mr-3`} onClick={forvolume} ></FontAwesomeIcon> : <FontAwesomeIcon icon={faVolumeXmark} className={`cursor-pointer text-bluepro text-sm mr-3`} onClick={forvolume} ></FontAwesomeIcon>
                             }
                         </div>
-                        <FontAwesomeIcon icon={faHeart} className={`cursor-pointer text-grayprolight text-sm mr-3`} ></FontAwesomeIcon>
+                        {likemusic === true ? <FontAwesomeIcon icon={faHeart} className={`cursor-pointer text-bluepro text-sm mr-3`} onClick={adddordeletetofavoutirelist}></FontAwesomeIcon> : <FontAwesomeIcon icon={faHeart} className={`cursor-pointer text-grayprolight text-sm mr-3`} onClick={adddordeletetofavoutirelist}></FontAwesomeIcon>
+                        }
                     </div>
                 </div>
             </div>

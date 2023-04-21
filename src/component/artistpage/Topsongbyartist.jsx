@@ -51,7 +51,7 @@ const Topsongbyartist = ({ namemusic, artistsong, linkpagemusic, linkpageartist,
                 <div className="peer/img">
                     <img src={covermusic} alt={`cover music ${namemusic}`} className={`w-24 lg:h-24 md:h-24 sm:h-16 rounded-full ${getopacityandhoverforimage}`} />
                 </div>
-                <div className={`absolute transition-all ${getblockorhideplay} peer-hover/img:block`} style={transform}>
+                <div className={`absolute transition-all ${getblockorhideplay} peer-hover/img:block`} style={transform} onClick={playmusicselected}>
                     {localStorage.getItem("namemusicplayingorplayed") === namemusic && localStorage.getItem("artistmusicplayingorplayed") === artistsong ? <>
                         {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
                             <>
@@ -81,15 +81,13 @@ const Topsongbyartist = ({ namemusic, artistsong, linkpagemusic, linkpageartist,
                 </div>
             </div>
             <div className="flex flex-col ml-3">
-                <NavLink to={`/song/${linkpagemusic}`} className="transition-all hover:text-bluepro hover:underline">
-                    <h3 className="text-base md:block zero:hidden text-white text-start">{namemusic.length >= 15 ? littlenamemusicmdtolg : namemusic}</h3>
-                    <h3 className="text-sm md:hidden zero:block text-white text-start">{namemusic.length >= 10 ? littlenamemusiczerotosm : namemusic}</h3>
-                </NavLink>
-                <NavLink to={`/artist/${linkpageartist}`} className="transition-all hover:text-bluepro hover:underline text-start">
+                <h3 className="text-base md:block zero:hidden text-white text-start">{namemusic.length >= 15 ? littlenamemusicmdtolg : namemusic}</h3>
+                <h3 className="text-sm md:hidden zero:block text-white text-start">{namemusic.length >= 10 ? littlenamemusiczerotosm : namemusic}</h3>
+                <NavLink to={linkpageartist.length !== 0 ? `/artist/${linkpageartist}` : ""} className="transition-all hover:text-bluepro hover:underline text-start">
                     <h6 className="font-extralight text-sm text-grayprolight">{artistsong.length >= 10 ? littleartistsong : artistsong}</h6>
                 </NavLink>
             </div>
-        </div>
+        </div >
     )
 }
 

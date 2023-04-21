@@ -7,7 +7,7 @@ import ananymousartist from '../../assets/images/ananymousformusicorartist.png'
 import { setplaylistsongsotginalyfake } from "../../redux/actions/song";
 import ReactLoading from 'react-loading';
 
-const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermusic, widthforcovermusic, heightforcovermusic }) => {
+const Topsong = ({ namemusic, artistsong, linkpageartist, covermusic, widthforcovermusic, heightforcovermusic }) => {
 
     const samplecovermusic = covermusic.slice(0, covermusic.length - 13)
     const aslcovermusic = samplecovermusic + widthforcovermusic + "x" + heightforcovermusic + "bb.jpg"
@@ -39,7 +39,7 @@ const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermu
             setblockorhideplay("hover:block hidden")
             setopacityandhoverforimage("hover:opacity-80 group-hover:opacity-80")
         }
-    }, [isplayorispause, durationtimemusic])
+    }, [isplayorispause, durationtimemusic, namemusic, artistsong])
 
     const transform = {
         transform: 'translate(-50%, -43%)',
@@ -51,9 +51,9 @@ const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermu
         <div className="flex items-center cursor-pointer">
             <div className="flex items-start justify-center relative group">
                 <div className="peer/img">
-                    <img src={aslcovermusic === undefined ? ananymousartist : aslcovermusic} alt={`picture music ${namemusic}`} className={`w-24 lg:h-24 md:h-24 sm:h-16 rounded-full ${getopacityandhoverforimage}`} />
+                    <img src={aslcovermusic === undefined ? ananymousartist : aslcovermusic} alt={`${namemusic}`} className={`w-24 lg:h-24 md:h-24 sm:h-16 rounded-full ${getopacityandhoverforimage}`} />
                 </div>
-                <div className={`absolute transition-all ${getblockorhideplay} peer-hover/img:block`} style={transform}>
+                <div className={`absolute transition-all ${getblockorhideplay} peer-hover/img:block`} style={transform} onClick={playmusicselected}>
                     {playlistpagesongorginaly.length > 2 ?
                         <>
                             {localStorage.getItem("namemusicplayingorplayed") === namemusic && localStorage.getItem("artistmusicplayingorplayed") === artistsong ? <>
@@ -89,10 +89,8 @@ const Topsong = ({ namemusic, artistsong, linkpagemusic, linkpageartist, covermu
                 </div>
             </div>
             <div className="flex flex-col ml-3">
-                {/* <NavLink to={`/song/${linkpagemusic}`} className="transition-all hover:text-bluepro hover:underline"> */}
                 <h3 className="text-base md:block zero:hidden text-white">{namemusic.length >= 15 ? littlenamemusicmdtolg : namemusic}</h3>
                 <h3 className="text-sm md:hidden zero:block text-white">{namemusic.length >= 10 ? littlenamemusiczerotosm : namemusic}</h3>
-                {/* </NavLink> */}
                 <NavLink to={`/artist/${linkpageartist}`} className="transition-all hover:text-bluepro hover:underline">
                     <h6 className="font-extralight text-sm text-grayprolight">{artistsong.length >= 10 ? littleartistsong : artistsong}</h6>
                 </NavLink>

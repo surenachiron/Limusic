@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-dom";
+import { createRoot } from 'react-dom/client';
 import App from "./containers/App";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
@@ -11,11 +11,13 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/css/pagination"
 import "swiper/css/grid";
 
-render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
     <BrowserRouter>
         <Provider store={store}>
             <App />
         </Provider>
-    </ BrowserRouter>,
-    document.getElementById('root')
+    </ BrowserRouter>
 )

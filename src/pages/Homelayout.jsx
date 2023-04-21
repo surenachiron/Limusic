@@ -2,7 +2,6 @@ import React, { Fragment, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import ReactLoading from 'react-loading';
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
 import Mapcharttop50 from "../component/home/Mapcharttop50";
 import Trendmusics from "../component/home/Trendmusics";
 import { usegetsongtrend, usegetspecificchartsong } from "../services/useToolshomepage";
@@ -12,18 +11,12 @@ const Homelayout = () => {
     const trendmusic = useSelector(state => state.songtrendhomepage)
     const chartsspecificsong = useSelector(state => state.chartsspecificsong)
     const loadinghomepage = useSelector(state => state.loadinghomepage)
-
     const dispatch = useDispatch()
-    const location = useLocation()
 
     useEffect(() => {
         usegetsongtrend(dispatch)
         usegetspecificchartsong(dispatch)
-    }, [])
-    useEffect(() => {
-        usegetsongtrend(dispatch)
-        usegetspecificchartsong(dispatch)
-    }, [location.pathname])
+    }, [dispatch])
 
     return (
         <Fragment>
@@ -34,21 +27,22 @@ const Homelayout = () => {
 
             <div id="mainhome" className="mt-7 rounded-3xl flex flex-col w-full mb-5 justify-center px-5">
                 {loadinghomepage === true ?
-                    <div className="flex flex-col items-center justify-center" style={{ height: "90vh" }}>
-                        <ReactLoading type={"spin"} color="#3369ff" height={172} width={149} />
-                        <h4>reciveing data</h4>
+                    <div className="flex flex-col items-center justify-center md:h-70/100 zero:h-60/100">
+                        <ReactLoading type={"spin"} color="#3369ff" height={130} width={130} />
+                        <h4 className="mt-3">Reciveing Data</h4>
                     </div>
                     :
                     <>
-                        {trendmusic.length !== 0 && chartsspecificsong !== null && trendmusic !== undefined ?
+                        {trendmusic.length !== 0 && chartsspecificsong[0] !== undefined && trendmusic !== undefined ?
                             <>
                                 <Trendmusics />
                                 <Mapcharttop50 />
                             </>
                             :
-                            <div className="md:h-90/100 zero:h-80/100 w-full flex items-center justify-center">
+                            <div className="flex flex-col items-center justify-center md:h-70/100 zero:h-60/100">
                                 <div className="rounded-3xl border-1 border-red-700 md:w-1/2 zero:mx-4 md:p-10 zero:px-5 zero:py-8">
-                                    <h3 className="text-xl">Communication with the server failed. Please try again</h3>
+                                    <h3 className="text-base">Communication with the server failed.</h3>
+                                    <h3 className="text-base">Please check your internet connection <span className="text-grayprolight">(make sure vpn is connected or dns is set)</span> and try again</h3>
                                 </div>
                             </div>}
                     </>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changesimilarsonglength } from "../../redux/actions/truefalse";
 import Similarsong from "./Similarsong";
+import { changesimilarsonglength } from '../../redux/actions/song'
 import ananymousmusic from '../../assets/images/ananymousformusicorartist.png'
 
 const Mapinsimilarsong = () => {
@@ -22,8 +22,9 @@ const Mapinsimilarsong = () => {
                     <>
                         {truefalsesimilarsonglength === true ?
                             <>
-                                {similarsongall.tracks.map(o => (
+                                {similarsongall.tracks.map((o, index) => (
                                     <Similarsong
+                                        key={index}
                                         namemusic={o.title}
                                         linkpagemusic={o.key}
                                         artistsong={o.subtitle}

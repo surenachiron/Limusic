@@ -19,7 +19,18 @@ export const countplaysong = (state = "", action) => {
 export const topsongbyartist = (state = [], action) => {
     switch (action.type) {
         case "INITIALIZETOPSONG":
-            return action.payload
+            const uniqueNames = new Set()
+            const payloadObjects = action.payload.data
+            const newList = []
+            for (let i = 0; i < payloadObjects.length; i++) {
+                const obj = payloadObjects[i].attributes
+                const name = obj.name.slice(0, 8)
+                if (!uniqueNames.has(name)) {
+                    uniqueNames.add(name)
+                    newList.push(obj)
+                }
+            }
+            return { ...state, topsongs: newList }
         default:
             return state;
     }
@@ -79,5 +90,23 @@ export const playlistpagesongorginalyfake = (state = [], action) => {
             return action.payload;
         default:
             return state;
+    }
+}
+
+export const overvieworlyricsforsong = (state = false, action) => {
+    switch (action.type) {
+        case "CHANGEOVERVIEWORLYRICS":
+            return action.payload;
+        default:
+            return state
+    }
+}
+
+export const showlittleorgreatsimilarsong = (state = false, action) => {
+    switch (action.type) {
+        case "CHANGESIMILARSONGLENGTH":
+            return !state;
+        default:
+            return state
     }
 }

@@ -1,3 +1,4 @@
+/// loading
 export const loadinghomepage = (state = false, action) => {
     switch (action.type) {
         case "ACTIVELOADINGHOMEPAGE":
@@ -41,6 +42,17 @@ export const plylistcharttopmusic = (state = [], action) => {
     switch (action.type) {
         case "INITIALIZE_PLAYLISTCHARTTOPMUSIC":
             return action.payload;
+        default:
+            return state
+    }
+}
+
+///
+
+export const headermobileshow = (state = false, action) => {
+    switch (action.type) {
+        case "CHANGEHEADERMOBILESHOW":
+            return !state
         default:
             return state
     }

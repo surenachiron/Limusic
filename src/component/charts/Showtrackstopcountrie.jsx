@@ -5,8 +5,9 @@ import ReactLoading from 'react-loading';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faPause, faPlay } from "@fortawesome/fontawesome-free-solid";
 import { playlisttrackstopforcountrie } from "../../redux/actions/charts";
+import { addedtracksfavourite, deletedtracksfavourite } from "../../redux/actions/favourite";
 
-const Showtrackstopcountrie = ({ covermusic, titlemusic, linkpagetitlemusic, artistmusic, linkpageartistmusic, numberinalbum }) => {
+const Showtrackstopcountrie = ({ covermusic, titlemusic, linkpagetitlemusic, artistmusic, linkpageartistmusic, numberinalbum, soundsong, like }) => {
 
     let slicetexttitle = titlemusic.slice(0, 20) + "..."
     let slicetextartist = artistmusic.slice(0, 20) + "..."
@@ -20,6 +21,24 @@ const Showtrackstopcountrie = ({ covermusic, titlemusic, linkpagetitlemusic, art
     const playmusicselected = () => {
         dispatch(playlisttrackstopforcountrie(listtopmusicforcountriecahrts, titlemusic))
     }
+
+    const adddordeletetofavoutirelist = () => {
+        if (like === true) {
+            dispatch(deletedtracksfavourite(titlemusic, "chartinpagechart", localStorage.getItem("currenttimemusicplaying")))
+        } else {
+            const newtrackfavourite = {
+                namesong: titlemusic,
+                nameartist: artistmusic,
+                imagesong: covermusic,
+                soundsong: soundsong,
+                linkpagesong: linkpagetitlemusic,
+                linkpageartist: linkpageartistmusic,
+                like: like,
+            }
+            dispatch(addedtracksfavourite(newtrackfavourite, "chartinpagechart", localStorage.getItem("currenttimemusicplaying")))
+        }
+    }
+
 
     /// styles
     const [getblockorhideplay, setblockorhideplay] = useState("")
@@ -45,16 +64,16 @@ const Showtrackstopcountrie = ({ covermusic, titlemusic, linkpagetitlemusic, art
 
     return (
         <>
-            <div className={`border-b-1 border-grayprodark py-2 flex items-center justify-between transition-all ${getfixhoverinplaying} hover:bg-grayprodark hover:cursor-pointer px-2 rounded group`} onClick={playmusicselected}>
-                <div className="flex items-center justify-center">
+            <div className={`border-b-1 border-grayprodark py-2 flex items-center justify-between transition-all ${getfixhoverinplaying} hover:bg-grayprodark hover:cursor-pointer px-2 rounded group`}>
+                <div className="flex items-center justify-start w-full" onClick={playmusicselected}>
                     <div className="mr-5 md:ml-2 zero:ml-0">
                         <h4 className="text-base font-medium text-white">{numberinalbum}</h4>
                     </div>
-                    <div className="flex items-center justify-center relative">
+                    <div className="flex items-center justify-center relative" onClick={playmusicselected}>
                         <div className="peer/img">
-                            <img src={covermusic} alt={`picture music ${titlemusic}`} className={`md:w-16 md:h-16 zero:w-20 zero:h-20 rounded-lg ${getopacityandhoverforimage}`} />
+                            <img src={covermusic} alt={`cover music ${titlemusic}`} className={`md:w-16 md:h-16 zero:w-20 zero:h-20 rounded-lg ${getopacityandhoverforimage}`} />
                         </div>
-                        <div className={`absolute transition-all ${getblockorhideplay} group-hover:block`} style={transform} onClick={playmusicselected}>
+                        <div className={`absolute transition-all ${getblockorhideplay} group-hover:block`} style={transform}>
                             {localStorage.getItem("namemusicplayingorplayed") === titlemusic && localStorage.getItem("artistmusicplayingorplayed") === artistmusic ? <>
                                 {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
                                     <>
@@ -81,7 +100,7 @@ const Showtrackstopcountrie = ({ covermusic, titlemusic, linkpagetitlemusic, art
                             }
                         </div>
                     </div>
-                    <div className="ml-5">
+                    <div className="ml-5 z-50">
                         <NavLink to={`/song/${linkpagetitlemusic}`}>
                             <h4 className="text-base font-medium md:block zero:hidden">{titlemusic.length <= 60 ? titlemusic : titlemusic.slice(0, 40) + "..."}</h4>
                             <h4 className="text-base font-medium md:hidden zero:bloc">{titlemusic.length <= 30 ? titlemusic : slicetexttitle}</h4>
@@ -92,8 +111,10 @@ const Showtrackstopcountrie = ({ covermusic, titlemusic, linkpagetitlemusic, art
                         </NavLink>
                     </div>
                 </div>
-                <div className="flex items-cetner justify-center md:mr-2 zero:mr-0">
-                    <FontAwesomeIcon icon={faHeart} className="border-1 border-grayprolight bg-blackpro rounded-full p-1.5 cursor-pointer backdrop-blur w-3 h-3 transition-all hover:border-bluepro" color="white"></FontAwesomeIcon>
+                <div className="flex items-cetner justify-center" onClick={adddordeletetofavoutirelist}>
+                    {like === true ? <FontAwesomeIcon icon={faHeart} className="border-1 border-grayprolight bg-blackpro rounded-full p-1.5 cursor-pointer backdrop-blur w-3 h-3 transition-all hover:border-bluepro" color="#3369ff"></FontAwesomeIcon> :
+                        <FontAwesomeIcon icon={faHeart} className="border-1 border-grayprolight bg-blackpro rounded-full p-1.5 cursor-pointer backdrop-blur w-3 h-3 transition-all hover:border-bluepro" color="white"></FontAwesomeIcon>
+                    }
                 </div>
             </div>
         </>

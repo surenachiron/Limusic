@@ -39,7 +39,7 @@ const Detailsalbum = () => {
         minutestest = (minutestest > 0) ? minutestest : "0" + minutestest;
         secondstest = Math.floor(duration[i] % 60);
         secondstest = (secondstest > 0) ? secondstest : "0" + secondstest;
-        resultduration += minutestest + (Math.floor(secondstest / 60))
+        resultduration += Math.floor(minutestest) + Math.floor(secondstest / 60)
     }
 
     if (resultduration >= 60 && resultduration < 120) {
@@ -54,9 +54,6 @@ const Detailsalbum = () => {
         resultduration -= 180
     } else durationallalbumhours = 0
 
-    
-    console.log((howplaylistisactive === playlistalbumpage && detailsalbumsinattribute.name == localStorage.getItem("whichplayinginalbume")))
-
     return (
         <>
             <Helmet>
@@ -65,7 +62,7 @@ const Detailsalbum = () => {
 
             <div className="grid grid-cols-12 h-fit">
                 <div className="col-span-12 h-60/100 zero:flex md:hidden justify-end my-3">
-                    <img src={aslcovermusic} alt={`picture albume ${detailsalbumsinattribute.name}`} width="100%" />
+                    <img src={aslcovermusic} alt={`cover albume ${detailsalbumsinattribute.name}`} width="100%" />
                 </div>
                 <div className="col-span-12 zero:flex md:hidden justify-between mx-5 mt-3">
                     <div>
@@ -75,7 +72,7 @@ const Detailsalbum = () => {
                         </NavLink>
                     </div>
                     <div onClick={playmusicselected}>
-                        {(howplaylistisactive === playlistalbumpage && document.title == localStorage.getItem("whichplayinginalbume")) === true ? <>
+                        {(howplaylistisactive === playlistalbumpage && document.title === localStorage.getItem("whichplayinginalbume")) === true ? <>
                             {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
                                 <>
                                     {ismusicwaiting === false ?
@@ -117,7 +114,7 @@ const Detailsalbum = () => {
 
                 <div className="col-span-4 flex-col justify-between mt-5 md:flex zero:hidden">
                     <div className="flex" onClick={playmusicselected}>
-                        {(howplaylistisactive === playlistalbumpage && document.title == localStorage.getItem("whichplayinginalbume")) === true ? <>
+                        {(howplaylistisactive === playlistalbumpage && document.title === localStorage.getItem("whichplayinginalbume")) === true ? <>
                             {durationtimemusic[0] !== "0NaN" && durationtimemusic[1] !== "0NaN" ?
                                 <>
                                     {ismusicwaiting === false ?
@@ -161,7 +158,7 @@ const Detailsalbum = () => {
                     </button>
                 </div>
                 <div className="col-span-4 md:flex zero:hidden justify-end">
-                    <img src={aslcovermusic} alt={`picture albume ${detailsalbumsinattribute.name}`} width="100%" />
+                    <img src={aslcovermusic} alt={`cover albume ${detailsalbumsinattribute.name}`} width="100%" />
                 </div>
             </div>
         </>
