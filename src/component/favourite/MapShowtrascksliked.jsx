@@ -23,7 +23,7 @@ const MapShowtrascksliked = () => {
                     ))}
                 </div>
                 : <div className="h-70/100 flex items-center justify-center ">
-                    <h3 className="text-bade border-1 border-grayprolight p-10 text-center w-fit rounded-lg">Not Found Tracks Favourite</h3>
+                    <h3 className="text-bade border-1 border-grayprolight p-10 text-center w-fit rounded-lg">There Are No Favorite Songs</h3>
                 </div> }
         </>
     )
