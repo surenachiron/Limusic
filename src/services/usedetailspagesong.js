@@ -8,7 +8,7 @@ export const callsongdetails = async (dispatch, keysong) => {
         url: 'https://shazam.p.rapidapi.com/songs/get-details',
         params: { key: keysong, locale: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '695d520e3cmsh8c864660f412e8cp10f6c8jsn786925583432',
+            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -32,7 +32,7 @@ export const getcountplaysong = async (dispatch, keysong) => {
         url: 'https://shazam.p.rapidapi.com/songs/get-count',
         params: { key: keysong },
         headers: {
-            'X-RapidAPI-Key': '695d520e3cmsh8c864660f412e8cp10f6c8jsn786925583432',
+            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -49,7 +49,7 @@ export const calltopsongartistinsong = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-top-songs',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '695d520e3cmsh8c864660f412e8cp10f6c8jsn786925583432',
+            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -70,7 +70,7 @@ export const callsimilarsongs = async (dispatch, keysong) => {
         url: 'https://shazam.p.rapidapi.com/songs/list-recommendations',
         params: { key: keysong, locale: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '695d520e3cmsh8c864660f412e8cp10f6c8jsn786925583432',
+            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };

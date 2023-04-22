@@ -7,7 +7,7 @@ export const usegetspecificchartsong = async (dispatch) => {
         url: 'https://shazam.p.rapidapi.com/charts/track',
         params: { locale: 'en-US', pageSize: '20', startFrom: '0' },
         headers: {
-            'X-RapidAPI-Key': '695d520e3cmsh8c864660f412e8cp10f6c8jsn786925583432',
+            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -25,7 +25,7 @@ export const usegetsongtrend = async (dispatch) => {
         url: 'https://shazam.p.rapidapi.com/songs/get-details',
         params: { key: "543335256", locale: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '695d520e3cmsh8c864660f412e8cp10f6c8jsn786925583432',
+            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
