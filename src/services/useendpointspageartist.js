@@ -7,7 +7,7 @@ export const getalldetailsartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-details',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
+            'X-RapidAPI-Key': '80e18ff079msh2944b16fa1e654fp19830fjsneea22c004e2b',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -27,7 +27,7 @@ export const gettopsongartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-top-songs',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
+            'X-RapidAPI-Key': '80e18ff079msh2944b16fa1e654fp19830fjsneea22c004e2b',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -47,7 +47,7 @@ export const getlatestreleaseartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-latest-release',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
+            'X-RapidAPI-Key': '80e18ff079msh2944b16fa1e654fp19830fjsneea22c004e2b',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -67,7 +67,7 @@ export const getalbumsartist = async (dispatch, idartist) => {
         url: 'https://shazam.p.rapidapi.com/artists/get-summary',
         params: { id: idartist, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': 'f3f49bd040msh479bd23a719047fp179b3ajsn630099597a8a',
+            'X-RapidAPI-Key': '80e18ff079msh2944b16fa1e654fp19830fjsneea22c004e2b',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
