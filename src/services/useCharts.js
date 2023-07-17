@@ -6,7 +6,7 @@ export const usegetlistcountirechart = (dispatch) => {
         method: 'GET',
         url: 'https://shazam.p.rapidapi.com/charts/list',
         headers: {
-            'X-RapidAPI-Key': '80e18ff079msh2944b16fa1e654fp19830fjsneea22c004e2b',
+            'X-RapidAPI-Key': '0ecaea8e8emshface22eb1c51059p12cc2djsn342a6cff667f',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
@@ -26,7 +26,7 @@ export const usegettrackschart = (dispatch, countriesid, listidd) => {
         url: 'https://shazam.p.rapidapi.com/charts/track',
         params: { locale: countriesid, listId: listidd, pageSize: '50', startFrom: '0' },
         headers: {
-            'X-RapidAPI-Key': '80e18ff079msh2944b16fa1e654fp19830fjsneea22c004e2b',
+            'X-RapidAPI-Key': '0ecaea8e8emshface22eb1c51059p12cc2djsn342a6cff667f',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
