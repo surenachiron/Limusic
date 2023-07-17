@@ -8,7 +8,7 @@ export const usealldetailsalbums = async (dispatch, idalbum) => {
         url: 'https://shazam.p.rapidapi.com/albums/get-details',
         params: { id: idalbum, l: 'en-US' },
         headers: {
-            'X-RapidAPI-Key': '80e18ff079msh2944b16fa1e654fp19830fjsneea22c004e2b',
+            'X-RapidAPI-Key': '0ecaea8e8emshface22eb1c51059p12cc2djsn342a6cff667f',
             'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
         }
     };
