@@ -34,7 +34,7 @@ export const listtopmusicforcountriecharts = (result) => {
                 namesong: (song.title !== undefined ? song.title : ""),
                 nameartist: (song.subtitle !== undefined ? song.subtitle : ""),
                 imagesong: (song.images !== undefined ? song.images.coverart : ananymousfase),
-                soundsong: (song.hub.actions[1].uri !== undefined ? song.hub.actions[1].uri : ""),
+                soundsong: (song.hub.actions !== undefined && song.hub.actions[1].uri !== undefined ? song.hub.actions[1].uri : ""),
                 linkpagesong: (song.key !== undefined ? song.key : ""),
                 linkpageartist: (song.artists !== undefined ? song.artists[0].adamid : ""),
                 numberinalbum: index + 1,
