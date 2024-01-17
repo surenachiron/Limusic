@@ -42,7 +42,7 @@ const Sidebarleft = () => {
                 <a href='https://github.com/Suren-chiron' target="_blank" className="flex">
                     <FontAwesomeIcon icon={faGithub} className="text-lg rounded-full cursor-pointer mr-1" />
                     <h5 className="text-xs text-grayprolight text-normal">
-                        moahmmad kairimi
+                        mohammad
                     </h5>
                 </a>
             </div>
